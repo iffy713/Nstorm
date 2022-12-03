@@ -22,10 +22,9 @@ class CartItem(db.Model):
             "quantity": self.quantity,
         }
 
-    def to_dict_include_product(self):
+    def to_dict_user_page(self):
         return {
             "id": self.id,
-            "user": self.user,
             "quantity": self.quantity,
-            "product": self.product.to_dict()
+            "product_id": self.product_id
         }
