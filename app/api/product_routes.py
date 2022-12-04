@@ -47,19 +47,3 @@ def add_product_to_cart(id):
         db.session.add(item)
         db.session.commit()
         return item.to_dict()
-
-# # ========== Remove product from cart ==============
-# @product_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
-# def remove_product_from_cart(id):
-#     item_is_exist = CartItem.query.filter(CartItem.user_id==current_user.id and CartItem.product_id == id)
-#     cart_items = CartItem.query.filter(CartItem.user_id==current_user.id)
-#     if item_is_exist:
-#         db.session.delete(item_is_exist)
-#         db.session.commit()
-#         return cart_items.to_dict_user_page()
-#     else:
-#         return {
-#             "message": "No such item im cart.",
-#             "statusCode": 404
-#         }, 404

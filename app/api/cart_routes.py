@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, CartItem
 
@@ -17,15 +17,28 @@ def cart():
     output = { "Cart_items": cart_items }
     return jsonify(output)
 
+# ========== Update quantity of items in the cart ===============
+@cart_routes.route('/<int:item_id>', methods=["PUT"])
+@login_required
+def update_product_quantity(item_id):
+    data = request.get_json()
+    item_is_exist = CartItem.query.get(item_id)
+    if not item_is_exist:
+        return {
+            "message": "No such item in cart.",
+            "statusCode": 404
+        }, 404
+    else:
+        item_is_exist.quantity=data["quantity"]
+        db.session.commit()
+        return item_is_exist.to_dict()
 
 
 # ============ Remove product from cart =============
-@cart_routes.route('/<int:cart_id>', methods=['DELETE'])
+@cart_routes.route('/<int:item_id>', methods=['DELETE'])
 @login_required
-def remove_product_from_cart(cart_id):
-    item_is_exist = CartItem.query.get(cart_id)
-    cart_items = CartItem.query.filter(CartItem.user_id==current_user.id)
-
+def remove_product_from_cart(item_id):
+    item_is_exist = CartItem.query.get(item_id)
     if not item_is_exist:
         return {
             "message": "No such item in cart.",
@@ -34,4 +47,7 @@ def remove_product_from_cart(cart_id):
     else:
         db.session.delete(item_is_exist)
         db.session.commit()
-        return "deleted successfully"
+        return {
+            "message": "Item successfully deleted",
+            "statusCode": 200
+        }, 200
