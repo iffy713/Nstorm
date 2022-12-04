@@ -17,6 +17,8 @@ def cart():
     output = { "Cart_items": cart_items }
     return jsonify(output)
 
+
+
 # ============ Remove product from cart =============
 @cart_routes.route('/<int:cart_id>', methods=['DELETE'])
 @login_required
@@ -26,10 +28,10 @@ def remove_product_from_cart(cart_id):
 
     if not item_is_exist:
         return {
-            "message": "No such item im cart.",
+            "message": "No such item in cart.",
             "statusCode": 404
         }, 404
     else:
         db.session.delete(item_is_exist)
         db.session.commit()
-        return redirect('/api/cart/')
+        return "deleted successfully"

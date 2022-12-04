@@ -28,11 +28,11 @@ def get_single_product(id):
 
 
 # ========== Add product into cart ==========
-@product_routes.route('/<int:id>', methods=['POST'])
+@product_routes.route('/<int:id>/cart', methods=['POST'])
 @login_required
 def add_product_to_cart(id):
     data = request.get_json()
-    item_is_exist = CartItem.query.filter(CartItem.user_id==current_user.id and CartItem.product_id == id)
+    item_is_exist = CartItem.query.filter(CartItem.product_id==id).filter(CartItem.user_id == current_user.id).all()
     if item_is_exist:
         return {
             "message":"Item already in cart.",
