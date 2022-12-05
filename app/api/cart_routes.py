@@ -8,7 +8,7 @@ cart_routes = Blueprint('cart', __name__)
 # ========== Get all cart items of the current user =========
 @cart_routes.route('/')
 @login_required
-def cart():
+def get_cart_items():
     cart_items = []
     data = CartItem.query.filter(CartItem.user_id == current_user.id).all()
 
