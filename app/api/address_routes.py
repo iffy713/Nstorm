@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from sqlalchemy.orm import joinedload
-from app.models import db, Address, user_addresses, User
+from app.models import db, Address
 from app.forms import AddressForm
 
 address_routes = Blueprint('addresses', __name__)
@@ -15,7 +14,6 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
     return errorMessages
-
 
 # ========== Get all addresses ===========
 @address_routes.route('/')
