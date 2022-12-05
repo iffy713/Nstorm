@@ -52,6 +52,7 @@ def get_current_user_addresses():
     # return "testing"
     output = []
     addresses = Address.query.options(joinedload(Address.users)).all()
+    # address = User.query.filter()
     print("addresses here", addresses)
 
     for address in addresses:
@@ -65,7 +66,7 @@ def create_new_address():
     form = AddressForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        address = Address(
+        new_address = Address(
             address_line1 = form.data['address_line1'],
             address_line2 = form.data['address_line2'],
             unit_number = form.data['unit_number'],
@@ -73,9 +74,10 @@ def create_new_address():
             state = form.data['state'],
             zip_code = form.data['zip_code']
         )
-        db.session.add(address)
+        print("!!!!!!!", current_user.addresses)
+        current_user.addresses.append(new_address)
         db.session.commit()
-        return address.to_dict()
+        return new_address.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # @address_routes.route('/', methods=['POST'])
