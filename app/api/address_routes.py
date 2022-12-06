@@ -44,7 +44,7 @@ def get_current_user_addresses():
     output = []
     for address in addresses:
         output.append(address.to_dict())
-    return jsonify(output)
+    return jsonify({"Addresses":output})
 
 # =========== Create a new address ===========
 @address_routes.route('/', methods=['POST'])
