@@ -24,4 +24,11 @@ export const thunkGetAllAddresses() => async (dispatch) => {
 
 
 // ============   Reducer   ==================
-const initialState = { allAddresses: {}, singleAddress:{} }
+const initialState = { Addresses: {} }
+const addressReducer = (state = initialState, action) => {
+    let newState = {};
+    switch (action.type) {
+        case GET_ALL_ADDRESSES:
+
+    }
+}
