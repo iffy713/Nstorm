@@ -7,8 +7,11 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Addresses from './components/Address';
+// import Addresses from './components/Address';
+import Addresses from './components/Addresses/Address';
 import { authenticate } from './store/session';
+import Products from './components/Products/Products';
+import ProductDetails from './components/Products/ProductDetails';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,14 +41,18 @@ function App() {
         <ProtectedRoute path='/my-account/address-book' exact={true}>
           <Addresses />
         </ProtectedRoute>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute> */}
+        <ProtectedRoute path='/products/:productId'>
+          <ProductDetails />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          {/* <h1>My Home Page</h1> */}
+          <Products />
         </Route>
       </Switch>
     </BrowserRouter>

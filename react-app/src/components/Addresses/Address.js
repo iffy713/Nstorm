@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkGetAllAddresses } from '../store/address';
+import { thunkGetAllAddresses } from '../../store/address';
 
 export default function Addresses() {
 
