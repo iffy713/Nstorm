@@ -5,7 +5,7 @@ from app.models import db, Product, CartItem
 product_routes = Blueprint('products', __name__)
 
 #  ========== Get all products =============
-@product_routes.route('/')
+@product_routes.route('')
 def get_all_products():
     all_products = []
     data = Product.query.all()

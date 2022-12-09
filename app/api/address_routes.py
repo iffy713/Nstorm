@@ -16,7 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # ========== Get all addresses ===========
-@address_routes.route('/')
+@address_routes.route('')
 def get_all_addresses():
     output = []
     addresses = Address.query.all()

@@ -12,32 +12,25 @@ const actionGetSingleAddress = (address) => ({
 })
 
 // ==============   Thunk   ==================
-
 // -------------- Get all address of current user --------------
 export const thunkGetAllAddresses = () => async (dispatch) => {
     const response = await fetch('/api/addresses/current')
     const data = await response.json()
-    // console.log("data in thunkkkkkkkk",data)
     if (response.ok) {
-        dispatch(actionGetAllAddresses(data))
+        dispatch(actionGetAllAddresses(data.Addresses))
     }
 }
 
 
 // ============   Reducer   ==================
-const initialState = { Addresses: {} }
-const addressReducer = (state = initialState, action) => {
+const addressReducer = (state={}, action) => {
     let newState = {};
     switch (action.type) {
         case GET_ALL_ADDRESSES:
-        const allAddress = {}
-        console.log("data in reducer~~~~",action.addresses)
-        action.addresses.Addresses.forEach(address=>{
-            allAddress[address.id] = address
+        action.addresses.forEach(address=>{
+            newState[address.id] = address
         })
-        return {
-            Addresses: allAddress
-        }
+        return newState
 
         default:
             return state
