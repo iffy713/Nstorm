@@ -5,15 +5,20 @@ import { thunkGetCartItems } from "../../store/cart";
 export default function ShoppingBag(){
 
     const dispatch = useDispatch()
-    const cartItems = useSelector(state=> state.cartItems)
+    const cartItemsObj = useSelector(state=> state.cartItems)
+    const cartItemsArr = Object.values(cartItemsObj)
+    const products = useSelector(state => state.product.allProducts)
 
     useEffect(()=>{
         dispatch(thunkGetCartItems())
-    })
+    }, [dispatch])
 
     return (
         <div>
-            Shopping bag component
+            shopping bag component
+            {cartItemsArr.map(item => (
+                <div key={item.id}>{item.id} quantity {item.quantity}</div>
+            ))}
         </div>
     )
 }

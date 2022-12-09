@@ -1,15 +1,16 @@
 const GET_ALL_ADDRESSES = "address/GET_ALL_ADDRESSES"
-const GET_SINGLE_ADDRESS = "address/GET_SINGLE_ADDRESS"
+const CREATE_ADDRESS = "address/CREATE_ADDRESS"
 
 const actionGetAllAddresses = (addresses) => ({
     type: GET_ALL_ADDRESSES,
     addresses
 })
 
-const actionGetSingleAddress = (address) => ({
-    type: GET_SINGLE_ADDRESS,
+const actionCreateAddress = (address) => ({
+    type: CREATE_ADDRESS,
     address
 })
+
 
 // ==============   Thunk   ==================
 // -------------- Get all address of current user --------------
@@ -18,6 +19,21 @@ export const thunkGetAllAddresses = () => async (dispatch) => {
     const data = await response.json()
     if (response.ok) {
         dispatch(actionGetAllAddresses(data.Addresses))
+    }
+}
+
+export const thunkCreateAddress = (address) => async (dispatch) => {
+    const response = await fetch('/api/addresses', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(address)
+    })
+    if (response.ok) {
+        const newAddress = await response.json()
+        dispatch(actionCreateAddress(newAddress))
+        return newAddress
     }
 }
 
@@ -31,6 +47,11 @@ const addressReducer = (state={}, action) => {
             newState[address.id] = address
         })
         return newState
+
+        case CREATE_ADDRESS:
+            newState = {...state}
+            newState[action.address.id] = action.address
+            return newState
 
         default:
             return state

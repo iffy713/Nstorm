@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllAddresses } from '../../store/address';
 import { NavLink } from "react-router-dom"
+import CreateAddressFormModal from '../CreateAddressFormModal';
 
 
 export default function Addresses() {
@@ -20,7 +21,7 @@ export default function Addresses() {
     return (
         <div>
             address component
-            <button>Add New Address</button>
+            <CreateAddressFormModal />
             {allUserAddressArr.map(address => (
                 <div key={address.id}>
                     {address.address_line1}{address.address_line2}
