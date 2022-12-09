@@ -4,5 +4,5 @@ from .user import User
 from .address import Address
 from .cart_item import CartItem
 from .product import Product
-from .user_address import user_addresses
+from .user_address import UserAddress
 from .product_img import ProductImage

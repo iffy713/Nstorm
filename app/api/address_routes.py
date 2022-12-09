@@ -43,7 +43,7 @@ def get_current_user_addresses():
     addresses = current_user.addresses
     output = []
     for address in addresses:
-        output.append(address.to_dict())
+        output.append(address.to_dict_user_page())
     return jsonify({"Addresses":output})
 
 # =========== Create a new address ===========

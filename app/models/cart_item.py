@@ -26,5 +26,14 @@ class CartItem(db.Model):
         return {
             "id": self.id,
             "quantity": self.quantity,
-            "product_id": self.product_id
+            "product_id": self.product_id,
+            "Product": {
+                "id": self.product.id,
+                "name": self.product.name,
+                "category": self.product.category,
+                "price": self.product.price,
+                "brand": self.product.brand,
+                "brand_story": self.product.brand_story,
+                "about": self.product.about
+            }
         }

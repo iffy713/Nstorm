@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .user_address import user_addresses
+from .user_address import UserAddress
 
 
 class Address(db.Model):
@@ -16,7 +16,8 @@ class Address(db.Model):
     state = db.Column(db.String(30), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
 
-    users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
+    # users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
+    users = db.relationship("UserAddress", back_populates="address")
 
     def to_dict(self):
         return {
