@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Address
+from app.models import db, Address, UserAddress
 from app.forms import AddressForm
 
 address_routes = Blueprint('addresses', __name__)
@@ -47,7 +47,7 @@ def get_current_user_addresses():
     return jsonify({"Addresses":output})
 
 # =========== Create a new address ===========
-@address_routes.route('/', methods=['POST'])
+@address_routes.route('', methods=['POST'])
 @login_required
 def create_new_address():
     form = AddressForm()
@@ -61,7 +61,8 @@ def create_new_address():
             state = form.data['state'],
             zip_code = form.data['zip_code']
         )
-        current_user.addresses.append(new_address)
+        # current_user.addresses.append(new_address)
+        db.session.add(new_address)
         db.session.commit()
         return new_address.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
