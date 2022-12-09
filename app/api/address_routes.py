@@ -54,12 +54,11 @@ def create_new_address():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_address = Address(
-            address_line1 = form.data['address_line1'],
-            address_line2 = form.data['address_line2'],
-            unit_number = form.data['unit_number'],
+            street = form.data['street'],
             city = form.data['city'],
             state = form.data['state'],
-            zip_code = form.data['zip_code']
+            zip_code = form.data['zip_code'],
+            is_primary = form.data['is_primary']
         )
         current_user.addresses.append(new_address)
         db.session.commit()
@@ -79,12 +78,11 @@ def user_update_address(address_id):
     else:
         form = AddressForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        address.address_line1 = form.data['address_line1']
-        address.address_line2 = form.data['address_line2']
-        address.unit_number = form.data['unit_number']
+        address.street = form.data['street']
         address.city = form.data['city']
         address.state = form.data['state']
         address.zip_code = form.data['zip_code']
+        address.is_primary = form.data['is_primary']
 
         db.session.commit()
         return jsonify(address.to_dict())
