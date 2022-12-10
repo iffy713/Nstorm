@@ -12,7 +12,7 @@ class Address(db.Model):
     street = db.Column(db.String(300), nullable=False)
     city = db.Column(db.String(30), nullable=False)
     state = db.Column(db.String(30), nullable=False)
-    zip_code = db.Column(db.Integer, nullable=False)
+    zip_code = db.Column(db.String(5), nullable=False)
     is_primary = db.Column(db.Boolean, nullable=False)
 
     users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
@@ -23,7 +23,8 @@ class Address(db.Model):
             "street": self.street,
             "city": self.city,
             "state": self.state,
-            "zip_code": self.zip_code
+            "zip_code": self.zip_code,
+            "is_primary": self.is_primary
         }
 
     def to_dict_with_users(self):
@@ -33,5 +34,6 @@ class Address(db.Model):
             "city": self.city,
             "state": self.state,
             "zip_code": self.zip_code,
+            "is_primary": self.is_primary,
             "Users": [user.to_dict() for user in self.users]
         }

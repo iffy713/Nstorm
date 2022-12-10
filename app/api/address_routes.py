@@ -47,7 +47,7 @@ def get_current_user_addresses():
     return jsonify({"Addresses":output})
 
 # =========== Create a new address ===========
-@address_routes.route('/', methods=['POST'])
+@address_routes.route('', methods=['POST'])
 @login_required
 def create_new_address():
     form = AddressForm()
