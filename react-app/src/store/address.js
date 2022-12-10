@@ -22,18 +22,31 @@ export const thunkGetAllAddresses = () => async (dispatch) => {
     }
 }
 
-export const thunkCreateAddress = (address) => async (dispatch) => {
+export const thunkCreateAddress = (street, city, state, zipCode, primary) => async (dispatch) => {
     const response = await fetch('/api/addresses', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(address)
+        body: JSON.stringify({
+            street,
+            city,
+            state,
+            "zip_code": zipCode,
+            "is_primary": primary
+        })
     })
     if (response.ok) {
         const newAddress = await response.json()
         dispatch(actionCreateAddress(newAddress))
         return newAddress
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) {
+            return data.errors
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 }
 
