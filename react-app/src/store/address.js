@@ -17,6 +17,7 @@ const actionCreateAddress = (address) => ({
 export const thunkGetAllAddresses = () => async (dispatch) => {
     const response = await fetch('/api/addresses/current')
     const data = await response.json()
+    console.log("address data in thunk",data)
     if (response.ok) {
         dispatch(actionGetAllAddresses(data.Addresses))
     }
