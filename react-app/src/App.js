@@ -40,13 +40,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/address-book/new' exact={true}>
-          <CreateAddressForm />
-        </ProtectedRoute>
         <ProtectedRoute path='/address-book' exact={true}>
           <Addresses />
         </ProtectedRoute>
-
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute> */}

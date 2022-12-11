@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkCreateAddress, thunkGetAllAddresses } from "../../store/address";
+import { thunkUpdateAddress } from "../../store/address";
 
-export default function CreateAddressForm({setShowModal}){
+export default function UpdateAddressForm({ addressId, street, city, state, zipCode, primary, setShowModal}){
 
     const dispatch = useDispatch()
-    const [ street, setStreet ] = useState("")
-    const [ city, setCity ] = useState("")
-    const [ state, setState ] = useState("")
-    const [ zipCode, setZipCode ] = useState("")
-    const [ primary, setPrimary ] = useState(false)
+    const [ editstreet, setStreet ] = useState(street)
+    const [ editcity, setCity ] = useState(city)
+    const [ editstate, setState ] = useState(state)
+    const [ editzipCode, setZipCode ] = useState(zipCode)
+    const [ editprimary, setPrimary ] = useState(primary)
     const [ errors, setErrors ] = useState([])
     const states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
     "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
@@ -19,14 +19,15 @@ export default function CreateAddressForm({setShowModal}){
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const data = await dispatch(thunkCreateAddress(street, city, state, zipCode, primary))
-        console.log("testing create address",data)
-        console.log("any errors?", errors)
-        await setShowModal(false)
-        if(data) {
-            setErrors(data)
-            console.log("errors here",errors)
+        const newAddres = {
+            street,
+            city,
+            state,
+            "zip_code": zipCode,
+            "is_primary": primary,
         }
+        await dispatch(thunkUpdateAddress(addressId, newAddres))
+        setShowModal(false)
     }
 
     const updateStreet = (e) => {
@@ -45,7 +46,7 @@ export default function CreateAddressForm({setShowModal}){
         setZipCode(e.target.value)
     }
 
-    const updatePrimary = (e) => {
+    const updatePrimary = () => {
         setPrimary(!primary)
     }
 
@@ -53,20 +54,19 @@ export default function CreateAddressForm({setShowModal}){
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                    <div>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                        ))}
-                    </div>
+                <ul>
+                    {errors.map(error => (
+                        <li key={error}>{error}</li>
+                    ))}
+                </ul>
                 <div>
-                    <input value={street} type='text' onChange={updateStreet} placeholder="Street"/>
+                    <input value={editstreet} type='text' onChange={updateStreet} placeholder="Street"/>
                 </div>
                 <div>
-                    <input value={city} type='text' onChange={updateCity} placeholder="City" />
+                    <input value={editcity} type='text' onChange={updateCity} placeholder="City" />
                 </div>
                 <div>
-                    {/* <input value={state} type='text' onChange={updateState} placeholder="State" /> */}
-                    <select value={state} onChange={updateState}>
+                    <select value={editstate} onChange={updateState}>
                         <option value="">-- Please select a state --</option>
                         {states.map(ele => (
                             <option value={ele} key={ele}>{ele}</option>
@@ -74,14 +74,14 @@ export default function CreateAddressForm({setShowModal}){
                     </select>
                 </div>
                 <div>
-                    <input value={zipCode} type='text' onChange={updateZipCode} placeholder="Zip Code" />
+                    <input value={editzipCode} type='text' onChange={updateZipCode} placeholder="Zip Code" />
                 </div>
                 <div>
-                    <input value={primary} type="checkbox" onChange={updatePrimary}></input>
+                    <input value={editprimary} type="checkbox" onChange={updatePrimary}></input>
                     <small>Set as primary</small>
                 </div>
                 <div>
-                    <button type="submit">Create Address</button>
+                    <button type="submit">Update Address</button>
                 </div>
             </form>
         </div>
