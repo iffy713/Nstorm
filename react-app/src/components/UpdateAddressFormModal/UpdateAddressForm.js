@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkUpdateAddress } from "../../store/address";
+import { thunkGetAllAddresses, thunkUpdateAddress } from "../../store/address";
 
 export default function UpdateAddressForm({ addressId, street, city, state, zipCode, primary, setShowModal}){
 
+    console.log("addressId here",addressId)
     const dispatch = useDispatch()
     const [ editstreet, setStreet ] = useState(street)
     const [ editcity, setCity ] = useState(city)
@@ -17,6 +18,7 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
     "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
     "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
+
     const handleSubmit = async e => {
         e.preventDefault()
         const newAddres = {
@@ -27,8 +29,13 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
             "is_primary": primary,
         }
         await dispatch(thunkUpdateAddress(addressId, newAddres))
-        setShowModal(false)
+            .then(setShowModal(false))
     }
+
+    useEffect(() => {
+        dispatch(thunkGetAllAddresses())
+    }, [dispatch, editstreet, editcity, editstate, editzipCode, editprimary])
+
 
     const updateStreet = (e) => {
         setStreet(e.target.value)
@@ -46,9 +53,10 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
         setZipCode(e.target.value)
     }
 
-    const updatePrimary = () => {
-        setPrimary(!primary)
+    const updatePrimary = (e) => {
+        setPrimary(e.target.value)
     }
+
 
 
     return (

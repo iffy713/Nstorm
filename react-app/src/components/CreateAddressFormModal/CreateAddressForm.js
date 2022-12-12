@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkCreateAddress, thunkGetAllAddresses } from "../../store/address";
+import { useDispatch } from "react-redux";
+import { thunkCreateAddress } from "../../store/address";
 
 export default function CreateAddressForm({setShowModal}){
 
@@ -20,12 +20,10 @@ export default function CreateAddressForm({setShowModal}){
     const handleSubmit = async e => {
         e.preventDefault()
         const data = await dispatch(thunkCreateAddress(street, city, state, zipCode, primary))
-        console.log("testing create address",data)
-        console.log("any errors?", errors)
-        await setShowModal(false)
         if(data) {
             setErrors(data)
-            console.log("errors here",errors)
+        } else {
+            setShowModal(false)
         }
     }
 
@@ -53,11 +51,11 @@ export default function CreateAddressForm({setShowModal}){
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                    <div>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                        ))}
-                    </div>
+                <div>
+                    {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
                 <div>
                     <input value={street} type='text' onChange={updateStreet} placeholder="Street"/>
                 </div>
