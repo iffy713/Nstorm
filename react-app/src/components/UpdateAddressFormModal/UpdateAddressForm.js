@@ -28,13 +28,17 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
             "zip_code": zipCode,
             "is_primary": primary,
         }
-        await dispatch(thunkUpdateAddress(addressId, newAddres))
-            .then(setShowModal(false))
+        const data = await dispatch(thunkUpdateAddress(addressId, newAddres))
+        if (data) {
+            setErrors(data)
+        } else {
+            setShowModal(false)
+        }
     }
 
-    useEffect(() => {
-        dispatch(thunkGetAllAddresses())
-    }, [dispatch, editstreet, editcity, editstate, editzipCode, editprimary])
+    // useEffect(() => {
+    //     dispatch(thunkGetAllAddresses())
+    // }, [dispatch, editstreet, editcity, editstate, editzipCode, editprimary])
 
 
     const updateStreet = (e) => {

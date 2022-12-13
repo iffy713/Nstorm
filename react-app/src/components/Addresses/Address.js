@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkDeleteAddress, thunkGetAllAddresses } from '../../store/address';
-import { NavLink } from "react-router-dom"
 import CreateAddressFormModal from '../CreateAddressFormModal';
-import CreateAddressForm from '../CreateAddressFormModal/CreateAddressForm';
 import UpdateAddressFormModal from '../UpdateAddressFormModal';
 
 
@@ -11,13 +9,14 @@ export default function Addresses() {
 
     const dispatch = useDispatch()
     const allUserAddressObj = useSelector(state => state.addresses)
-    const allUserAddressArr = Object.values(allUserAddressObj)
     const [ loaded, setLoaded ] = useState(false)
 
     useEffect(()=> {
         dispatch(thunkGetAllAddresses()).then(()=>setLoaded(true))
     },[dispatch])
 
+    if(!allUserAddressObj) return null
+    const allUserAddressArr = Object.values(allUserAddressObj)
 
     return (
         loaded && (
