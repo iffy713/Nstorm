@@ -101,6 +101,6 @@ def delete_address(address_id):
         db.session.delete(address)
         db.session.commit()
         return {
-            "message": "Address was deleted successrully",
+            "message": "Address was deleted successfully",
             "statusCode": 200
         }, 200
