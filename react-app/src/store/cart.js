@@ -39,7 +39,7 @@ export const thunkAddToCart = (id, quantity) => async (dispatch) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({quantity})
+        body: JSON.stringify({"quantity": quantity})
     })
     if(response.ok) {
         const data = await response.json()

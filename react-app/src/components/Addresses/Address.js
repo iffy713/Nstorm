@@ -12,11 +12,13 @@ export default function Addresses() {
     const [ loaded, setLoaded ] = useState(false)
 
     useEffect(()=> {
-        dispatch(thunkGetAllAddresses()).then(()=>setLoaded(true))
+        dispatch(thunkGetAllAddresses())
+            .then(()=>setLoaded(true))
     },[dispatch])
 
     if(!allUserAddressObj) return null
     const allUserAddressArr = Object.values(allUserAddressObj)
+    console.log(allUserAddressArr)
 
     return (
         loaded && (
@@ -37,6 +39,7 @@ export default function Addresses() {
                                 state={address.state}
                                 zipCode={address.zip_code}
                                 primary={address.is_primary}
+                                address={address}
                             />
                         </div>
                         <div>

@@ -81,6 +81,7 @@ export const thunkUpdateAddress = (address_id, address) => async (dispatch) => {
         return null
     } else if (response.status < 500) {
         const data = await response.json()
+        console.log("update address in thunk",data)
         if (data.errors) {
             return data.errors
         }

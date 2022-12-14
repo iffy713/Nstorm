@@ -36,6 +36,7 @@ export default function ProductDetails() {
     }
 
     const handleAddToCart = async () => {
+        
         await dispatch(thunkAddToCart(productId,quantity))
             .then(setQuantity(1))
     }

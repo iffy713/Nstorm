@@ -16,6 +16,8 @@ class Address(db.Model):
     is_primary = db.Column(db.Boolean, nullable=False)
 
     users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
+    orders = db.relationship("Order", back_populates="address")
+    
 
     def to_dict(self):
         return {

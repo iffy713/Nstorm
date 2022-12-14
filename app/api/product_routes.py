@@ -32,18 +32,18 @@ def get_single_product(id):
 @login_required
 def add_product_to_cart(id):
     data = request.get_json()
-    item_is_exist = CartItem.query.filter(CartItem.product_id==id).filter(CartItem.user_id == current_user.id).all()
-    if item_is_exist:
-        return {
-            "message":"Item already in cart.",
-            "statusCode": 403
-        }, 403
-    else:
+    item_is_exist = CartItem.query.filter(CartItem.product_id==id).filter(CartItem.user_id == current_user.id).first()
+    print("item is exist here", item_is_exist)
+    if not item_is_exist:
         item = CartItem(
             user_id = current_user.id,
             product_id = id,
-            quantity=data['quantity']
+            quantity = data['quantity']
         )
         db.session.add(item)
         db.session.commit()
         return item.to_dict()
+    else:
+        item_is_exist.quantity += int(data['quantity'])
+        db.session.commit()
+        return item_is_exist.to_dict()
