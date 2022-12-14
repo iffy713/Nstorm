@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Order, OrderProduct
+from app.models import db, Order, OrderProduct, CartItem
 
 order_routes = Blueprint('orders', __name__)
 
@@ -27,4 +27,13 @@ def get_current_user_orders():
 
 
 # ============ Place an order ==============
+@order_routes.route('/new')
+@login_required
+def place_order():
+    items = []
+    data = CartItem.query.filter(CartItem.user_id == current_user.id).all()
+    for item in data:
+        items.append(item.to_dict())
+    print(items)
 
+    return "testing"
