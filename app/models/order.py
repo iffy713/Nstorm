@@ -14,7 +14,7 @@ class Order(db.Model):
 
     user = db.relationship("User", back_populates="orders")
     address = db.relationship("Address", back_populates="orders")
-    order_poducts = db.relationship("Order", back_populates="order")
+    order_products = db.relationship("OrderProduct", back_populates="order")
 
 
     def to_dict(self):
@@ -24,6 +24,20 @@ class Order(db.Model):
             "address_id": self.address_id,
             "created_at": self.created_at,
             "is_canceled": self.is_canceled
+        }
+
+    def to_dict_user_page(self):
+        return {
+            "id": self.id,
+            "created_at": self.created_at,
+            "is_canceled": self.is_canceled,
+            "Address": {
+                "street": self.address.street,
+                "city": self.address.city,
+                "state": self.address.state,
+                "zip_code": self.address.zip_code,
+                "is_primary": self.address.is_primary
+            }
         }
 
     def to_dict_user_and_address(self):

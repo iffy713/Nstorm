@@ -17,8 +17,8 @@ class Product(db.Model):
     about = db.Column(db.String(2000), nullable=False)
 
     cart_items = db.relationship("CartItem", back_populates="product")
-    images = db.relationship("ProductImage", back_populates="product")
     order_products = db.relationship("OrderProduct", back_populates="product")
+    images = db.relationship("ProductImage", back_populates="product")
 
     def to_dict(self):
         return {

@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class OrderProduct():
+class OrderProduct(db.Model):
     __tablename__ = "order_products"
 
     if environment == "production":
@@ -9,6 +9,7 @@ class OrderProduct():
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")))
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
+    quantity = db.Column(db.Integer, nullable=False)
     is_canceled = db.Column(db.Boolean, nullable=False, default=False)
 
     order = db.relationship("Order", back_populates="order_products")
