@@ -14,7 +14,7 @@ class Review(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.func.now())
 
     user = db.relationship("User", back_populates="reviews")
-    product = db.relationhip("Product", back_populates="reviews")
+    product = db.relationship("Product", back_populates="reviews")
     review_images = db.relationship("ReviewImage", back_populates="review")
 
     def to_dict(self):
