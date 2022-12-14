@@ -19,6 +19,8 @@ class Product(db.Model):
     cart_items = db.relationship("CartItem", back_populates="product")
     order_products = db.relationship("OrderProduct", back_populates="product")
     images = db.relationship("ProductImage", back_populates="product")
+    reviews =db.relationship("Review", back_populates="user")
+
 
     def to_dict(self):
         return {
@@ -41,5 +43,6 @@ class Product(db.Model):
             "brand": self.brand,
             "brand_story": self.brand_story,
             "about": self.about,
-            "ProductImages": [image.to_dict_with_product() for image in self.images]
+            "ProductImages": [image.to_dict_with_product() for image in self.images],
+            # "Reviews"
         }

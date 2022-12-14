@@ -20,6 +20,8 @@ class User(db.Model, UserMixin):
     cart_items = db.relationship("CartItem", back_populates="user")
     addresses = db.relationship("Address", secondary=user_addresses, back_populates="users")
     orders = db.relationship("Order", back_populates="user")
+    reviews =db.relationship("Review", back_populates="user")
+    
 
     @property
     def password(self):
