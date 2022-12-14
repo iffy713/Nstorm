@@ -37,7 +37,12 @@ class Order(db.Model):
                 "state": self.address.state,
                 "zip_code": self.address.zip_code,
                 "is_primary": self.address.is_primary
-            }
+            },
+            # "Purchased_products": {
+            #     "product_id": self['order_products'].product_id,
+            #     "quantity": self['order_products'].quantity,
+            #     "name": self['order_products'].product.name,
+            # }
         }
 
     def to_dict_user_and_address(self):

@@ -27,13 +27,45 @@ def get_current_user_orders():
 
 
 # ============ Place an order ==============
-@order_routes.route('/new')
+@order_routes.route('/new', methods=['POST'])
 @login_required
 def place_order():
-    items = []
-    data = CartItem.query.filter(CartItem.user_id == current_user.id).all()
-    for item in data:
-        items.append(item.to_dict())
-    print(items)
 
-    return "testing"
+# ------- Step1: create new order in Order table --------
+    data = request.get_json()
+
+    new_order = Order(
+        user_id=current_user.id,
+        address_id=data['address_id']
+    )
+    db.session.add(new_order)
+    db.session.commit()
+
+# ------- Step2: create new column in OrderProduct table -------
+    items = []
+    cart_data = CartItem.query.filter(CartItem.user_id == current_user.id).all()
+    if not cart_data:
+        return {
+            "error": "Nothing in the shopping cart!",
+            "status_code": 404
+        }, 404
+
+    for item in cart_data:
+        # items.append(item.to_dict())
+        products_orders = OrderProduct(
+            order_id=new_order.id,
+            product_id=item.product_id,
+            quantity=item.quantity
+        )
+        print("from cart into order!!")
+        items.append(products_orders.to_dict())
+        db.session.add(products_orders)
+
+# ------- Step3: delete products record in Cart table
+        db.session.delete(item)
+        print("item removed from cart!!")
+        db.session.commit()
+
+    # print(items)
+
+    return {"Order": new_order.to_dict_user_page()}
