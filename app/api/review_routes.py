@@ -29,5 +29,3 @@ def get_all_user_reviews():
         "Reviews": output
     }
 
-# # =============== Get all review by a product'id ===============
-# @review_routes.route(/)

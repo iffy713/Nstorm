@@ -51,5 +51,6 @@ class Product(db.Model):
             "brand_story": self.brand_story,
             "about": self.about,
             "ProductImages": [image.to_dict_with_product() for image in self.images],
-            "Avg_rating": self.get_avg_rating()
+            "Avg_rating": self.get_avg_rating(),
+            "Reviews": [review.to_dict_product_page() for review in self.reviews]
         }
