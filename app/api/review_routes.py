@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Review
-
+from app.models import db, Review, ReviewImage
+from app.forms import ImageForm
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -28,4 +28,32 @@ def get_all_user_reviews():
     return {
         "Reviews": output
     }
+
+# =========== Add an image to a review based on the review's id ===========
+@review_routes.route('/<int:review_id>/images', methods=['POST'])
+@login_required
+def add_review_image(review_id):
+    review_is_exist = Review.query.get(review_id)
+    if not review_is_exist:
+        return {
+            "message": "Review couldn't be found.",
+            "status_code": 404
+        }, 404
+    elif len(review_is_exist.review_images) == 5:
+        return {
+            "message": "Maximum number of images for this resource was reached.",
+            "status_code": 403
+        }, 403
+    form = ImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review_image = ReviewImage(
+            review_id = review_id,
+            url = form.data['url']
+        )
+        db.session.add(review_image)
+        db.session.commit()
+
+        return review_image.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

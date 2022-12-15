@@ -66,7 +66,7 @@ def get_reviews_of_product(id):
     if not product:
         return {
             "message": "Product couldn't be found.",
-            "statusCode": 404
+            "status_code": 404
         }, 404
     reviews = product.reviews
     output = []
@@ -84,13 +84,13 @@ def create_new_review(id):
     if review_is_exit:
         return {
             "message": "User already has a review for this product",
-            "statusCode": 403
+            "status_code": 403
         }, 403
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print(form.data)
+        # print(form.data)
         review = Review(
             user_id=current_user.id,
             product_id=id,
