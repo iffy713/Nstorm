@@ -47,3 +47,19 @@ def add_product_to_cart(id):
         item_is_exist.quantity += int(data['quantity'])
         db.session.commit()
         return item_is_exist.to_dict()
+
+# =============== Get all review by a product'id ===============
+@product_routes.route('/<int:id>/reviews')
+def get_reviews_of_product(id):
+    product = Product.query.get(id)
+    if not product:
+        return {
+            "message": "Product couldn't be found.",
+            "statusCode": 404
+        }, 404
+    reviews = product.reviews
+    output = []
+    for review in reviews:
+        output.append(review.to_dict_product_page())
+
+    return {"Reviews": output}

@@ -41,5 +41,23 @@ class Review(db.Model):
                 "brand": self.product.brand,
                 "brand_story": self.product.brand_story,
                 "about": self.product.about,
+            },
+            "Review_images": [image.to_dict_review_page() for image in self.review_images]
+        }
+
+    def to_dict_product_page(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "product_id": self.product_id,
+            "review": self.review,
+            "stars": self.stars,
+            "Review_images": [image.to_dict_review_page() for image in self.review_images],
+            "User": {
+                'id': self.user.id,
+                'username': self.user.username,
+                'first_name' : self.user.first_name,
+                'last_name': self.user.last_name,
+                'email': self.user.email
             }
         }

@@ -19,6 +19,12 @@ class ReviewImage(db.Model):
             "url": self.url
         }
 
+    def to_dict_review_page(self):
+        return {
+            "id": self.id,
+            "url": self.url
+        }
+
     def to_dict_with_review(self):
         return {
             "id": self.id,
@@ -28,6 +34,6 @@ class ReviewImage(db.Model):
                 "product_id": self.review.product_id,
                 "review": self.review.review,
                 "stars": self.review.stars,
-                "create_at": self.review.create_at
+                "created_at": self.review.created_at
             }
         }
