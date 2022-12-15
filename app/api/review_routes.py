@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Review, ReviewImage
-from app.forms import ImageForm
+from app.forms import ImageForm, ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -57,3 +57,39 @@ def add_review_image(review_id):
         return review_image.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+# ============= Update a review ================
+@review_routes.route('/<int:review_id>', methods=["PUT"])
+@login_required
+def update_review(review_id):
+    review_is_exist = Review.query.get(review_id)
+    if not review_is_exist:
+        return {
+            "message": "Review couldn't be found.",
+            "status_code": 404
+        }, 404
+    else:
+        form = ReviewForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        review_is_exist.review = form.data['review']
+        review_is_exist.stars = form.data['stars']
+
+        db.session.commit()
+        return review_is_exist.to_dict()
+
+# ============= Delete a review ==================
+@review_routes.route('/<int:review_id>', methods=["DELETE"])
+@login_required
+def delete_review(review_id):
+    review_is_exist = Review.query.get(review_id)
+    if not review_is_exist:
+        return {
+            "message": "Review couldn't be found.",
+            "status_code": 404
+        }, 404
+    else:
+        db.session.delete(review_is_exist)
+        db.session.commit()
+        return {
+            "message": "Successfully deleted",
+            "status_code": 200
+        }, 200
