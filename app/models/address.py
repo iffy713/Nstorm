@@ -18,7 +18,7 @@ class Address(db.Model):
 
 
     # users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
-    user_addresses = db.relationship("UserAddress", back_populates="address")
+    user_addresses = db.relationship("UserAddress", back_populates="address", cascade="all, delete")
 
     orders = db.relationship("Order", back_populates="address")
 
@@ -43,5 +43,4 @@ class Address(db.Model):
             "city": self.city,
             "state": self.state,
             "zip_code": self.zip_code,
-            "Users": [user.to_dict() for user in self.users]
         }

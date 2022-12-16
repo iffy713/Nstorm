@@ -21,7 +21,7 @@ class UserAddress(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     address_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("addresses.id")))
-    is_primary = db.Column(db.Boolean, nullable=False, default=True)
+    is_primary = db.Column(db.Boolean, nullable=False, default=False)
 
     user = db.relationship("User", back_populates="user_addresses")
     address = db.relationship("Address", back_populates="user_addresses")
@@ -37,20 +37,21 @@ class UserAddress(db.Model):
     def to_dict_user_page(self):
         return {
             'id': self.id,
-            'User': {
-                'id': self.user.id,
-                'username': self.user.username,
-                'first_name' : self.user.first_name,
-                'last_name': self.user.last_name,
-                'email': self.user.email
-            },
+            'is_primary': self.is_primary,
             'Address': {
                 "id": self.address.id,
-                'first_name' : self.first_name,
-                'last_name': self.last_name,
+                'first_name' : self.address.first_name,
+                'last_name': self.address.last_name,
                 "street": self.address.street,
                 "city": self.address.city,
                 "state": self.address.state,
                 "zip_code": self.address.zip_code,
             }
+            # 'User': {
+            #     'id': self.user.id,
+            #     'username': self.user.username,
+            #     'first_name' : self.user.first_name,
+            #     'last_name': self.user.last_name,
+            #     'email': self.user.email
+            # },
         }

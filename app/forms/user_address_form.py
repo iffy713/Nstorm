@@ -14,4 +14,8 @@ class UniqueTrueValidator:
             raise ValidationError(self.message)
 
 class UserAddressForm(FlaskForm):
-    is_primary = BooleanField('is_primary', validators=[DataRequired(), UniqueTrueValidator()])
+    is_primary = BooleanField('is_primary', validators=[UniqueTrueValidator()])
+
+    class Meta:
+        csrf= False
+        content_type = 'application/json'
