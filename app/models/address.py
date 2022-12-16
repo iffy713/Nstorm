@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .user_address import user_addresses
 
 
 class Address(db.Model):
@@ -19,7 +18,7 @@ class Address(db.Model):
 
 
     # users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
-    user_addresses = db.relationship("UserAddress", back_populates="user")
+    user_addresses = db.relationship("UserAddress", back_populates="address")
 
     orders = db.relationship("Order", back_populates="address")
 
