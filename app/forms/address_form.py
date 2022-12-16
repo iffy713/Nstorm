@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Regexp, ValidationError
-from app.models import Address
+
 
 
 states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
@@ -10,12 +10,12 @@ states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
           "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
           "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 class AddressForm(FlaskForm):
+    first_name = StringField('first_name', validators=[DataRequired()])
+    last_name = StringField('last_name', validators=[DataRequired()])
     street = StringField("street", validators=[DataRequired()])
     city = StringField("city", validators=[DataRequired()])
-    # state = StringField("state", validators=[DataRequired()])
     state = SelectField("state", choices=states, validators=[DataRequired()])
     zip_code = StringField('zip', validators=[DataRequired(), Regexp("^[0-9]{5}(?:-[0-9]{4})?$", message="Please enter a valid zip code.")])
-    is_primary = BooleanField('is_primary')
 
     def validate_state(form, field):
         states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
