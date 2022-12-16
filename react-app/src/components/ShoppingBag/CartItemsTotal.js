@@ -1,8 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { thunkGetCartItems } from "../../store/cart"
 
 export default function CartItemsTotal({cartItems}){
 
-    console.log(cartItems)
+    // console.log(cartItems)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(thunkGetCartItems())
+    }, [dispatch])
 
     let orderTotal = 0
     cartItems.forEach(item => {

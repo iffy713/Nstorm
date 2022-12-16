@@ -8,7 +8,6 @@ export default function ShoppingBag(){
 
     const dispatch = useDispatch()
     const cartItemsObj = useSelector(state=> state.cartItems)
-    const cartItemsArr = Object.values(cartItemsObj)
     const [ loaded, setLoaded ] = useState(false)
 
     // set quantity selections
@@ -20,6 +19,10 @@ export default function ShoppingBag(){
     useEffect(()=>{
         dispatch(thunkGetCartItems()).then(setLoaded(true))
     }, [dispatch])
+
+    if(!cartItemsObj) return null
+    const cartItemsArr = Object.values(cartItemsObj)
+
 
     return (
         loaded && (
@@ -34,6 +37,7 @@ export default function ShoppingBag(){
                 <div>
                     <CartItemsTotal cartItems={cartItemsArr}/>
                 </div>
+                
             </div>
         )
     )

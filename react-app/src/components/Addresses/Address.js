@@ -9,16 +9,17 @@ export default function Addresses() {
 
     const dispatch = useDispatch()
     const allUserAddressObj = useSelector(state => state.addresses)
+    // console.log("==============", allUserAddressObj)
     const [ loaded, setLoaded ] = useState(false)
 
-    useEffect(()=> {
+    useEffect(async ()=> {
         dispatch(thunkGetAllAddresses())
             .then(()=>setLoaded(true))
     },[dispatch])
 
     if(!allUserAddressObj) return null
     const allUserAddressArr = Object.values(allUserAddressObj)
-    console.log(allUserAddressArr)
+    // console.log("array is here",allUserAddressArr)
 
     return (
         loaded && (
@@ -26,11 +27,14 @@ export default function Addresses() {
                 address component
                 <CreateAddressFormModal />
                 {allUserAddressArr.map(address => (
-                    <div key={address.id}>
-                        {address.street}
-                        {address.city}
-                        {address.state}
-                        {address.zip_code}
+                    <div key={address.Address.id}>
+                        {address.Address.street}
+                        {address.Address.city}
+                        {address.Address.state}
+                        {address.Address.zip_code}
+                        {address.is_primary && (
+                            <div>primary address</div>
+                        )}
                         <div>
                             <UpdateAddressFormModal
                                 addressId={address.id}

@@ -3,6 +3,8 @@ const CREATE_ADDRESS = "address/CREATE_ADDRESS"
 const UPDATE_ADDRESS = "address/UPDATE_ADDRESS"
 const DELETE_ADDRESS = "address/DELETE_ADDRESS"
 
+const SET_PRIMARY = "address/SET_PRIMARY"
+
 const actionGetAllAddresses = (addresses) => ({
     type: GET_ALL_ADDRESSES,
     addresses
@@ -23,6 +25,12 @@ const actionDeleteAddress = (addressId) => ({
     addressId
 })
 
+const actionSetPrimary = (address, primary) => ({
+    type: SET_PRIMARY,
+    address,
+    primary
+})
+
 
 // ==============   Thunk   ==================
 // -------------- Get all address of current user --------------
@@ -35,30 +43,51 @@ export const thunkGetAllAddresses = () => async (dispatch) => {
     }
 }
 
-export const thunkCreateAddress = (street, city, state, zipCode, primary) => async (dispatch) => {
+export const thunkCreateAddress = (firstName, lastName, street, city, state, zipCode, primary) => async (dispatch) => {
     const response = await fetch('/api/addresses', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            "first_name": firstName,
+            "last_name": lastName,
             street,
             city,
             state,
             "zip_code": zipCode,
-            "is_primary": primary
         })
     })
     if (response.ok) {
         const newAddress = await response.json()
+        // console.log("address was created in thunk", newAddress)
         dispatch(actionCreateAddress(newAddress))
-        console.log("response.ok in thunk")
-        return null
+
+        const addressId = newAddress.id
+        const isPrimary = await fetch(`/api/${addressId}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "is_primary": primary
+            })
+        })
+
+        if(isPrimary.ok){
+            const primaryData = await isPrimary.json()
+            // console.log("primary data in thunk", primaryData)
+            dispatch(actionSetPrimary(primaryData, primary))
+            return null
+        }
+
+        // console.log("response.ok in thunk")
+        // return null
     // }
     } else if (response.status < 500) {
         // console.log("error response in thunk", response.json())
         const data = await response.json()
-        console.log("error data in thunk",data)
+        // console.log("error data in thunk",data)
         if (data.errors) {
             return data.errors
         }
@@ -130,6 +159,13 @@ const addressReducer = (state={}, action) => {
                 ...state
             }
             delete newState[action.addressId]
+            return newState
+
+        case SET_PRIMARY:
+            newState = {
+                ...state
+            }
+            newState[action.address.is_primary] = action.primary
             return newState
 
         default:

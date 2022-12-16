@@ -5,6 +5,8 @@ import { thunkCreateAddress } from "../../store/address";
 export default function CreateAddressForm({setShowModal}){
 
     const dispatch = useDispatch()
+    const [ firstName, setFirstName ] = useState("")
+    const [ lastName, setLastName ] = useState("")
     const [ street, setStreet ] = useState("")
     const [ city, setCity ] = useState("")
     const [ state, setState ] = useState("")
@@ -19,12 +21,20 @@ export default function CreateAddressForm({setShowModal}){
 
     const handleSubmit = async e => {
         e.preventDefault()
-        const data = await dispatch(thunkCreateAddress(street, city, state, zipCode, primary))
+        const data = await dispatch(thunkCreateAddress(firstName, lastName, street, city, state, zipCode, primary))
         if(data) {
             setErrors(data)
         } else {
             setShowModal(false)
         }
+    }
+
+    const updateFirstName = (e) => {
+        setFirstName(e.target.value)
+    }
+
+    const updateLastName = (e) => {
+        setLastName(e.target.value)
     }
 
     const updateStreet = (e) => {
@@ -55,6 +65,12 @@ export default function CreateAddressForm({setShowModal}){
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
+                </div>
+                <div>
+                    <input value={firstName} type='text' onChange={updateFirstName} placeholder='First Name'/>
+                </div>
+                <div>
+                    <input value={lastName} type='text' onChange={updateLastName} placeholder='Last Name'/>
                 </div>
                 <div>
                     <input value={street} type='text' onChange={updateStreet} placeholder="Street"/>

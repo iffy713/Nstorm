@@ -95,7 +95,6 @@ def change_primary_address(address_id):
     if not get_current_primary:
         current_address.is_primary = True
         db.session.commit()
-        print("set current address as primary address")
     else:
         get_current_primary.is_primary = False
         db.session.commit()

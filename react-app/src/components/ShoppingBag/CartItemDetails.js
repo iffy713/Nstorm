@@ -4,6 +4,8 @@ import { thunkUpdateItemQuantity } from "../../store/cart";
 
 export default function CartItemDetails({item}){
 
+    // console.log("item in cart details page", item)
+
     const dispatch = useDispatch()
     const [ quantity, setQuantity ] = useState(item.quantity)
     const [ itemPrice, setItemPrice ] = useState(quantity * item.Product.price)
@@ -27,7 +29,7 @@ export default function CartItemDetails({item}){
             <div>
                 Cart item details
                 <br></br>
-                
+
                 {item.Product.name} quantity {item.quantity}
                 <select value={quantity} onChange={(e)=>setQuantity(e.target.value)}>
                     {options.map(option => (
