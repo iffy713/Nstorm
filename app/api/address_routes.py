@@ -72,15 +72,6 @@ def create_new_address():
 @address_routes.route('/<int:address_id>', methods=['POST'])
 @login_required
 def set_primary_address(address_id):
-    # data = request.get_json()
-    # primary_address = UserAddress(
-    #     user_id = current_user.id,
-    #     address_id = address_id,
-    #     is_primary = data['is_primary']
-    # )
-    # db.session.add(primary_address)
-    # db.session.commit()
-    # return primary_address.to_dict_user_page()
     form = UserAddressForm()
     if form.validate_on_submit():
         address = UserAddress(
@@ -94,11 +85,24 @@ def set_primary_address(address_id):
         return address.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# =============== Update primary address ================
-# @address_routes.route('/<int:address_id>', methods=['PUT'])
-# @login_required
-# def change_primary_address(address_id):
-#     pass
+# =============== Change primary address ================
+@address_routes.route('/<int:address_id>/primary', methods=['PUT'])
+@login_required
+def change_primary_address(address_id):
+    get_current_primary = UserAddress.query.filter_by(is_primary=True).filter(UserAddress.user_id == current_user.id).first()
+    current_address = UserAddress.query.filter_by(user_id=current_user.id).filter_by(address_id=address_id).first()
+
+    if not get_current_primary:
+        current_address.is_primary = True
+        db.session.commit()
+        print("set current address as primary address")
+    else:
+        get_current_primary.is_primary = False
+        db.session.commit()
+        current_address.is_primary = True
+        db.session.commit()
+    return "testing"
+
 
 # ============ Update an address ================
 @address_routes.route('/<int:address_id>', methods=['PUT'])
