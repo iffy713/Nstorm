@@ -41,6 +41,7 @@ class Review(db.Model):
                 "brand": self.product.brand,
                 "brand_story": self.product.brand_story,
                 "about": self.product.about,
+                "preview_image": self.product.images[0].url
             },
             "Review_images": [image.to_dict_review_page() for image in self.review_images]
         }
@@ -52,6 +53,7 @@ class Review(db.Model):
             "product_id": self.product_id,
             "review": self.review,
             "stars": self.stars,
+            "created_at": self.created_at,
             "Review_images": [image.to_dict_review_page() for image in self.review_images],
             "User": {
                 'id': self.user.id,

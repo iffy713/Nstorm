@@ -21,13 +21,14 @@ export default function CartItemDetails({item}){
         options.push(i)
     }
 
+    if (!item) return null
 
     return (
         loaded && (
             <div>
                 Cart item details
                 <br></br>
-                
+
                 {item.Product.name} quantity {item.quantity}
                 <select value={quantity} onChange={(e)=>setQuantity(e.target.value)}>
                     {options.map(option => (

@@ -5,7 +5,7 @@ import { thunkGetAllAddresses, thunkUpdateAddress } from "../../store/address";
 export default function UpdateAddressForm({ addressId, street, city, state, zipCode, primary, setShowModal}){
 // export default function UpdateAddressForm({ address, setShowModal}){
 
-    console.log("addressId here",addressId)
+    // console.log("addressId here",addressId)
     const dispatch = useDispatch()
     const [ editstreet, setStreet ] = useState(street)
     const [ editcity, setCity ] = useState(city)
@@ -39,9 +39,10 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
         }
     }
 
-    useEffect(() => {
-        dispatch(thunkGetAllAddresses())
-    }, [dispatch, editstreet, editcity, editstate, editzipCode, editprimary])
+    // useEffect(() => {
+    //     dispatch(thunkGetAllAddresses())
+    //     // return () => {}
+    //   }, [dispatch, editstreet, editcity, editstate, editzipCode, editprimary])
 
 
     const updateStreet = (e) => {

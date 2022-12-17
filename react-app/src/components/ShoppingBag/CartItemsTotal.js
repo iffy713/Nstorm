@@ -6,6 +6,8 @@ export default function CartItemsTotal({cartItems}){
 
     let orderTotal = 0
     cartItems.forEach(item => {
+        if (!item.Product || !item.Product.price) return
+
         orderTotal += item.Product.price * item.quantity
     })
 

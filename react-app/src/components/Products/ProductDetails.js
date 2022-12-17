@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkAddToCart } from '../../store/cart';
 import { thunkGetSingleProduct } from '../../store/product';
+import { thunkGetProductReviews } from '../../store/review';
+import Reviews from '../Reviews/Reviews';
 
 export default function ProductDetails() {
 
@@ -18,7 +20,7 @@ export default function ProductDetails() {
     const { productId } = useParams()
     const [ quantity, setQuantity ] = useState(1)
     const [ loaded, setLoaded ] = useState(false)
-    let productImages
+
 
     // set quantity selections
     let options = []
@@ -28,20 +30,19 @@ export default function ProductDetails() {
 
     useEffect(()=> {
         dispatch(thunkGetSingleProduct(productId))
+        dispatch(thunkGetProductReviews(productId))
             .then(()=> setLoaded(true))
-    }, [dispatch])
-
-    if (loaded) {
-        productImages = Object.values(singleProduct.ProductImages)
-    }
+    }, [dispatch, productId])
 
     const handleAddToCart = async () => {
-        
         await dispatch(thunkAddToCart(productId,quantity))
             .then(setQuantity(1))
     }
 
+    // if(!singleProduct || !singleProduct.ProductImages) return null
 
+    if (!singleProduct || !singleProduct.ProductImages) return null
+    const productImages = Object.values(singleProduct.ProductImages)
 
     return (
         loaded && (
@@ -64,6 +65,10 @@ export default function ProductDetails() {
                     item.product_id == productId?<button>In Your Bag</button>:
                 ))} */}
                 <button id="btn-add-to-cart" onClick={handleAddToCart}>Add to cart</button>
+
+                <div>
+                    <Reviews productId={productId}/>
+                </div>
             </div>
 
         )
