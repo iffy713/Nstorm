@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetUserReviews } from "../../store/review";
+import EmptyReview from "./EmptyReview";
 import UserSingleReview from "./UserSingleReview";
 
 
@@ -16,7 +17,11 @@ export default function UserReviews() {
         dispatch(thunkGetUserReviews())
     },[dispatch])
 
-    return (
+    return userReviewsArr.length===0?(
+        <div>
+            <EmptyReview />
+        </div>
+    ):(
         <div>
             {userReviewsArr.map(review => {
                 if (!review) return
