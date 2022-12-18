@@ -78,15 +78,15 @@ def user_update_address(address_id):
     else:
         form = AddressForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        address.street = form.data['street']
-        address.city = form.data['city']
-        address.state = form.data['state']
-        address.zip_code = form.data['zip_code']
-        address.is_primary = form.data['is_primary']
-
-        db.session.commit()
-        return jsonify(address.to_dict())
-
+        if form.validate_on_submit():
+            address.street = form.data['street']
+            address.city = form.data['city']
+            address.state = form.data['state']
+            address.zip_code = form.data['zip_code']
+            address.is_primary = form.data['is_primary']
+            db.session.commit()
+            return jsonify(address.to_dict())
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 # =========== Delete an address ==============
 @address_routes.route('/<int:address_id>', methods=['DELETE'])
 @login_required

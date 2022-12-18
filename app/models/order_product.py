@@ -20,13 +20,13 @@ class OrderProduct(db.Model):
             "id": self.id,
             "order_id": self.order_id,
             "product_id": self.product_id,
-            "is_canceled": self.is_canceled
+            # "is_canceled": self.is_canceled
         }
 
     def to_dict_with_product(self):
         return {
             "id": self.id,
-            "is_canceled": self.is_canceled,
+            # "is_canceled": self.is_canceled,
             "Product": {
                 "id": self.product.id,
                 "name": self.product.name,
@@ -34,6 +34,7 @@ class OrderProduct(db.Model):
                 "price": self.product.price,
                 "brand": self.product.brand,
                 "brand_story": self.product.brand_story,
-                "about": self.product.about
+                "about": self.product.about,
+                "preview_image": self.product.images[0].url
             }
         }

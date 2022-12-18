@@ -50,29 +50,6 @@ export default function Addresses() {
                     </div>
                     )
                 })}
-                {/* {allUserAddressArr.map(address => (
-
-                    <div key={address.id}>
-                        {address.street}
-                        {address.city}
-                        {address.state}
-                        {address.zip_code}
-                        <div>
-                            <UpdateAddressFormModal
-                                addressId={address.id}
-                                street={address.street}
-                                city={address.city}
-                                state={address.state}
-                                zipCode={address.zip_code}
-                                primary={address.is_primary}
-                                address={address}
-                            />
-                        </div>
-                        <div>
-                            <button onClick={()=> dispatch(thunkDeleteAddress(address.id))}>Remove</button>
-                        </div>
-                    </div>
-                ))} */}
             </div>
         )
     )
