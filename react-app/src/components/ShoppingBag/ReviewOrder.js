@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { thunkGetAllAddresses } from "../../store/address";
 import { thunkGetCartItems } from "../../store/cart";
 import { thunkCreateOrder } from "../../store/order";
@@ -8,9 +8,11 @@ import { thunkCreateOrder } from "../../store/order";
 export default function ReviewOrder(){
 
     const dispatch = useDispatch()
+    const history = useHistory()
     const cartItemsObj = useSelector(state=> state.cartItems)
     const cartItemsArr = Object.values(cartItemsObj)
-    console.log(cartItemsArr)
+    
+    // console.log(cartItemsArr)
     let orderTotal = 0
     cartItemsArr.forEach(item => {
         orderTotal += item.Product.price * item.quantity
@@ -21,8 +23,10 @@ export default function ReviewOrder(){
     const userId = useSelector(state => state.session.user).id
 
 
+
     const handleSubmit = async(e) => {
         const data = await dispatch(thunkCreateOrder(userId, addressId))
+        history.push('/my-account/my-orders')
     }
 
     useEffect(()=> {
@@ -32,6 +36,7 @@ export default function ReviewOrder(){
 
     if(!userAddressArr.length) return null
     const addressId = userAddressArr[0].id
+
     return (
         <div>
             <div>
@@ -50,7 +55,8 @@ export default function ReviewOrder(){
                 <div>
                     <div>Your items   {Number(orderTotal).toFixed(2)}</div>
                     <div>Shipping  Free</div>
-                    <div>Estimated tax {Number(orderTotal*1.07).toFixed(2)}</div>
+                    <div>Estimated tax {Number(orderTotal*0.07).toFixed(2)}</div>
+                    <div>Estimated total {Number(orderTotal * 1.07).toFixed(2)}</div>
                     <button onClick={handleSubmit}>Place Order</button>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { thunkGetOrders } from "../../store/order"
+import EmptyOrder from "./EmptyOrder"
 import OrderInList from "./OrderInList"
 
 export default function UserOrders() {
@@ -14,7 +15,11 @@ export default function UserOrders() {
     }, [dispatch])
 
 
-    return (
+    return allOrdersArr.length === 0?(
+        <div>
+            <EmptyOrder />
+        </div>
+    ):(
         <div>
             {allOrdersArr.map(order => (
                 <div key={order.id}>
