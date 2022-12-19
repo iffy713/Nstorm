@@ -11,7 +11,9 @@ export default function ReviewOrder(){
     const history = useHistory()
     const cartItemsObj = useSelector(state=> state.cartItems)
     const cartItemsArr = Object.values(cartItemsObj)
-    
+    const [ addressId, setAddressId ] = useState()
+
+
     // console.log(cartItemsArr)
     let orderTotal = 0
     cartItemsArr.forEach(item => {
@@ -22,6 +24,9 @@ export default function ReviewOrder(){
     // const addressId = userAddressArr[0].id
     const userId = useSelector(state => state.session.user).id
 
+    const updateAddress = (e)=> {
+        setAddressId(e.target.value)
+    }
 
 
     const handleSubmit = async(e) => {
@@ -35,7 +40,6 @@ export default function ReviewOrder(){
     }, [dispatch])
 
     if(!userAddressArr.length) return null
-    const addressId = userAddressArr[0].id
 
     return (
         <div>
@@ -46,8 +50,14 @@ export default function ReviewOrder(){
                 </div>
                 <div>
                     <div>Shipping address</div>
-                    <div>{userAddressArr[0].street}</div>
-                    <div>{userAddressArr[0].city}, {userAddressArr[0].state} {userAddressArr[0].zip_code}</div>
+                    <form>
+                        {userAddressArr.map(address => (
+                            <div key={address.id}>
+                                <input name="address-radio" type='radio' value={address.id} onChange={updateAddress}/>
+                                <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
+                            </div>
+                        ))}
+                    </form>
                 </div>
             </div>
             <div>
