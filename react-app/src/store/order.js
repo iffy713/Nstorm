@@ -1,8 +1,20 @@
 const GET_ALL_ORDERS = "order/GET_ALL_ORDERS"
+const CREATE_ORDER = "order/CREATE_ORDER"
+const CANCEL_ORDER = "order/CANCEL_ORDER"
 
 const actionGetOrders = (orders) => ({
     type: GET_ALL_ORDERS,
     orders
+})
+
+const actionCreateOrder = (order) => ({
+    type: CREATE_ORDER,
+    order
+})
+
+const actionCancelOrder = (order) =>({
+    type: CANCEL_ORDER,
+    order
 })
 
 export const thunkGetOrders = () => async (dispatch)=>{
@@ -10,6 +22,35 @@ export const thunkGetOrders = () => async (dispatch)=>{
     const data = await response.json()
     if(response.ok){
         dispatch(actionGetOrders(data.Orders))
+    }
+}
+
+export const thunkCreateOrder =(userId, addressId) => async (dispatch) => {
+    const response = await fetch('/api/orders/new', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "user_id": userId,
+            "address_id": addressId,
+        })
+    })
+    console.log("create order response in thunk",response)
+    if (response.ok){
+        const data = await response.json()
+        dispatch(actionCreateOrder(data))
+    }
+}
+
+export const thunkCancelOrder = (orderId) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}`, {
+        method: "PUT",
+    })
+    if (response.ok){
+        const data = await response.json()
+        console.log("cancel order data in thunk", data)
+        dispatch(actionCancelOrder(data))
     }
 }
 
@@ -21,6 +62,19 @@ const orderReducer = (state={}, action) => {
                 newState[order.id] = order
             })
             return newState
+
+        case CREATE_ORDER:
+            newState = {...state}
+            newState[action.order.id] = action.order
+            return newState
+
+        case CANCEL_ORDER:
+            newState = {
+                ...state,
+                [action.order.id]: action.order
+            }
+
+
         default:
             return state
     }

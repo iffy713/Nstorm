@@ -17,6 +17,7 @@ import CreateAddressForm from './components/CreateAddressFormModal/CreateAddress
 import UserReviews from './components/Reviews/UserReviews';
 import MyAccount from './components/Account/MyAccount'
 import UserOrders from './components/Orders/UserOrders';
+import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +60,10 @@ function App() {
 
         <ProtectedRoute path='/my-account' exact={true}>
           <MyAccount />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/checkout' exact={true}>
+          <ReviewOrder />
         </ProtectedRoute>
 
         {/* <ProtectedRoute path='/users' exact={true} >

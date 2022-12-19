@@ -1,4 +1,5 @@
 import React from "react"
+import { NavLink } from 'react-router-dom';
 
 export default function CartItemsTotal({cartItems}){
 
@@ -10,7 +11,7 @@ export default function CartItemsTotal({cartItems}){
 
         orderTotal += item.Product.price * item.quantity
     })
-    
+
     return (
         <div>
             <hr></hr>
@@ -23,7 +24,11 @@ export default function CartItemsTotal({cartItems}){
             <div>
                 Estimated total {Number(orderTotal*1.07).toFixed(2)}
             </div>
-            <button>Process to Checkout</button>
+            <button>
+                <NavLink to="/checkout">
+                    Process to Checkout
+                </NavLink>
+            </button>
         </div>
     )
 }

@@ -1,7 +1,11 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { thunkCancelOrder, thunkGetOrders } from '../../store/order'
 import './OrderInList.css'
 
 export default function OrderInList({order}){
 
+    const dispatch = useDispatch()
     const timeString = order.created_at
     const date = new Date(timeString)
     const year = date.getFullYear()
@@ -9,11 +13,20 @@ export default function OrderInList({order}){
     const day = date.getDate()
     const newTimeString = `${month}/${day}/${year}`
 
+
+    // useEffect(()=> {
+    //     dispatch(thunkGetOrders())
+    // }, [dispatch])
+
+    const handleCancel = async()=>{
+        dispatch(thunkCancelOrder(order.id)).then(dispatch(thunkGetOrders()))
+    }
+
     return (
         <div>
             <hr></hr>
             <div>
-                {order.is_canceled?<div>Purchased Online</div>:<div>Canceled</div>}
+                {order.is_canceled?<div>Canceled</div>:<div>Purchased Online</div>}
             </div>
             <div>
                 <span>{newTimeString} | </span>
@@ -31,6 +44,12 @@ export default function OrderInList({order}){
                         id="order-preview-img"
                     />
                 ))}
+            </div>
+            <div>
+                {!order.is_canceled &&
+                    // <button onClick={()=>dispatch(thunkCancelOrder(order.id))}>Cancel</button>}
+                    <button onClick={handleCancel}>Cancel</button>}
+
             </div>
 
         </div>
