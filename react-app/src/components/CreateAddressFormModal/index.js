@@ -11,7 +11,7 @@ export default function CreateAddressFormModal() {
             <button onClick={()=> setShowModal(true)}>Create New Address</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
-                    <CreateAddressForm />
+                    <CreateAddressForm setShowModal={setShowModal}/>
                 </Modal>
             ) }
         </>

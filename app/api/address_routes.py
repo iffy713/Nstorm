@@ -47,19 +47,18 @@ def get_current_user_addresses():
     return jsonify({"Addresses":output})
 
 # =========== Create a new address ===========
-@address_routes.route('/', methods=['POST'])
+@address_routes.route('', methods=['POST'])
 @login_required
 def create_new_address():
     form = AddressForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_address = Address(
-            address_line1 = form.data['address_line1'],
-            address_line2 = form.data['address_line2'],
-            unit_number = form.data['unit_number'],
+            street = form.data['street'],
             city = form.data['city'],
             state = form.data['state'],
-            zip_code = form.data['zip_code']
+            zip_code = form.data['zip_code'],
+            is_primary = form.data['is_primary']
         )
         current_user.addresses.append(new_address)
         db.session.commit()
@@ -79,16 +78,15 @@ def user_update_address(address_id):
     else:
         form = AddressForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        address.address_line1 = form.data['address_line1']
-        address.address_line2 = form.data['address_line2']
-        address.unit_number = form.data['unit_number']
-        address.city = form.data['city']
-        address.state = form.data['state']
-        address.zip_code = form.data['zip_code']
-
-        db.session.commit()
-        return jsonify(address.to_dict())
-
+        if form.validate_on_submit():
+            address.street = form.data['street']
+            address.city = form.data['city']
+            address.state = form.data['state']
+            address.zip_code = form.data['zip_code']
+            address.is_primary = form.data['is_primary']
+            db.session.commit()
+            return jsonify(address.to_dict())
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 # =========== Delete an address ==============
 @address_routes.route('/<int:address_id>', methods=['DELETE'])
 @login_required
@@ -103,6 +101,6 @@ def delete_address(address_id):
         db.session.delete(address)
         db.session.commit()
         return {
-            "message": "Address was deleted successrully",
+            "message": "Address was deleted successfully",
             "statusCode": 200
         }, 200
