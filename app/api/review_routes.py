@@ -70,11 +70,14 @@ def update_review(review_id):
     else:
         form = ReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        review_is_exist.review = form.data['review']
-        review_is_exist.stars = form.data['stars']
+        if form.validate_on_submit():
+            review_is_exist.headline = form.data['headline']
+            review_is_exist.review = form.data['review']
+            review_is_exist.stars = form.data['stars']
 
-        db.session.commit()
-        return review_is_exist.to_dict()
+            db.session.commit()
+            return review_is_exist.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # ============= Delete a review ==================
 @review_routes.route('/<int:review_id>', methods=["DELETE"])

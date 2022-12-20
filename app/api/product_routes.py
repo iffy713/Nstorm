@@ -94,6 +94,7 @@ def create_new_review(id):
         review = Review(
             user_id=current_user.id,
             product_id=id,
+            headline=form.data['headline'],
             review=form.data['review'],
             stars=form.data['stars'],
         )
