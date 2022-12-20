@@ -26,6 +26,7 @@ python-editor = "==1.0.4"
 six = "==1.15.0"
 werkzeug = "==2.0.1"
 wtforms = {extras = ["email"], version = "*"}
+boto3 = "*"
 
 [dev-packages]
 
