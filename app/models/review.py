@@ -9,7 +9,8 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
-    review = db.Column(db.String(2000), nullable=False)
+    headline = db.Column(db.String(1000), nullable=False)
+    review = db.Column(db.String(5000), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.func.now())
 
@@ -22,6 +23,7 @@ class Review(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "product_id": self.product_id,
+            "headline": self.headline,
             "review": self.review,
             "stars": self.stars,
             "created_at": self.created_at
@@ -30,6 +32,7 @@ class Review(db.Model):
     def to_dict_user_page(self):
         return {
             "id": self.id,
+            "headline": self.headline,
             "review": self.review,
             "stars": self.stars,
             "created_at": self.created_at,
@@ -51,6 +54,7 @@ class Review(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "product_id": self.product_id,
+            "headline": self.headline,
             "review": self.review,
             "stars": self.stars,
             "created_at": self.created_at,

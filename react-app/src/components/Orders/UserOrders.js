@@ -23,7 +23,7 @@ export default function UserOrders() {
         <div>
             {allOrdersArr.map(order => (
                 <div key={order.id}>
-                    <OrderInList order={order}/>
+                    <OrderInList order={order} key={order.id}/>
                 </div>
             ))}
         </div>
