@@ -74,7 +74,6 @@ def update_review(review_id):
             review_is_exist.headline = form.data['headline']
             review_is_exist.review = form.data['review']
             review_is_exist.stars = form.data['stars']
-
             db.session.commit()
             return review_is_exist.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
