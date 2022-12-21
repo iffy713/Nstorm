@@ -14,7 +14,7 @@ from .api.order_routes import order_routes
 from .api.review_routes import review_routes
 from .seeds import seed_commands
 from .config import Config
-from .models import Product
+
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 

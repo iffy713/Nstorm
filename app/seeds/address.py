@@ -34,7 +34,7 @@ def seed_addresses():
 
 def undo_addresses():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.addreses RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.addresses RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM addresses")
 
