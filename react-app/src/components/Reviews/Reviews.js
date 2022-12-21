@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetProductReviews } from '../../store/review';
 import CreateReviewFormModal from '../CreateReviewFormModal';
-import RatingStars from './RatingStars';
+// import RatingStars from './RatingStars';
 import SingleReview from './SingleReview';
 
 
@@ -21,7 +21,7 @@ export default function Reviews({productId}) {
     return (
         <div>
             Review Component
-            <RatingStars /> 
+            {/* <RatingStars />  */}
             <CreateReviewFormModal productId={productId} />
             {productReviewsArr.map(review => (
                 <div key={review.id}>

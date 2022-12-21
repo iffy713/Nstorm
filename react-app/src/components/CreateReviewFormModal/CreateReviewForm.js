@@ -1,20 +1,31 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { thunkCreateReview } from "../../store/review"
+import { thunkCreateReview, thunkGetProductReviews } from "../../store/review"
 
 
 export default function CreateReviewForm({setShowModal, productId}){
 
     const dispatch = useDispatch()
     const [ headline, setHeadline ] = useState("")
-    const [ stars, setStars ] = useState("")
+    const [ stars, setStars ] = useState(5)
     const [ review, setReview ] = useState("")
     const [ errors, setErrors ] = useState([])
     // console.log(productId)
 
+    const rating = [1,2,3,4,5]
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = await dispatch(thunkCreateReview(productId, headline, review))
+        // ----------solution 1----------
+        // await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async(error)=>{
+        //     await dispatch(thunkGetProductReviews(productId))
+        //     if (error) {
+        //         setErrors(error)
+        //     } else {
+        //         setShowModal(false)
+        //     }
+        // })
+        //--
+        const data = await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async()=>dispatch(thunkGetProductReviews(productId)))
         if (data){
             setErrors(data)
         } else {
@@ -31,7 +42,16 @@ export default function CreateReviewForm({setShowModal, productId}){
                     ))}
                 </div>
                 <div>
-                    <label>Rating</label>
+                    <label htmlFor="rating">Rating</label>
+                    <select>
+                        {rating.map(rate=>(
+                            <option key={rate}
+                                name={"rating"}
+                                value={stars}
+                                onChange={e => setStars(e.target.value)}
+                            >{rate}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="headline">Headline*</label>
