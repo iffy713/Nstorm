@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { thunkCreateReview } from "../../store/review"
-import { StarRatings } from  'react-star-ratings'
+
 
 export default function CreateReviewForm({setShowModal, productId}){
 
