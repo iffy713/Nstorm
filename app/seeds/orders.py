@@ -1,10 +1,10 @@
 from app.models import db, Order, environment, SCHEMA
 
 def seed_orders():
-    order1 = Order(
-        user_id=1,
-        address_id=1,
-    )
+    # order1 = Order(
+    #     user_id=1,
+    #     address_id=1,
+    # )
 
     order2 = Order(
         user_id=1,
@@ -16,7 +16,7 @@ def seed_orders():
         address_id=2
     )
 
-    db.session.add(order1)
+    # db.session.add(order1)
     db.session.add(order2)
     db.session.add(order3)
 
