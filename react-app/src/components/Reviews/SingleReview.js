@@ -8,6 +8,7 @@ export default function SingleReview({review}) {
     const day = date.getDate()
     const newTimeString = `${year}-${month}-${day}`
 
+    if(!review.User) return null
     return (
         <div>
             <div>

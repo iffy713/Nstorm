@@ -18,7 +18,6 @@ export default function Addresses() {
 
     if(!allUserAddressObj) return null
     const allUserAddressArr = Object.values(allUserAddressObj)
-    console.log(allUserAddressArr)
 
     return (
         loaded && (

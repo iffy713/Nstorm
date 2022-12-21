@@ -18,9 +18,21 @@ export default function UserSingleReview({review}) {
     if (!review || !review.Product) return null
     return (
         <div>
-            {review.Product.name}
-            {newTimeString}
-            stars{review.stars}
+            <div>
+                {review.Product.name}
+            </div>
+            <div>
+                {newTimeString}
+            </div>
+            <div>
+                stars: {review.stars}
+            </div>
+            <div>
+                Headline: {review.headline}
+            </div>
+            <div>
+                Review: {review.review}
+            </div>
             <button onClick={()=> dispatch(thunkDeleteReview(review.id))}>Delete</button>
         </div>
 
