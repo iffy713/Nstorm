@@ -33,14 +33,29 @@ export const thunkGetProductReviews = (productId) => async (dispatch) => {
     }
 }
 
-export const thunkCreateReview = (productId, newReview) => async (dispatch) => {
-    const response = await fetch(`/api/products/${productId}`, {
+export const thunkCreateReview = (productId, headline, review) => async (dispatch) => {
+    const response = await fetch(`/api/products/${productId}/reviews`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newReview)
+        body: JSON.stringify({
+            headline,
+            review
+        })
     })
+    if (response.ok){
+        const newReview = await response.json()
+        dispatch(actionCreateReview(newReview))
+        return null
+    } else if (response.status < 500) {
+        const error = await response.json()
+        if (error.errors) {
+            return error.errors
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
 }
 
 export const thunkGetUserReviews = () => async (dispatch) => {

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Review, ReviewImage
 from app.forms import ImageForm, ReviewForm
+from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -44,18 +45,47 @@ def add_review_image(review_id):
             "message": "Maximum number of images for this resource was reached.",
             "status_code": 403
         }, 403
-    form = ImageForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        review_image = ReviewImage(
-            review_id = review_id,
-            url = form.data['url']
-        )
-        db.session.add(review_image)
-        db.session.commit()
 
-        return review_image.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files['image']
+
+    if not allowed_file(image.filename):
+        return { "errors": "file type not permitted" }, 400
+
+    image.filename == get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload['url']
+    # flask_login allows us to get the current user from the request
+    review_image = ReviewImage(
+        review_id = review_id,
+        url = url
+    )
+    db.session.add(review_image)
+    db.session.commit()
+    return { "url": url }
+
+    # form = ImageForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    #     review_image = ReviewImage(
+    #         review_id = review_id,
+    #         url = form.data['url']
+    #     )
+    #     db.session.add(review_image)
+    #     db.session.commit()
+
+    #     return review_image.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # ============= Update a review ================
 @review_routes.route('/<int:review_id>', methods=["PUT"])
