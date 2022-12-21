@@ -26,7 +26,7 @@ export default function UserReviews() {
             {userReviewsArr.map(review => {
                 if (!review) return
                 return (
-                    <div>
+                    <div key={review.id}>
                         <UserSingleReview review={review}/>
                     </div>
                 )

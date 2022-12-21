@@ -4,6 +4,7 @@ def seed_reviews():
     review1 = Review(
         user_id=1,
         product_id=1,
+        headline="ABSOLUTELY LOVE THIS PJ!",
         review="I love how soft and comfortable the pajamas are. They have lasted through multiple washes and the color has not faded. Only negative is that the buttons do not stay closed and become undone all of the time. If that issue was fixed, I would order more of these for sure.",
         stars = 5
     )
@@ -11,6 +12,7 @@ def seed_reviews():
     review2 = Review(
         user_id=2,
         product_id=1,
+        headline="ABSOLUTELY LOVE THIS PJ!",
         review="These are still nice pajamas but the fabric is different than the original moonlight, also they run smaller than original pjs",
         stars=4
     )
@@ -18,6 +20,7 @@ def seed_reviews():
     review3 = Review(
         user_id=1,
         product_id=2,
+        headline="ABSOLUTELY LOVE THIS PJ!",
         review="They fit smaller and shrink easier than the others. Bought a couple of pairs on sale, but these are not as good and won’t be purchasing more.",
         stars=4
     )
@@ -25,6 +28,7 @@ def seed_reviews():
     review4 = Review(
         user_id=2,
         product_id=2,
+        headline="ABSOLUTELY LOVE THIS PJ!",
         review="I love how soft and comfortable the pajamas are. They have lasted through multiple washes and the color has not faded. Only negative is that the buttons do not stay closed and become undone all of the time. If that issue was fixed, I would order more of these for sure.",
         stars=4
     )

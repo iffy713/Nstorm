@@ -83,7 +83,7 @@ def create_new_review(id):
     review_is_exit = Review.query.filter(Review.user_id == current_user.id).filter(Review.product_id == id).first()
     if review_is_exit:
         return {
-            "message": "User already has a review for this product",
+            "errors": "User already has a review for this product",
             "status_code": 403
         }, 403
 
@@ -94,6 +94,7 @@ def create_new_review(id):
         review = Review(
             user_id=current_user.id,
             product_id=id,
+            headline=form.data['headline'],
             review=form.data['review'],
             stars=form.data['stars'],
         )
