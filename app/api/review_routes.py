@@ -37,12 +37,12 @@ def add_review_image(review_id):
     review_is_exist = Review.query.get(review_id)
     if not review_is_exist:
         return {
-            "message": "Review couldn't be found.",
+            "errors": "Review couldn't be found.",
             "status_code": 404
         }, 404
     elif len(review_is_exist.review_images) == 5:
         return {
-            "message": "Maximum number of images for this resource was reached.",
+            "errors": "Maximum number of images for this resource was reached.",
             "status_code": 403
         }, 403
 

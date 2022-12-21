@@ -1,6 +1,5 @@
 export default function SingleReview({review}) {
 
-    console.log(review)
     const timeString = review.created_at
     const date = new Date(timeString)
     const year = date.getFullYear()
