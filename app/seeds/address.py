@@ -2,30 +2,27 @@ from app.models import db, Address, environment, SCHEMA
 
 def seed_addresses():
     demo = Address(
-        address_line1="88581 Konopelski Knolls",
-        address_line2="",
-        unit_number=764,
+        street="88581 Konopelski Knolls",
         city="South Mollyborough",
         state="LA",
-        zip_code=55321
+        zip_code=55321,
+        is_primary=True
     )
 
     marnie = Address(
-        address_line1="523 Caesar Lake",
-        address_line2="",
-        unit_number=191,
+        street="523 Caesar Lake",
         city="Lowechester",
         state="MA",
         zip_code=97279,
+        is_primary=True
     )
 
     bobbie = Address(
-        address_line1="533 Caesar Lake",
-        address_line2="",
-        unit_number=190,
+        street="533 Caesar Lake",
         city="Lowechester",
         state="MA",
         zip_code=97279,
+        is_primary=True
     )
 
 
@@ -37,7 +34,7 @@ def seed_addresses():
 
 def undo_addresses():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.addreses RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.addresses RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM addresses")
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thunkGetAllProducts } from '../../store/product';
+import './Products.css'
 
 export default function Products() {
 
@@ -14,14 +15,14 @@ export default function Products() {
     },[dispatch])
 
     return (
-        <div>
+        <div id='all-products-container'>
             { allProductsArr.map(product => (
-                <div key={product.id}>
+                <article key={product.id}>
                     <Link to={`/products/${product.id}`}>
+                        <img src={product.preview_image} alt={product.name}/>
                         {product.name}
-                        <img src={product.preview_image} alt={product.name} />
                     </Link>
-                </div>
+                </article>
             )) }
         </div>
     )

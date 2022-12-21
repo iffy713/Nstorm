@@ -1,0 +1,10 @@
+#all-products-container {
+    border: black 1px solid;
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    width: 200px;
+    height: 250px;
+}

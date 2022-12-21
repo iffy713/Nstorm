@@ -17,7 +17,17 @@ class Product(db.Model):
     about = db.Column(db.String(2000), nullable=False)
 
     cart_items = db.relationship("CartItem", back_populates="product")
+    order_products = db.relationship("OrderProduct", back_populates="product")
     images = db.relationship("ProductImage", back_populates="product")
+    reviews =db.relationship("Review", back_populates="product")
+
+
+    def get_avg_rating(self):
+        if len(self.reviews) == 0:
+            return 0
+        else:
+            avg = sum(review.stars for review in self.reviews)/ len(self.reviews)
+            return round(avg,1)
 
     def to_dict(self):
         return {
@@ -40,5 +50,7 @@ class Product(db.Model):
             "brand": self.brand,
             "brand_story": self.brand_story,
             "about": self.about,
-            "ProductImages": [image.to_dict_with_product() for image in self.images]
+            "ProductImages": [image.to_dict_with_product() for image in self.images],
+            "Avg_rating": self.get_avg_rating(),
+            "Reviews": [review.to_dict_product_page() for review in self.reviews]
         }

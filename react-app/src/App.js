@@ -13,6 +13,11 @@ import { authenticate } from './store/session';
 import Products from './components/Products/Products';
 import ProductDetails from './components/Products/ProductDetails';
 import ShoppingBag from './components/ShoppingBag/ShoppingBag';
+import CreateAddressForm from './components/CreateAddressFormModal/CreateAddressForm';
+import UserReviews from './components/Reviews/UserReviews';
+import MyAccount from './components/Account/MyAccount'
+import UserOrders from './components/Orders/UserOrders';
+import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,28 +41,51 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
+
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/address-book' exact={true}>
+
+        <ProtectedRoute path='/my-account/my-orders'>
+          <UserOrders />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/my-account/my-reviews'>
+          <UserReviews />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/my-account/address-book' exact={true}>
           <Addresses />
         </ProtectedRoute>
+
+        <ProtectedRoute path='/my-account' exact={true}>
+          <MyAccount />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/checkout' exact={true}>
+          <ReviewOrder />
+        </ProtectedRoute>
+
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute> */}
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
+
         <ProtectedRoute path='/shopping-bag'>
           <ShoppingBag />
         </ProtectedRoute>
+
         <ProtectedRoute path='/products/:productId'>
           <ProductDetails />
         </ProtectedRoute>
+
         <Route path='/' exact={true} >
           {/* <h1>My Home Page</h1> */}
           <Products />
         </Route>
+
       </Switch>
     </BrowserRouter>
   );

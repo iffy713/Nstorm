@@ -51,3 +51,8 @@ def remove_product_from_cart(item_id):
             "message": "Item successfully deleted",
             "statusCode": 200
         }, 200
+
+# # ============ Place an order ==============
+# @cart_routes.route('/checkout', methods=['POST'])
+# @login_required
+# def place_order():
