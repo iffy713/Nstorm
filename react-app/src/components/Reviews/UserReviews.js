@@ -11,7 +11,6 @@ export default function UserReviews() {
     const dispatch = useDispatch()
     const userReviewsObj = useSelector(state => state.review)
     const userReviewsArr = Object.values(userReviewsObj)
-    console.log("@@@@@@@@@@@", userReviewsArr)
 
     useEffect(()=> {
         dispatch(thunkGetUserReviews())

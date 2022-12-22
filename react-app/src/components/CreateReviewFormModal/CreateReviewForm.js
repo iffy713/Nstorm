@@ -16,21 +16,22 @@ export default function CreateReviewForm({setShowModal, productId}){
     const handleSubmit = async (e) => {
         e.preventDefault()
         // ----------solution 1----------
-        // await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async(error)=>{
-        //     await dispatch(thunkGetProductReviews(productId))
-        //     if (error) {
-        //         setErrors(error)
-        //     } else {
-        //         setShowModal(false)
-        //     }
-        // })
+        await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async(error)=>{
+            await dispatch(thunkGetProductReviews(productId))
+            if (error) {
+                setErrors(error)
+            } else {
+                setShowModal(false)
+            }
+        })
 
-        const data = await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async()=>dispatch(thunkGetProductReviews(productId)))
-        if (data){
-            setErrors(data)
-        } else {
-            setShowModal(false)
-        }
+        // const data = await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async()=>dispatch(thunkGetProductReviews(productId)))
+        // console.log("data in the component", data)
+        // if (data){
+        //     setErrors(data)
+        // } else {
+        //     setShowModal(false)
+        // }
     }
 
     return (
