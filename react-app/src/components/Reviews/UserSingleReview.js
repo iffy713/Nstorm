@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
 import { thunkDeleteReview } from "../../store/review"
+import UpdateReviewFormModal from "../UpdateReviewFormModal"
 
 export default function UserSingleReview({review}) {
 
@@ -33,6 +34,7 @@ export default function UserSingleReview({review}) {
             <div>
                 Review: {review.review}
             </div>
+            <UpdateReviewFormModal review={review}/>
             <button onClick={()=> dispatch(thunkDeleteReview(review.id))}>Delete</button>
         </div>
 

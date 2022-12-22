@@ -1,6 +1,7 @@
 const GET_PRODUCT_REVIEWS = "review/GET_PRODUCT_REVIEW"
 const GET_USER_REVIEWS = "review/GET_USER_REVIEWS"
 const CREATE_REVIEW = "review/CREATE_REVIEW"
+const EDIT_REVIEW = "review/EDIT_REVIEW"
 const DELETE_REVIEW = "review/DELETE_REVIEW"
 
 const actionGetProductReviews = (reviews) => ({
@@ -18,6 +19,11 @@ const actionCreateReview = (review) => ({
     review
 })
 
+const actionUpdateReview = (review) => ({
+    type: EDIT_REVIEW,
+    review
+})
+
 const actionDeleteReview = (reviewId) => ({
     type: DELETE_REVIEW,
     reviewId
@@ -30,6 +36,15 @@ export const thunkGetProductReviews = (productId) => async (dispatch) => {
 
     if(response.ok) {
         dispatch(actionGetProductReviews(data.Reviews))
+    }
+}
+export const thunkGetUserReviews = () => async (dispatch) => {
+    const response = await fetch('/api/reviews/current')
+    const data = await response.json()
+    console.log("reviews of current user in thunk", data)
+
+    if(response.ok) {
+        dispatch(actionGetUserReviews(data.Reviews))
     }
 }
 
@@ -62,15 +77,30 @@ export const thunkCreateReview = (productId, stars, headline, review) => async (
     }
 }
 
-export const thunkGetUserReviews = () => async (dispatch) => {
-    const response = await fetch('/api/reviews/current')
-    const data = await response.json()
-    console.log("reviews of current user in thunk", data)
-
-    if(response.ok) {
-        dispatch(actionGetUserReviews(data.Reviews))
+export const thunkUpdateReview = (reviewId, review) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(review)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        console.log("update review data in thunk", data)
+        dispatch(actionUpdateReview(data))
+        return null
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors){
+            return data.errors
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 }
+
+
 
 export const thunkDeleteReview = (review_id) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${review_id}`, {
@@ -99,6 +129,12 @@ const reviewReducer = (state={}, action) => {
         case CREATE_REVIEW:
             newState = { ...state }
             newState[action.review.id] = action.review
+            return newState
+
+        case EDIT_REVIEW:
+            newState = { ...state,
+                [action.review.id]: action.review
+            }
             return newState
 
         case DELETE_REVIEW:
