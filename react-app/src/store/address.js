@@ -121,7 +121,7 @@ const addressReducer = (state={}, action) => {
         case UPDATE_ADDRESS:
             newState = {
                 ...state,
-                [action.address.id]: action.state
+                [action.address.id]: action.address
             }
             return newState
 

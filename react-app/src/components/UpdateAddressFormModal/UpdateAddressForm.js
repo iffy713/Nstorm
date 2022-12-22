@@ -19,12 +19,6 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
     "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
     "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
-    // useEffect(() => {
-    //     dispatch(thunkGetAllAddresses())
-    //     // return () => {}
-    // //   }, [dispatch, editstreet, editcity, editstate, editzipCode, editprimary])
-    // },[dispatch])
-
 
     const handleSubmit = async e => {
         e.preventDefault()
