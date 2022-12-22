@@ -34,6 +34,7 @@ def get_all_user_reviews():
 @review_routes.route('/<int:review_id>/images', methods=['POST'])
 @login_required
 def add_review_image(review_id):
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!")
     review_is_exist = Review.query.get(review_id)
     if not review_is_exist:
         return {

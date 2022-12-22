@@ -19,6 +19,10 @@ export default function SingleReview({review}) {
                 rate {review.stars}
             </div>
             {review.review}
+            {review.Review_images && review.Review_images.map(image => (
+                <img src={image.url}/>
+            )
+            )}
         </div>
     )
 }
