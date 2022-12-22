@@ -51,8 +51,10 @@ export const thunkCreateReview = (productId, stars, headline, review) => async (
         dispatch(actionCreateReview(newReview))
         return null
     } else if (response.status < 500) {
+        // console.log("bad data from review thunk", response)
         const error = await response.json()
         if (error.errors) {
+            console.log(error.errors)
             return error.errors
         }
     } else {

@@ -12,17 +12,27 @@ export default function Reviews({productId}) {
     const dispatch = useDispatch()
     const productReviewsObj = useSelector(state => state.review)
     const productReviewsArr = Object.values(productReviewsObj)
+    const currUserId = useSelector(state => state.session.user.id)
+    // const userReview = productReviewsArr.filter(review => review.User.id === currUserId)
+    // console.log("user review", userReview)
+    const userReview = productReviewsArr.find(review => review.user_id === currUserId)
+    console.log(userReview)
 
     useEffect(()=>{
         dispatch(thunkGetProductReviews(productId))
     }, [dispatch, productId])
 
 
+
     return (
         <div>
             Review Component
             {/* <RatingStars />  */}
-            <CreateReviewFormModal productId={productId} />
+            {!userReview && (
+                <CreateReviewFormModal productId={productId} />
+            )}
+
+
             {productReviewsArr.map(review => (
                 <div key={review.id}>
                     <SingleReview review={review}/>

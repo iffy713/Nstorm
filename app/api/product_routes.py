@@ -90,7 +90,6 @@ def create_new_review(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # print(form.data)
         review = Review(
             user_id=current_user.id,
             product_id=id,
