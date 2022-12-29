@@ -1,0 +1,12 @@
+.drop-down-log-out {
+    display: flex;
+    flex-direction: row;
+}
+
+.drop-down-headers {
+    text-decoration: none;
+}
+
+.drop-down-headers:hover {
+    text-decoration: underline;
+}

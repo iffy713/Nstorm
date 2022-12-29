@@ -1,0 +1,9 @@
+#btn-log-out {
+    border: 0;
+    background-color: white;
+    width: 80px;
+}
+
+#btn-log-out:hover {
+    text-decoration: underline;
+}
