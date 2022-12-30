@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import LoginInDropDown from './Drop-down-menus/LogInDropDown';
-import './UserButton.css'
+import LogOutDropDown from "./Drop-down-menus/LogOutDropDown";
+import './AccountButton.css'
 
-export default function UserButton({sessionUser}) {
-
+export default function AccoutButton() {
 
     const [ showMenu, setShowMenu ] = useState(false)
     const openMenu = () => {
@@ -21,11 +20,11 @@ export default function UserButton({sessionUser}) {
 
     return (
         <>
-            <div id='nav-user-ctn'>
-                <button id="nav-user-button" onClick={openMenu}>
-                    Hi, {sessionUser.first_name}
+            <div id='nav-account-ctn'>
+                <button id="nav-account-button" onClick={openMenu}>
+                    Account
                 </button>
-            {showMenu && (<LoginInDropDown />)}
+            {showMenu && (<LogOutDropDown />)}
             </div>
         </>
     )

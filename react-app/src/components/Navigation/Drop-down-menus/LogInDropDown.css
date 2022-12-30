@@ -1,6 +1,25 @@
+.drop-down-ctn {
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+}
+
 .drop-down-log-in {
     display: flex;
     flex-direction: row;
     position: absolute;
-    background-color: yellow;
+    background-color: white;
+    left: -50px;
+    top: 30px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.child-drop-down {
+    margin: 5px;
+}
+
+.child-drop-down:hover {
+    text-decoration: underline;
+    font-weight: 700;
 }

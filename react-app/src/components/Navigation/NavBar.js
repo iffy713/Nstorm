@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import AccoutButton from './AccountButton';
 import LoginInDropDown from './Drop-down-menus/LogInDropDown';
 import LogOutDropDown from './Drop-down-menus/LogOutDropDown';
 import './NavBar.css'
@@ -23,48 +24,31 @@ const NavBar = ({setLoaded}) => {
   } else {
     sessionLink = (
       // <LogOutDropDown />
-      <div>My Account</div>
+      <AccoutButton />
     )
   }
 
   return (
     <div className='nav-bar-outer'>
       <nav className='nav-bar'>
-        <div>
+        <div id="nav-bar-child-left">
           <NavLink to='/' exact={true} activeClassName='active'>
               <img id="logo-img" src='https://drive.google.com/uc?export=view&id=1w7TKg87_R8Pqs1NCT0_sFICPjfcUlsOX' />
           </NavLink>
         </div>
-        {setLoaded && sessionLink}
-        <NavLink to='/shopping-bag' exact={true} activeClassName='active' className='nav-bar-headers'>
-          <i className="fa-solid fa-bag-shopping"></i>
-        </NavLink>
+        <div id="nav-bar-child-right">
+          <div>
+            {setLoaded && sessionLink}
+          </div>
+          <div>
+            <NavLink to='/shopping-bag' exact={true} activeClassName='active' className='nav-bar-headers'>
+              <i className="fa-solid fa-bag-shopping"></i>
+            </NavLink>
+          </div>
+        </div>
       </nav>
     </div>
   );
 }
 
 export default NavBar;
-
-{/* <div className='nav-bar-right-ctn'>
-    <div >
-      <button>
-        Account
-      </button>
-    </div>
-    <div>
-      <NavLink
-        to='/login'
-        exact={true}
-        activeClassName='active'
-        className='nav-bar-headers'
-        onClick>
-            Sign In
-      </NavLink>
-    </div>
-    <div>
-      <NavLink to='/shopping-bag' exact={true} activeClassName='active' className='nav-bar-headers'>
-          <i className="fa-solid fa-bag-shopping"></i>
-      </NavLink>
-    </div>
-</div> */}

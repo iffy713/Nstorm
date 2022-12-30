@@ -1,12 +1,26 @@
 .drop-down-log-out {
     display: flex;
     flex-direction: row;
+    position: absolute;
+    background-color: white;
+    width: max-content;
+    left: -70px;
+    top: 30px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
 .drop-down-headers {
     text-decoration: none;
+    color: black;
 }
 
 .drop-down-headers:hover {
     text-decoration: underline;
+    text-decoration-skip: spaces;
+    text-decoration-skip-ink: auto;
+}
+
+.child-drop-down {
+    margin: 5px;
 }

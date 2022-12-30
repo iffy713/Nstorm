@@ -17,6 +17,11 @@
     height: 30%;
 }
 
+#nav-bar-child-right {
+    display: flex;
+    flex-direction: row;
+}
+
 #logo-img {
     width: 148px;
     height: 100%;
@@ -36,8 +41,13 @@
 
 .fa-bag-shopping {
     font-size: 24px;
-    position: relative;
+    margin-top: 5px;
 }
+
+.fa-bag-shopping:hover {
+    color: gray;
+}
+
 
 .nav-bar-cart-titems-number {
     position: absolute;

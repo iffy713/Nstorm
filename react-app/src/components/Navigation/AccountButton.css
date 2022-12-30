@@ -1,12 +1,13 @@
-#nav-user-ctn {
+#nav-account-ctn {
     position: relative;
     margin-right: 30px;
 }
-#nav-user-button {
+
+#nav-account-button {
     border: none;
     background-color: white;
     font-weight: 500;
     font-size: large;
-    cursor: pointer;
     margin-top: 10px;
+    cursor: pointer;
 }
