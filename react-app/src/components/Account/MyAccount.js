@@ -35,10 +35,12 @@ export default function MyAccount() {
                     ))}
                 </ul>
             </div>
-            <div id="account-main-context">
-                { selected === "order" && <UserOrders /> }
-                { selected === "address" && <Addresses /> }
-                { selected === "review" && <UserReviews /> }
+            <div id='content-ctn'>
+                <div id="account-main-content">
+                    { selected === "order" && <UserOrders /> }
+                    { selected === "address" && <Addresses /> }
+                    { selected === "review" && <UserReviews /> }
+                </div>
             </div>
         </div>
     )
