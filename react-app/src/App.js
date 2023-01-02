@@ -44,7 +44,7 @@ function App() {
           <SignUpForm />
         </Route>
 
-        <ProtectedRoute path='/my-account/my-orders'>
+        {/* <ProtectedRoute path='/my-account/my-orders'>
           <UserOrders />
         </ProtectedRoute>
 
@@ -54,7 +54,7 @@ function App() {
 
         <ProtectedRoute path='/my-account/address-book' exact={true}>
           <Addresses />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
 
         <ProtectedRoute path='/my-account' exact={true}>
           <MyAccount />
@@ -85,6 +85,7 @@ function App() {
         </Route>
 
       </Switch>
+
     </BrowserRouter>
   );
 }
