@@ -1,0 +1,12 @@
+#btn-log-out {
+    border: 0;
+    background-color: white;
+    width: 80px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#btn-log-out:hover {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+}

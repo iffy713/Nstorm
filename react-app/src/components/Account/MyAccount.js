@@ -1,32 +1,44 @@
-import { NavLink } from 'react-router-dom';
 import UserOrders from '../Orders/UserOrders';
 import UserReviews from '../Reviews/UserReviews';
 import './MyAccount.css'
+import { useState } from 'react';
+import { sidebarData } from './SidebarData';
+import Addresses from '../Addresses/Address';
 
 export default function MyAccount() {
-    return (
-        <div>
-            <nav className="my-account-side-bar">
-                <ul>
-                    <li>
-                        <NavLink to='/my-account/address-book' exact={true} activeClassName='active'>
-                            Shipping Addresses
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/my-account/my-reviews' exact={true} activeClassName='active'>
-                            My Reviews
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/my-account/my-orders' exact={true} activeClassName='active'>
-                            My Orders
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
-            <div>
 
+    const [ selected, setSelected ] = useState("order")
+
+    return (
+        <div id='my-account-container'>
+            <div id="sidebar-ctn">
+                <ul>
+                    {sidebarData.map((ele, key)=> (
+                        <li key={key} id="sidebar-li">
+                            <div onClick={()=>setSelected(ele.selected)}
+                                className={selected === ele.selected?"selected-sidebar-row":"sidebar-row"}
+                                >
+
+                                    <div className='sidebar-row-child'>
+                                        {ele.icon}
+                                    </div>
+                                    <div className='sidebar-row-child'>
+                                        <div className="sidebar-row-title">
+                                            {ele.title}
+                                        </div>
+                                        <div className='sidebar-row-about'>
+                                            {ele.about}
+                                        </div>
+                                    </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div id="account-main-context">
+                { selected === "order" && <UserOrders /> }
+                { selected === "address" && <Addresses /> }
+                { selected === "review" && <UserReviews /> }
             </div>
         </div>
     )

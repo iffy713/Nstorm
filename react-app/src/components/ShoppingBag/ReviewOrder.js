@@ -31,7 +31,7 @@ export default function ReviewOrder(){
 
     const handleSubmit = async(e) => {
         const data = await dispatch(thunkCreateOrder(userId, addressId))
-        history.push('/my-account/my-orders')
+        history.push('/my-account')
     }
 
     useEffect(()=> {

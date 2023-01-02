@@ -18,9 +18,11 @@ export default function Products() {
         <div id='all-products-container'>
             { allProductsArr.map(product => (
                 <article key={product.id}>
-                    <Link to={`/products/${product.id}`}>
+                    <Link to={`/products/${product.id}`} className="product-card">
                         <img src={product.preview_image} alt={product.name}/>
-                        {product.name}
+                        <p>
+                            {product.name}
+                        </p>
                     </Link>
                 </article>
             )) }

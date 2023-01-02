@@ -1,3 +1,61 @@
-.my-account-side-bar {
-    
+#my-account-container {
+    width: 80%;
+    border: black solid 1px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#sidebar-ctn {
+    width: 25%;
+}
+
+#sidebar-li {
+    list-style: none;
+}
+
+.sidebar-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar-row:hover {
+    background-color: rgb(227, 227, 227);
+}
+
+/* set color after row was selected */
+.selected-sidebar-row {
+    background-color: rgb(57,57,57);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* cursor: pointer; */
+}
+
+.selected-sidebar-row .sidebar-row-child {
+    color: white;
+}
+/* ---------------------------------- */
+
+
+.sidebar-row-child {
+    margin: 8px;
+}
+
+.sidebar-row-child i {
+    font-size: 24px;
+}
+
+.sidebar-row-title {
+    font-size: 18px;
+}
+
+.sidebar-row-about {
+    font-size: 12px;
+}
+
+#account-main-context {
+    width: 70%;
 }

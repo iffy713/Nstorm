@@ -3,17 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
-// import Addresses from './components/Address';
+// import UsersList from './components/UsersList';
+// import User from './components/User';
 import Addresses from './components/Addresses/Address';
 import { authenticate } from './store/session';
 import Products from './components/Products/Products';
 import ProductDetails from './components/Products/ProductDetails';
 import ShoppingBag from './components/ShoppingBag/ShoppingBag';
-import CreateAddressForm from './components/CreateAddressFormModal/CreateAddressForm';
 import UserReviews from './components/Reviews/UserReviews';
 import MyAccount from './components/Account/MyAccount'
 import UserOrders from './components/Orders/UserOrders';
@@ -36,7 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar setLoaded={setLoaded}/>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -46,7 +44,7 @@ function App() {
           <SignUpForm />
         </Route>
 
-        <ProtectedRoute path='/my-account/my-orders'>
+        {/* <ProtectedRoute path='/my-account/my-orders'>
           <UserOrders />
         </ProtectedRoute>
 
@@ -56,7 +54,7 @@ function App() {
 
         <ProtectedRoute path='/my-account/address-book' exact={true}>
           <Addresses />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
 
         <ProtectedRoute path='/my-account' exact={true}>
           <MyAccount />
@@ -87,6 +85,7 @@ function App() {
         </Route>
 
       </Switch>
+
     </BrowserRouter>
   );
 }
