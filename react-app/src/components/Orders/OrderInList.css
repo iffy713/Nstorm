@@ -1,4 +1,46 @@
+.order-in-list {
+    border-top: 1px rgb(227, 227, 227) solid;
+    padding: 20px;
+}
+
+#order-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#order-delete-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+#order-delete-btn i {
+    color: gray;
+}
+
+#order-product-imgs-ctn {
+    display: flex;
+    flex-direction: row;
+}
+
 #order-preview-img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 200px;
+}
+
+#cancel-order-btn {
+    border: 1px black solid;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    min-width: 220px;
+    min-height: 40px;
+    transition: background-color 0.5s;
+}
+
+#cancel-order-btn:hover {
+    border: none;
+    background-color: rgb(230, 230, 230);
 }

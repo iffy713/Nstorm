@@ -21,6 +21,9 @@ export default function UserOrders() {
         </div>
     ):(
         <div>
+            <div>
+                <h4>Purchases</h4>
+            </div>
             {allOrdersArr.map(order => (
                 <div key={order.id}>
                     <OrderInList order={order} key={order.id}/>
