@@ -15,17 +15,23 @@ export default function UserOrders() {
     }, [dispatch])
 
 
-    return allOrdersArr.length === 0?(
+    return (
         <div>
-            <EmptyOrder />
-        </div>
-    ):(
-        <div>
-            {allOrdersArr.map(order => (
-                <div key={order.id}>
-                    <OrderInList order={order} key={order.id}/>
-                </div>
-            ))}
+            <div>
+                <h4>Purchases</h4>
+            </div>
+            { allOrdersArr.length === 0?(
+                <div><EmptyOrder /></div>
+            ): (
+            <div>
+                {allOrdersArr.map(order => (
+                    <div key={order.id}>
+                        <OrderInList order={order} key={order.id}/>
+                    </div>
+                ))}
+            </div>
+            )
+            }
         </div>
     )
 }

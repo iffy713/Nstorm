@@ -2,9 +2,25 @@
     border: black 1px solid;
     display: flex;
     flex-direction: row;
+    width: 80%;
+    margin: auto;
 }
 
 img {
     width: 200px;
     height: 250px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+}
+.product-card p {
+    font-weight: 80px;
+}
+
+.product-card:hover {
+    text-decoration: underline;
 }

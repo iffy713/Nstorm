@@ -1,0 +1,58 @@
+* {
+    margin:0;
+    padding:0;
+}
+.nav-bar-outer {
+    display: flex;
+    width: 80%;
+    /* background-color: yellow; */
+    margin:auto;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1600px;
+    height: 30%;
+}
+
+#nav-bar-child-right {
+    display: flex;
+    flex-direction: row;
+}
+
+#logo-img {
+    width: 148px;
+    height: 100%;
+}
+
+.nav-bar-right-ctn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 238px;
+}
+
+.nav-bar-headers {
+    text-decoration: none;
+    color: black;
+}
+
+.fa-bag-shopping {
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.fa-bag-shopping:hover {
+    color: gray;
+}
+
+
+.nav-bar-cart-titems-number {
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

@@ -4,10 +4,12 @@ export default function EmptyReview() {
 
     return (
         <div>
-            <h1>You don't have any reviews yet</h1>
-            <button>
-                <Link to="/">Continue Shopping</Link>
-            </button>
+            <h6>You have no reviews</h6>
+            <Link className='shop-now-text' to="/">
+                <button className='shop-now-btn'>
+                    Shop now
+                </button>
+            </Link>
         </div>
     )
 }
