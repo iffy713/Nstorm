@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
+import "./EmptyOrder.css"
 
 export default function EmptyOrder() {
 
     return (
         <div>
-            <h1>You don't have any orders yet</h1>
-            <button>
-                <Link to="/">Go Shopping</Link>
-            </button>
+            <h6>You have no purchases</h6>
+                <Link id='shop-now-text' to="/">
+                    <button id='shop-now-btn'>
+                        Shop now
+                    </button>
+                </Link>
         </div>
     )
 }

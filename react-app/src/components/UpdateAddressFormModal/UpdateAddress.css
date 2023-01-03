@@ -1,0 +1,16 @@
+.address-edit-delete-btn {
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 10px;
+    transition: border-bottom-width 0.5s;
+}
+
+.address-edit-delete-btn:hover {
+    border-bottom-width: 2px;
+}
