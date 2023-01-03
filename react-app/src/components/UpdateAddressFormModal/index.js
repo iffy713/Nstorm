@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from '../../context/Modal'
 import UpdateAddressForm from "./UpdateAddressForm";
+import "./UpdateAddress.css"
 
 
 export default function UpdateAddressFormModal({addressId, street, city, state, zipCode, primary}) {
@@ -8,7 +9,7 @@ export default function UpdateAddressFormModal({addressId, street, city, state, 
 
     return (
         <>
-            <button onClick={()=> setShowModal(true)}>Update</button>
+            <button className="address-edit-delete-btn" onClick={()=> setShowModal(true)}>Edit</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
                     <UpdateAddressForm
