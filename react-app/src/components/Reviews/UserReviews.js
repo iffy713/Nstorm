@@ -16,20 +16,25 @@ export default function UserReviews() {
         dispatch(thunkGetUserReviews())
     },[dispatch])
 
-    return userReviewsArr.length===0?(
+    return (
         <div>
-            <EmptyReview />
-        </div>
-    ):(
-        <div>
-            {userReviewsArr.map(review => {
-                if (!review) return
-                return (
+            <div>
+                <h4>Reviews</h4>
+            </div>
+            { userReviewsArr.length === 0?(
+                <div><EmptyReview /></div>
+            ):(
+                <div>
+               {userReviewsArr.map(review => {
+                    if (!review) return
+                    return (
                     <div key={review.id}>
                         <UserSingleReview review={review}/>
                     </div>
-                )
-            })}
+                    )
+                })}
+        </div>
+            ) }
         </div>
     )
 }
