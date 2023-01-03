@@ -17,13 +17,14 @@ export default function Products() {
     return (
         <div id='all-products-container'>
             { allProductsArr.map(product => (
-                <article key={product.id}>
+                <article key={product.id} className="single-product-card-ctn">
                     <Link to={`/products/${product.id}`} className="product-card">
                         <img src={product.preview_image} alt={product.name}/>
-                        <p>
+                        <div id="single-card-product-name">
                             {product.name}
-                        </p>
+                        </div>
                     </Link>
+                    <div id="single-card-product-price">${product.price}</div>
                 </article>
             )) }
         </div>
