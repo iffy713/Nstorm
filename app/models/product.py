@@ -38,7 +38,9 @@ class Product(db.Model):
             "brand": self.brand,
             "brand_story": self.brand_story,
             "about": self.about,
-            "preview_image": self.images[0].url
+            "preview_image": self.images[0].url,
+            "average_rating": self.get_avg_rating(),
+            "num_of_review": len(self.reviews)
         }
 
     def to_dict_detail(self):
