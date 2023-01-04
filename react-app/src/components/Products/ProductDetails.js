@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { thunkAddToCart } from '../../store/cart';
 import { thunkGetSingleProduct } from '../../store/product';
 import { thunkGetProductReviews } from '../../store/review';
+import StarRating from 'react-star-ratings'
 import Reviews from '../Reviews/Reviews';
 import './ProductDetails.css'
 
@@ -46,7 +47,7 @@ export default function ProductDetails() {
             <div id='product-detail-outer-ctn'>
                 <div id='product-detatil-top-ctn'>
                     <div id='product-detail-top-child-left'>
-                        <div>
+                        <div id='product-detail-image-ctn'>
                             {productImages.map(img => (
                                 <img key={img.id} src={img.url} alt={img.id}/>
                             ))}
@@ -54,11 +55,24 @@ export default function ProductDetails() {
                     </div>
                     <div id='product-detail-top-child-right'>
                         <div>
-                            {singleProduct.name}
-                            {singleProduct.brand}
-                            {singleProduct.brand_story}
-                            {singleProduct.price}
+                            <StarRating
+                                numberOfStars={5}
+                                rating={singleProduct.Avg_rating}
+                                starRatedColor="rgb(57, 57, 57)"
+                                starEmptyColor="rgb(227, 227, 227)"
+                                starDimension='12px'
+                                starSpacing='1px'
+                            />
                         </div>
+                        <div>
+                            {singleProduct.name}
+                        </div>
+                        <div>
+                            {singleProduct.brand}
+                            {/* {singleProduct.brand_story} */}
+                        </div>
+                            ${singleProduct.price}
+                        <div></div>
                         <div>
                             <select value={quantity} onChange={e=>setQuantity(e.target.value)}>
                                 {options.map(option => (
@@ -66,7 +80,12 @@ export default function ProductDetails() {
                                 ))}
                             </select>
                         </div>
-                        <button id="btn-add-to-cart" onClick={handleAddToCart}>Add to cart</button>
+                        <button id="btn-add-to-cart" onClick={handleAddToCart}>
+                            <div>
+                                <i className="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <div>Add to Bag</div>
+                        </button>
                     </div>
                 </div>
 
