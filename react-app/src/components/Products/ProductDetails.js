@@ -5,6 +5,7 @@ import { thunkAddToCart } from '../../store/cart';
 import { thunkGetSingleProduct } from '../../store/product';
 import { thunkGetProductReviews } from '../../store/review';
 import Reviews from '../Reviews/Reviews';
+import './ProductDetails.css'
 
 export default function ProductDetails() {
 
@@ -42,24 +43,34 @@ export default function ProductDetails() {
 
     return (
         loaded && (
-            <div>
-                {singleProduct.name}
-                {singleProduct.brand}
-                {singleProduct.brand_story}
-                {singleProduct.price}
-                {productImages.map(img => (
-                    <img key={img.id} src={img.url} alt={img.id}/>
-                ))}
-                <div>
-                    <select value={quantity} onChange={e=>setQuantity(e.target.value)}>
-                        {options.map(option => (
-                            <option key={option}>{option}</option>
-                        ))}
-                    </select>
+            <div id='product-detail-outer-ctn'>
+                <div id='product-detatil-top-ctn'>
+                    <div id='product-detail-top-child-left'>
+                        <div>
+                            {productImages.map(img => (
+                                <img key={img.id} src={img.url} alt={img.id}/>
+                            ))}
+                        </div>
+                    </div>
+                    <div id='product-detail-top-child-right'>
+                        <div>
+                            {singleProduct.name}
+                            {singleProduct.brand}
+                            {singleProduct.brand_story}
+                            {singleProduct.price}
+                        </div>
+                        <div>
+                            <select value={quantity} onChange={e=>setQuantity(e.target.value)}>
+                                {options.map(option => (
+                                    <option key={option}>{option}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <button id="btn-add-to-cart" onClick={handleAddToCart}>Add to cart</button>
+                    </div>
                 </div>
-                <button id="btn-add-to-cart" onClick={handleAddToCart}>Add to cart</button>
 
-                <div>
+                <div id='product-detail-bottom-ctn'>
                     <Reviews productId={productId}/>
                 </div>
             </div>
