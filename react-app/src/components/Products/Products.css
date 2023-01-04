@@ -1,13 +1,13 @@
 #all-products-container {
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 95%;
     margin: auto;
     flex-wrap: wrap;
 }
 
 .single-product-card-ctn {
-    margin: 10px;
+    margin: 20px;
 }
 
 img {
