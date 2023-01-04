@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { thunkGetOrders } from "../../store/order"
 import EmptyOrder from "./EmptyOrder"
 import OrderInList from "./OrderInList"
+import './UserOrders.css'
 
 export default function UserOrders() {
     const dispatch = useDispatch()
@@ -23,7 +24,7 @@ export default function UserOrders() {
             { allOrdersArr.length === 0?(
                 <div><EmptyOrder /></div>
             ): (
-            <div>
+            <div id="user-order-list-ctn">
                 {allOrdersArr.map(order => (
                     <div key={order.id}>
                         <OrderInList order={order} key={order.id}/>
