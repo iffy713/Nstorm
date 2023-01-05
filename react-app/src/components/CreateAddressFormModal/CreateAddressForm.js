@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { thunkCreateAddress } from "../../store/address";
+import { thunkCreateAddress, thunkGetAllAddresses } from "../../store/address";
 
 export default function CreateAddressForm({setShowModal}){
 
@@ -25,6 +25,7 @@ export default function CreateAddressForm({setShowModal}){
         } else {
             setShowModal(false)
         }
+        dispatch(thunkGetAllAddresses())
     }
 
     const updateStreet = (e) => {
