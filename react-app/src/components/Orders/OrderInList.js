@@ -30,7 +30,7 @@ export default function OrderInList({order}){
                     {order.is_canceled?<div><h5>Canceled</h5></div>:<div><h5>Purchased Online</h5></div>}
                     <div>
                         <button onClick={()=>dispatch(thunkDeleteOrder(order.id))} id="order-delete-btn">
-                            <i class="fa-solid fa-x"></i>
+                            <i className="fa-solid fa-x"></i>
                         </button>
                     </div>
                     {/* <button onClick={()=>dispatch(thunkDeleteOrder(order.id))}>Delete this Order</button> */}

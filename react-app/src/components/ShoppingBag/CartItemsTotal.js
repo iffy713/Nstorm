@@ -46,11 +46,11 @@ export default function CartItemsTotal({cartItems}){
                 </div>
             </div>
             <div id="btn-checkout-ctn">
-                <button id='btn-checkout'>
-                    <Link to="/checkout" id="test">
-                        Process to Checkout
-                    </Link>
-                </button>
+                <Link to="/checkout" id="test">
+                    <button id='btn-checkout'>
+                        Checkout
+                    </button>
+                </Link>
             </div>
         </div>
     )
