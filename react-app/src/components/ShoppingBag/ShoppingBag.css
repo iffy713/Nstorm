@@ -1,16 +1,19 @@
 #shopping-bag-ctn {
-    width: 50%;
+    width: 55%;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 40px;
 }
 
 .single-cart-item-ctn {
-    /* border: red 1px solid; */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-top: 1px rgb(227, 227, 227) solid;
+    padding: 20px;
 }
 
 #btn-remove-cart-item {
@@ -30,4 +33,12 @@
 
 #btn-remove-cart-item:hover {
     border-bottom-width: 2px;
+}
+
+#cart-items-total-ctn {
+    border-top: 1px rgb(227, 227, 227) solid;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }

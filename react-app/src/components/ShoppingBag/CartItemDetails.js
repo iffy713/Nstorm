@@ -47,9 +47,9 @@ export default function CartItemDetails({item}){
                     </div>
                 </div>
                 {/* ${item.Product.price} each */}
-                <div>
+                <div id="cart-item-product-price">
                     ${Number(itemPrice).toFixed(2)}
-                    { item.quantity>1?(<div>${item.Product.price} each</div>):(<div></div>) }
+                    { item.quantity>1?(<span>(${item.Product.price} each)</span>):(<div></div>) }
                 </div>
             </div>
         )

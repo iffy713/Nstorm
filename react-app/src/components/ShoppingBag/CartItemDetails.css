@@ -13,7 +13,7 @@
 
 #cart-item-preview-img {
     max-width: 100px;
-    max-height: 150px;
+    max-height: 153px;
 }
 
 #cart-item-title-quantity {
@@ -24,4 +24,8 @@
 
 #cart-item-quantity-select {
     border: none;
+}
+
+#cart-item-product-price {
+    font-weight: 700;
 }

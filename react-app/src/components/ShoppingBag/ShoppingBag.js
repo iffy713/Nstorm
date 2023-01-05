@@ -44,7 +44,7 @@ export default function ShoppingBag(){
                         </div>
                     )
                 })}
-                <div>
+                <div id="cart-items-total-ctn">
                     <CartItemsTotal cartItems={cartItemsArr}/>
                 </div>
             </div>
