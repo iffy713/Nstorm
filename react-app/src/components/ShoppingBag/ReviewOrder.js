@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { thunkGetAllAddresses } from "../../store/address";
 import { thunkGetCartItems } from "../../store/cart";
 import { thunkCreateOrder } from "../../store/order";
+import CreateAddressFormModal from "../CreateAddressFormModal";
 import './ReviewOrder.css'
 
 export default function ReviewOrder(){
@@ -14,15 +15,12 @@ export default function ReviewOrder(){
     const cartItemsArr = Object.values(cartItemsObj)
     const [ addressId, setAddressId ] = useState()
 
-
-    // console.log(cartItemsArr)
     let orderTotal = 0
     cartItemsArr.forEach(item => {
         orderTotal += item.Product.price * item.quantity
     })
     const userAddressObj = useSelector(state => state.addresses)
     const userAddressArr = Object.values(userAddressObj)
-    // const addressId = userAddressArr[0].id
     const userId = useSelector(state => state.session.user).id
 
     const updateAddress = (e)=> {
@@ -31,7 +29,9 @@ export default function ReviewOrder(){
 
 
     const handleSubmit = async(e) => {
+
         const data = await dispatch(thunkCreateOrder(userId, addressId))
+        console.log("creating an order",data)
         history.push('/my-account')
     }
 
@@ -40,43 +40,38 @@ export default function ReviewOrder(){
         dispatch(thunkGetCartItems())
     }, [dispatch])
 
-    if(!userAddressArr.length) return null
+    // if(!userAddressArr.length) return null
 
     return (
         <div id="checkout-outer-ctn">
             <div id="checkout-inner-ctn">
-
-                <div id="checkout-inner-left-child" className="checkout-page-card-ctn">
-                    <div id="checkout-inner-left-top">
-                        <div>
-                            <div>
-                                <div className="order-summary-title">Checkout</div>
-                                <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
-                            </div>
-                            <div id="checkout-items-img-preview-ctn">
-                                { cartItemsArr.map(item => (
-                                    <img src={item.Product.preview_img}></img>
-                                )) }
-                            </div>
+                <div id="checkout-inner-left-child">
+                    <div className="checkout-page-card-ctn">
+                        <div>Checkout</div>
+                        <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
+                        <div id='checkout-items-img-preview-ctn'>
+                            { cartItemsArr.map(item => (
+                                <img src={item.Product.preview_img}></img>
+                            )) }
                         </div>
                     </div>
-
-                    <div id="checkout-inner-left-bottom" className="checkout-page-card-ctn">
-                        <div>
-                            <div className="order-summary-title">Shipping address</div>
-                                <form>
-                                    {userAddressArr.map(address => (
-                                        <div key={address.id}>
-                                            <input name="address-radio" type='radio' value={address.id} onChange={updateAddress}/>
-                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
-                                        </div>
-                                    ))}
-                                </form>
+                    <div>
+                        { !userAddressArr.length?(
+                            <CreateAddressFormModal />
+                        ) : (
+                            <div className="checkout-page-card-ctn">
+                                    <div className="order-summary-title">Shipping address</div>
+                                        <form>
+                                            {userAddressArr.map(address => (
+                                                <div key={address.id}>
+                                                    <input name="address-radio" type='radio' value={address.id} onChange={updateAddress} required/>                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
+                                                </div>
+                                            ))}
+                                        </form>
+                                    </div>
+                        )}
                         </div>
-                    </div>
-
                 </div>
-
 
                 <div id="checkout-inner-right-child" className="checkout-page-card-ctn">
                     <div className="order-summary-title">Order Summary</div>
@@ -115,14 +110,75 @@ export default function ReviewOrder(){
                     <div id="checkout-place-order-btn-ctn">
                         <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
                     </div>
-
-                    {/* <div>
-                        <div>Shipping  Free</div>
-                        <div>Estimated tax {Number(orderTotal*0.07).toFixed(2)}</div>
-                        <div>Estimated total {Number(orderTotal * 1.07).toFixed(2)}</div>
-                    </div> */}
                 </div>
             </div>
         </div>
-    )
-}
+        )
+    }
+                {/* <div id="checkout-inner-left-child">
+                    <div id="checkout-inner-left-top">
+                        <div className="checkout-page-card-ctn">
+                            <div className="order-summary-title">Checkout</div>
+                            <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
+                        </div>
+                            { cartItemsArr.map(item => (
+                            <img src={item.Product.preview_img}></img>
+                            )) }
+                    </div>
+                </div>
+
+                    <div id="checkout-inner-left-bottom" className="checkout-page-card-ctn">
+                        <div>
+                            <div className="order-summary-title">Shipping address</div>
+                                <form>
+                                    {userAddressArr.map(address => (
+                                        <div key={address.id}>
+                                            <input name="address-radio" type='radio' value={address.id} onChange={updateAddress}/>
+                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
+                                        </div>
+                                    ))}
+                                </form>
+                            </div>
+                    </div>
+
+                </div> */}
+
+
+                {/* <div id="checkout-inner-right-child" className="checkout-page-card-ctn">
+                    <div className="order-summary-title">Order Summary</div>
+                    <div className="order-summary-sub-lines">
+                        <div>
+                            Your items
+                        </div>
+                        <div>
+                            ${Number(orderTotal).toFixed(2)}
+                        </div>
+                    </div>
+                    <div className="order-summary-sub-lines">
+                        <div>
+                            Shipping
+                        </div>
+                        <div>
+                            Free
+                        </div>
+                    </div>
+                    <div className="order-summary-sub-lines">
+                        <div>
+                            Estimated tax
+                        </div>
+                        <div>
+                            ${Number(orderTotal*0.07).toFixed(2)}
+                        </div>
+                    </div>
+                    <div className="order-summary-sub-lines">
+                        <div>
+                            Estimated total
+                        </div>
+                        <div>
+                            ${Number(orderTotal * 1.07).toFixed(2)}
+                        </div>
+                    </div>
+                    <div id="checkout-place-order-btn-ctn">
+                        <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
+                    </div>
+                </div> */}

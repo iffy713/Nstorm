@@ -13,7 +13,7 @@
     width: 60%;
     margin: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -23,6 +23,8 @@
     width: 55%;
     padding: 20px;
     margin: auto;
+    border: blue solid 2px;
+
 }
 
 #checkout-inner-left-bottom {
@@ -47,6 +49,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    border: red solid 2px;
 }
 
 .order-summary-title {

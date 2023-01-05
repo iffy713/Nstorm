@@ -32,6 +32,11 @@ def get_current_user_orders():
 def place_order():
 # ------- Step1: create new order in Order table --------
     data = request.get_json()
+    if not data:
+        return {
+            "errors": "Please provide a valid address",
+            "status_code": 403
+        }, 403
 
     new_order = Order(
         user_id=current_user.id,
