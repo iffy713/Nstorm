@@ -14,6 +14,7 @@ export default function ReviewOrder(){
     const cartItemsObj = useSelector(state=> state.cartItems)
     const cartItemsArr = Object.values(cartItemsObj)
     const [ addressId, setAddressId ] = useState()
+    const [ errors, setErrors ] = useState([])
 
     let orderTotal = 0
     cartItemsArr.forEach(item => {
@@ -29,12 +30,15 @@ export default function ReviewOrder(){
 
 
     const handleSubmit = async(e) => {
-
         const data = await dispatch(thunkCreateOrder(userId, addressId))
-        console.log("creating an order",data)
-        history.push('/my-account')
+        if(data){
+            setErrors(data)
+            console.log(data)
+            console.log(errors)
+        } else {
+            history.push('/my-account')
+        }
     }
-
     useEffect(()=> {
         dispatch(thunkGetAllAddresses())
         dispatch(thunkGetCartItems())
@@ -45,35 +49,38 @@ export default function ReviewOrder(){
     return (
         <div id="checkout-outer-ctn">
             <div id="checkout-inner-ctn">
-                <div id="checkout-inner-left-child">
-                    <div className="checkout-page-card-ctn">
-                        <div>Checkout</div>
-                        <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
-                        <div id='checkout-items-img-preview-ctn'>
-                            { cartItemsArr.map(item => (
-                                <img src={item.Product.preview_img}></img>
-                            )) }
-                        </div>
+                <div className="checkout-page-card-ctn">
+                    <div className="order-summary-title">Checkout</div>
+                    <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
+                    <div id='checkout-items-img-preview-ctn'>
+                        { cartItemsArr.map(item => (
+                            <img src={item.Product.preview_img}></img>
+                        )) }
                     </div>
-                    <div>
-                        { !userAddressArr.length?(
+                </div>
+                <div>
+                    { !userAddressArr.length?(
+                        <div className="checkout-page-card-ctn">
+                            <div className="order-summary-title">Do not have a shipping address?</div>
                             <CreateAddressFormModal />
-                        ) : (
-                            <div className="checkout-page-card-ctn">
-                                    <div className="order-summary-title">Shipping address</div>
-                                        <form>
-                                            {userAddressArr.map(address => (
-                                                <div key={address.id}>
-                                                    <input name="address-radio" type='radio' value={address.id} onChange={updateAddress} required/>                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
-                                                </div>
-                                            ))}
-                                        </form>
-                                    </div>
-                        )}
                         </div>
+                    ) : (
+                        <div className="checkout-page-card-ctn">
+                            <div className="order-summary-title">Shipping address</div>
+                                <div className="order-summary-subtitle">Select an existing address below:</div>
+                                <form>
+                                    {userAddressArr.map(address => (
+                                        <div key={address.id} id='checkout-address-selections-ctn'>
+                                            <input name="address-radio" type='radio' value={address.id} onChange={updateAddress} required/>                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
+                                        </div>
+                                    ))}
+                                </form>
+                                <div className="order-summary-subtitle">or <span><CreateAddressFormModal /></span></div>
+                        </div>
+                    )}
                 </div>
 
-                <div id="checkout-inner-right-child" className="checkout-page-card-ctn">
+                <div className="checkout-page-card-ctn">
                     <div className="order-summary-title">Order Summary</div>
                     <div className="order-summary-sub-lines">
                         <div>
@@ -108,7 +115,11 @@ export default function ReviewOrder(){
                         </div>
                     </div>
                     <div id="checkout-place-order-btn-ctn">
-                        <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
+                        { addressId?(
+                            <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
+                        ): (
+                            <button disabled id="checkout-place-order-btn-disabled">Place Order (Address required)</button>
+                        ) }
                     </div>
                 </div>
             </div>
