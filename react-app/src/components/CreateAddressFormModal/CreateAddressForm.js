@@ -25,7 +25,7 @@ export default function CreateAddressForm({setShowModal}){
         } else {
             setShowModal(false)
         }
-        dispatch(thunkGetAllAddresses())
+        await dispatch(thunkGetAllAddresses())
     }
 
     const updateStreet = (e) => {
