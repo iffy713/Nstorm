@@ -1,5 +1,6 @@
 import React from "react"
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './CartItemsTotal.css'
 
 export default function CartItemsTotal({cartItems}){
 
@@ -13,22 +14,44 @@ export default function CartItemsTotal({cartItems}){
     })
 
     return (
-        <div>
-            <hr></hr>
+        <div id="cart-items-total-outer-ctn">
             <div>
-                Subtotal {Number(orderTotal).toFixed(2)}
+                <div className="subtotal-tax-ctn">
+                    <div>
+                        Subtotal
+                    </div>
+                    <div>
+                        {Number(orderTotal).toFixed(2)}
+                    </div>
+                </div>
+                <div className="subtotal-tax-ctn">
+                    <div>Shipping</div>
+                    <div>Free</div>
+                </div>
+                <div className="subtotal-tax-ctn">
+                    <div>
+                        Estimated tax
+                    </div>
+                    <div>
+                        {Number(orderTotal*0.07).toFixed(2)}
+                    </div>
+                </div>
             </div>
-            <div>
-                Estimated tax {Number(orderTotal*0.07).toFixed(2)}
+            <div id="estimated-total-ctn" className="subtotal-tax-ctn">
+                <div>
+                    Estimated total
+                </div>
+                <div>
+                    {Number(orderTotal*1.07).toFixed(2)}
+                </div>
             </div>
-            <div>
-                Estimated total {Number(orderTotal*1.07).toFixed(2)}
+            <div id="btn-checkout-ctn">
+                <button id='btn-checkout'>
+                    <Link to="/checkout" id="test">
+                        Process to Checkout
+                    </Link>
+                </button>
             </div>
-            <button>
-                <NavLink to="/checkout">
-                    Process to Checkout
-                </NavLink>
-            </button>
         </div>
     )
 }

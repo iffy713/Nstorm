@@ -34,7 +34,7 @@ export default function Products() {
                                 starRatedColor="rgb(57, 57, 57)"
                                 starEmptyColor="rgb(227, 227, 227)"
                                 starDimension='12px'
-                                starSpacing='1px'
+                                starSpacing='2px'
                             />
                             <span>({product.num_of_review})</span>
                         </div>
