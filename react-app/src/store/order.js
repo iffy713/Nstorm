@@ -42,10 +42,18 @@ export const thunkCreateOrder =(userId, addressId) => async (dispatch) => {
             "address_id": addressId,
         })
     })
-    console.log("create order response in thunk",response)
+    // console.log("create order response in thunk",response)
     if (response.ok){
         const data = await response.json()
         dispatch(actionCreateOrder(data))
+        return null
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) {
+            return data.errors
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 }
 
