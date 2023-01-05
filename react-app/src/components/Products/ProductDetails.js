@@ -115,7 +115,7 @@ export default function ProductDetails() {
 
 
                 <div id='product-detail-bottom-ctn'>
-                    <Reviews productId={productId}/>
+                    {/* <Reviews productId={productId}/> */}
                 </div>
             </div>
 
