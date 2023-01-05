@@ -1,0 +1,27 @@
+#cart-item-detail-ctn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#cart-item-img-detail {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+
+}
+
+#cart-item-preview-img {
+    max-width: 100px;
+    max-height: 150px;
+}
+
+#cart-item-title-quantity {
+    display: flex;
+    flex-direction: column;
+    margin-left: 120px;
+}
+
+#cart-item-quantity-select {
+    border: none;
+}

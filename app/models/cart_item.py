@@ -34,6 +34,7 @@ class CartItem(db.Model):
                 "price": self.product.price,
                 "brand": self.product.brand,
                 "brand_story": self.product.brand_story,
-                "about": self.product.about
+                "about": self.product.about,
+                "preview_img": self.product.images[0].url
             }
         }

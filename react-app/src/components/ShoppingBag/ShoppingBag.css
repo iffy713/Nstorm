@@ -1,0 +1,33 @@
+#shopping-bag-ctn {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.single-cart-item-ctn {
+    /* border: red 1px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#btn-remove-cart-item {
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    width: fit-content;
+    margin: auto;
+    transition: border-bottom-width 0.5s;
+}
+
+#btn-remove-cart-item:hover {
+    border-bottom-width: 2px;
+}
