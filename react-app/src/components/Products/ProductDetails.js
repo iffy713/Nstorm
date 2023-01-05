@@ -15,8 +15,8 @@ export default function ProductDetails() {
     const dispatch = useDispatch()
     const singleProduct = useSelector(state => state.product.singleProduct)
 
-    const cartItemsObj = useSelector(state => state.cartItems)
-    const cartItemsArr = Object.values(cartItemsObj)
+    // const cartItemsObj = useSelector(state => state.cartItems)
+    // const cartItemsArr = Object.values(cartItemsObj)
 
     const { productId } = useParams()
     const [ quantity, setQuantity ] = useState(1)
@@ -30,7 +30,7 @@ export default function ProductDetails() {
 
     useEffect(()=> {
         dispatch(thunkGetSingleProduct(productId))
-        dispatch(thunkGetProductReviews(productId))
+        // dispatch(thunkGetProductReviews(productId))
             .then(()=> setLoaded(true))
     }, [dispatch, productId])
 
@@ -115,7 +115,7 @@ export default function ProductDetails() {
 
 
                 <div id='product-detail-bottom-ctn'>
-                    <Reviews productId={productId}/>
+                    {/* <Reviews productId={productId}/> */}
                 </div>
             </div>
 
