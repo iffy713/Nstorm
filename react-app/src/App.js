@@ -75,9 +75,9 @@ function App() {
           <ShoppingBag />
         </ProtectedRoute>
 
-        <ProtectedRoute path='/products/:productId'>
+        <Route path='/products/:productId'>
           <ProductDetails />
-        </ProtectedRoute>
+        </Route>
 
         <Route path='/' exact={true} >
           {/* <h1>My Home Page</h1> */}
