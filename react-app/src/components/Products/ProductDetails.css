@@ -9,7 +9,7 @@
 }
 
 #product-detatil-top-ctn {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin: 10px 0;
     display: flex;
     flex-direction: row;
@@ -18,14 +18,14 @@
 #product-detail-top-child-left {
     /* max-width: 1650px; */
     width: 65%;
-    border: 10px solid blue;
+    /* border: 10px solid blue; */
     /* display: flex;
     flex-direction: row;
     flex-wrap: wrap; */
 }
 
 #product-detail-image-ctn {
-    border: 12px dotted yellowgreen;
+    /* border: 12px dotted yellowgreen; */
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-column-gap: 4px;
