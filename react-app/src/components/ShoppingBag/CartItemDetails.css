@@ -24,6 +24,8 @@
 
 #cart-item-quantity-select {
     border: none;
+    cursor: pointer;
+    color: rgb(20, 98, 169);
 }
 
 #cart-item-product-price {
