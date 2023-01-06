@@ -1,0 +1,107 @@
+.modal-inner-ctn {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-modal-btn-outer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.close-modal-btn-ctn button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.form-ctn {
+    margin: auto;
+}
+
+#login-form-ctn {
+    margin: auto;
+    min-width: 400px;
+    /* border: red solid 1px; */
+    padding: 20px;
+    margin: 20px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label-ctn {
+    margin-top: 20px;
+}
+
+.link-to-other-page {
+    color: rgb(57, 57, 57);
+    text-decoration: none;
+    /* border: solid 1px red; */
+    border-bottom: 2px solid rgb(57, 57, 57);
+    transition: border-bottom 0.5s;
+}
+
+.link-to-other-page:hover {
+    border-bottom: 3px solid rgb(57, 57, 57);
+}
+
+#login-form input {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+}
+
+#login-form button {
+    width: 100%;
+    width: 100%;
+    height: 40px;
+    background: #000 none;
+    border-color: #000;
+    color: #fff;
+    font-weight: 400;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    margin: 10px 0;
+}
+
+#login-form button:hover {
+    border: none;
+    background-color: rgb(102, 102, 102);
+}
+
+#products-page-login-btn {
+    border-style: solid;
+    border-bottom-width: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 15px;
+    transition: border-bottom-width 0.5s;
+}
+
+#products-page-login-btn:hover {
+    border-bottom-width: 3px;
+}
+
+.close-modal-btn-ctn {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+#modal-sign-in-btn-ctn {
+    margin-top: 30px;
+}
