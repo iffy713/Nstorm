@@ -79,7 +79,7 @@ const SignUpForm = () => {
           Use one sign-in across devices
         </div>
       </div>
-      <div id='required-ctn'>
+      <div className='required-ctn'>
         <span className='red-star-span'>*</span>Required
       </div>
       <form onSubmit={onSignUp} className='auth-form'>

@@ -12,15 +12,25 @@ export default function UpdateAddressFormModal({addressId, street, city, state, 
             <button className="address-edit-delete-btn" onClick={()=> setShowModal(true)}>Edit</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
-                    <UpdateAddressForm
-                        addressId={addressId}
-                        street={street}
-                        city={city}
-                        state={state}
-                        zipCode={zipCode}
-                        primary={primary}
-                        setShowModal={setShowModal}
-                    />
+                    <div className="modal-inner-ctn">
+                        <div className="close-modal-btn-outer">
+                            <div className='close-modal-btn-ctn'>
+                                <button onClick={()=>setShowModal(false)}>
+                                    <i className="fa-solid fa-x"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="form-ctn"></div>
+                            <UpdateAddressForm
+                                addressId={addressId}
+                                street={street}
+                                city={city}
+                                state={state}
+                                zipCode={zipCode}
+                                primary={primary}
+                                setShowModal={setShowModal}
+                            />
+                    </div>
                 </Modal>
             )}
         </>
