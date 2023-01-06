@@ -12,7 +12,17 @@ export default function CreateAddressFormModal() {
             <button onClick={()=> setShowModal(true)} id="create-address-btn">Add New Address</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
-                    <CreateAddressForm setShowModal={setShowModal}/>
+                    <div className="modal-inner-ctn">
+                        <div className="close-modal-btn-outer">
+                            <div className='close-modal-btn-ctn'>
+                                <button onClick={()=>setShowModal(false)}>
+                                    <i className="fa-solid fa-x"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="form-ctn"></div>
+                            <CreateAddressForm setShowModal={setShowModal}/>
+                    </div>
                 </Modal>
             ) }
         </>
