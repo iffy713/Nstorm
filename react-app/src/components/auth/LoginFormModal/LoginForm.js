@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../../store/session';
 import './LoginForm.css'
 
-const LoginForm = ({setShowModal}) => {
+const LoginForm = ({setShowModal, setShowSignUpModal}) => {
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');

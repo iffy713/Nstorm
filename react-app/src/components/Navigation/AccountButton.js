@@ -22,7 +22,7 @@ export default function AccoutButton() {
         <>
             <div id='nav-account-ctn'>
                 <button id="nav-account-button" onClick={openMenu}>
-                    Account
+                    <i className="fa-solid fa-user" id='user-icon'></i>
                 </button>
             {showMenu && (<LogOutDropDown />)}
             </div>
