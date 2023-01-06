@@ -25,7 +25,7 @@ export default function ShoppingBag(){
 
     return (
         loaded && cartItemsArr.length === 0?(
-            <div><EmptyBag /></div>
+            <div id="empty-bag-page-ctn"><EmptyBag /></div>
         ):(
             <div id="shopping-bag-ctn">
                 <div>
