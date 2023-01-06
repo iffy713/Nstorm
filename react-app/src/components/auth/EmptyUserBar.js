@@ -1,5 +1,6 @@
 import LoginFormModal from "./LoginFormModal";
 import './EmptyUserBar.css'
+import SignUpFormModal from "./SignUpFormModal";
 
 export default function EmptyUserBar() {
     return (
@@ -10,7 +11,7 @@ export default function EmptyUserBar() {
                 </h3>
             </div>
             <div>
-                <LoginFormModal /> or Create an Account
+                <LoginFormModal /> or <SignUpFormModal />
             </div>
         </div>
     )

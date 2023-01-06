@@ -1,0 +1,21 @@
+#auth-icons-ctn {
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+#auth-icons-ctn >* {
+    margin-top: 8px;
+}
+
+#auth-icons-ctn i {
+    margin-right: 10px;
+}
+
+#required-ctn {
+    margin-top: 10px;
+}
+
+.error-list-ctn {
+    margin-top: 20px;
+    color: rgb(223, 34,71);
+}
