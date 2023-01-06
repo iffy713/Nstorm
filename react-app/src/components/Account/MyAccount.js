@@ -4,14 +4,17 @@ import './MyAccount.css'
 import { useState } from 'react';
 import { sidebarData } from './SidebarData';
 import Addresses from '../Addresses/Address';
+import { useSelector } from 'react-redux';
 
 export default function MyAccount() {
 
     const [ selected, setSelected ] = useState("order")
+    const user = useSelector(state => state.session.user)
 
     return (
         <div id='my-account-container'>
             <div id="sidebar-ctn">
+                {/* <div id='sidebar-header' className='sidebar-row-child'>{user.first_name}'s Account</div> */}
                 <ul>
                     {sidebarData.map((ele, key)=> (
                         <li key={key} id="sidebar-li">
