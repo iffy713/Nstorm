@@ -22,11 +22,7 @@
 }
 
 #btn-remove-cart-item {
-    border-style: solid;
-    border-bottom-width: 1px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border: none;
     padding: 0;
     background: transparent;
     cursor: pointer;
@@ -34,10 +30,11 @@
     width: fit-content;
     margin: auto;
     transition: border-bottom-width 0.5s;
+    color: rgb(20, 98, 169);
 }
 
 #btn-remove-cart-item:hover {
-    border-bottom-width: 2px;
+    color: rgb(91, 145, 195);
 }
 
 #cart-items-total-ctn {

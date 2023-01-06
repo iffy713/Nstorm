@@ -21,7 +21,7 @@ export default function CartItemsTotal({cartItems}){
                         Subtotal
                     </div>
                     <div>
-                        {Number(orderTotal).toFixed(2)}
+                        ${Number(orderTotal).toFixed(2)}
                     </div>
                 </div>
                 <div className="subtotal-tax-ctn">
@@ -33,7 +33,7 @@ export default function CartItemsTotal({cartItems}){
                         Estimated tax
                     </div>
                     <div>
-                        {Number(orderTotal*0.07).toFixed(2)}
+                        ${Number(orderTotal*0.07).toFixed(2)}
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@ export default function CartItemsTotal({cartItems}){
                     Estimated total
                 </div>
                 <div>
-                    {Number(orderTotal*1.07).toFixed(2)}
+                    ${Number(orderTotal*1.07).toFixed(2)}
                 </div>
             </div>
             <div id="btn-checkout-ctn">
