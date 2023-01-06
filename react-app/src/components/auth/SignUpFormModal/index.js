@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Modal } from "../../../context/Modal";
-import LoginForm from "./LoginForm";
-import './LoginForm.css'
+import SignUpForm from "./SignUpForm";
+import './SignUpForm.css'
 
-export default function LoginFormModal() {
+export default function SignUpFormModal() {
     const [ showModal, setShowModal ] = useState(false)
 
     return (
         <>
-            <button onClick={()=> setShowModal(true)} className="products-page-login-signup-btn">Sign In</button>
+            <button onClick={()=> setShowModal(true)} className="products-page-login-signup-btn">Create an Account</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)} >
                     <div className="modal-inner-ctn">
@@ -20,7 +20,7 @@ export default function LoginFormModal() {
                             </div>
                         </div>
                         <div className="form-ctn">
-                            <LoginForm setShowModal={setShowModal}/>
+                            <SignUpForm setShowModal={setShowModal}/>
                         </div>
                     </div>
                 </Modal>

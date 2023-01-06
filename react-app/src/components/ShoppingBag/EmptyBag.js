@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
+import './EmptyBag.css'
 
 export default function EmptyBag() {
 
     return (
-        <div>
-            <h1>Your bag is empty</h1>
-            <button>
-                <Link to="/">Find something new...</Link>
-            </button>
+        <div id='empty-bag-page-outer'>
+            <div>Your bag is empty</div>
+            <Link to="/" id='back-to-shopping'>
+                <button id='btn-back-to-shopping'>
+                    Continue Shopping
+                </button>
+            </Link>
         </div>
     )
 }

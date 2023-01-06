@@ -33,7 +33,7 @@ const LoginForm = ({setShowModal}) => {
   }
 
   return (
-    <div id='login-form-ctn'>
+    <div className='auth-form-ctn'>
         <div>
           <h2>
             Sign in
@@ -42,8 +42,8 @@ const LoginForm = ({setShowModal}) => {
         <div>
           New to Nstorm? <Link to='/sign-up' className='link-to-other-page'>Create an account</Link>
         </div>
-        <form onSubmit={onLogin} id='login-form'>
-          <div>
+        <form onSubmit={onLogin} className='auth-form'>
+          <div className='error-list-ctn'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
@@ -80,7 +80,7 @@ const LoginForm = ({setShowModal}) => {
               onChange={updatePassword}
             />
           </div>
-          <div id='modal-sign-in-btn-ctn'>
+          <div className='modal-auth-submit-btn-ctn'>
             <button type='submit'>Sign In</button>
           </div>
           <div>
