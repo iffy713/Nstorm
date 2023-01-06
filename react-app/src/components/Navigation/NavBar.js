@@ -33,7 +33,7 @@ const NavBar = ({setLoaded}) => {
       <nav className='nav-bar'>
         <div id="nav-bar-child-left">
           <NavLink to='/' exact={true} activeClassName='active'>
-              <img id="logo-img" src='https://drive.google.com/uc?export=view&id=1w7TKg87_R8Pqs1NCT0_sFICPjfcUlsOX' />
+              <img id="logo-img" src='https://drive.google.com/uc?export=view&id=1q8uKj7aY-vdBGj_cPd0lty-fyXCGCMwF' />
           </NavLink>
         </div>
         <div id="nav-bar-child-right">
