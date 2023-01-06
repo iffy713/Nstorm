@@ -4,7 +4,7 @@ import SignUpFormModal from "./SignUpFormModal";
 
 export default function EmptyUserBar() {
     return (
-        <div id="empty-user-outer">
+        <div className="empty-user-outer">
             <div>
                 <h3>
                     Shop what you love -- faster and easier.

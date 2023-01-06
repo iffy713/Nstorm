@@ -5,6 +5,7 @@ import { thunkGetAllProducts } from '../../store/product';
 import StarRating from 'react-star-ratings'
 import './Products.css'
 import EmptyUserBar from '../auth/EmptyUserBar';
+import WelcomeBack from '../auth/WelcomeBack';
 
 export default function Products() {
 
@@ -21,10 +22,12 @@ export default function Products() {
     return (
         <div>
             {!user?(
-                <div id='empty-user-bar-ctn'>
+                <div className='empty-user-bar-ctn'>
                     <EmptyUserBar />
                 </div>
-            ):(<div></div>)}
+            ):(<div className='empty-user-bar-ctn'>
+                <WelcomeBack user={user}/>
+            </div>)}
             <div id='all-products-container'>
                 { allProductsArr.map(product => (
                     <article key={product.id} className="single-product-card-ctn">
