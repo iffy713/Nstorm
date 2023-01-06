@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkCreateAddress, thunkGetAllAddresses } from "../../store/address";
+import './CreateAddress.css'
 
 export default function CreateAddressForm({setShowModal}){
 
@@ -50,34 +51,61 @@ export default function CreateAddressForm({setShowModal}){
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div className='auth-form-ctn'>
+            <div>
+                <h2>
+                    Create Address
+                </h2>
+            </div>
+            <div className='required-ctn'>
+                <span className='red-star-span'>*</span>Required
+            </div>
+            <form onSubmit={handleSubmit} className='auth-form'>
+                <div className='error-list-ctn'>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
                 </div>
-                <div>
-                    <input value={street} type='text' onChange={updateStreet} placeholder="Street"/>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>Street<span className='red-star-span'>*</span></h5>
+                    </label>
                 </div>
                 <div>
-                    <input value={city} type='text' onChange={updateCity} placeholder="City" />
+                    <input value={street} type='text' onChange={updateStreet}/>
+                </div>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>City<span className='red-star-span'>*</span></h5>
+                    </label>
                 </div>
                 <div>
-                    {/* <input value={state} type='text' onChange={updateState} placeholder="State" /> */}
-                    <select value={state} onChange={updateState}>
-                        <option value="">-- Please select a state --</option>
+                    <input value={city} type='text' onChange={updateCity}/>
+                </div>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>State<span className='red-star-span'>*</span></h5>
+                    </label>
+                </div>
+                <div >
+                    <select value={state} onChange={updateState} className="address-state-selected-box">
+                        <option value="" style={{"cursor":"pointer"}}>-- Please select a state --</option>
                         {states.map(ele => (
-                            <option value={ele} key={ele}>{ele}</option>
+                            <option value={ele} key={ele} style={{"cursor":"pointer"}}>{ele}</option>
                         ))}
                     </select>
                 </div>
-                <div>
-                    <input value={zipCode} type='text' onChange={updateZipCode} placeholder="Zip Code" />
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>Zip Code<span className='red-star-span'>*</span></h5>
+                    </label>
                 </div>
                 <div>
-                    <input value={primary} type="checkbox" onChange={updatePrimary}></input>
+                    <input value={zipCode} type='text' onChange={updateZipCode} />
+                </div>
+                <div id="set-primary-ctn">
                     <small>Set as primary</small>
+                    <input value={primary} type="checkbox" onChange={updatePrimary} id='primary-address-checkbox'></input>
                 </div>
                 <div>
                     <button type="submit">Create Address</button>

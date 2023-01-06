@@ -1,3 +1,15 @@
+#edit-primary-ctn {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+#edit-primary-address-checkbox {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 .address-edit-delete-btn {
     border-style: solid;
     border-bottom-width: 1px;

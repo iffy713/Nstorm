@@ -64,33 +64,61 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <ul>
+        <div className='auth-form-ctn'>
+           <div>
+                <h2>
+                    Edit Address
+                </h2>
+            </div>
+            <div className='required-ctn'>
+                <span className='red-star-span'>*</span>Required
+            </div>
+            <form onSubmit={handleSubmit} className='auth-form'>
+                <div className='error-list-ctn'>
                     {errors.map(error => (
-                        <li key={error}>{error}</li>
+                        <div key={error}>{error}</div>
                     ))}
-                </ul>
-                <div>
-                    <input value={editstreet} type='text' onChange={updateStreet} placeholder="Street"/>
+                </div>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>Street<span className='red-star-span'>*</span></h5>
+                    </label>
                 </div>
                 <div>
-                    <input value={editcity} type='text' onChange={updateCity} placeholder="City" />
+                    <input value={editstreet} type='text' onChange={updateStreet}/>
+                </div>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>City<span className='red-star-span'>*</span></h5>
+                    </label>
                 </div>
                 <div>
-                    <select value={editstate} onChange={updateState}>
+                    <input value={editcity} type='text' onChange={updateCity}/>
+                </div>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>State<span className='red-star-span'>*</span></h5>
+                    </label>
+                </div>
+                <div>
+                    <select value={editstate} onChange={updateState} className="address-state-selected-box">
                         <option value="">-- Please select a state --</option>
                         {states.map(ele => (
                             <option value={ele} key={ele}>{ele}</option>
                         ))}
                     </select>
                 </div>
+                <div className='form-label-ctn'>
+                    <label>
+                        <h5>Zip Code<span className='red-star-span'>*</span></h5>
+                    </label>
+                </div>
                 <div>
                     <input value={editzipCode} type='text' onChange={updateZipCode} placeholder="Zip Code" />
                 </div>
-                <div>
-                    <input value={editprimary} type="checkbox" onChange={updatePrimary}></input>
+                <div id="edit-primary-ctn">
                     <small>Set as primary</small>
+                    <input value={editprimary} type="checkbox" onChange={updatePrimary} id='edit-primary-address-checkbox'></input>
                 </div>
                 <div>
                     <button type="submit">Update Address</button>

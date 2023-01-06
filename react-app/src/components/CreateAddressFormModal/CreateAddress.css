@@ -1,3 +1,22 @@
+.address-state-selected-box {
+    cursor: pointer;
+    height: 40px;
+    width: 50%;
+    font-size: 15px;
+}
+
+#set-primary-ctn {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+#primary-address-checkbox {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 #create-address-btn {
     border: 1px black solid;
     padding: 0;
