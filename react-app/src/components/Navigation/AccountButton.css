@@ -11,3 +11,11 @@
     margin-top: 10px;
     cursor: pointer;
 }
+
+#user-icon {
+    color: rgb(57, 57, 57);
+}
+
+#user-icon:hover {
+    color: gray;
+}

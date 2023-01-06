@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import LoginForm from './components/auth/LoginForm';
-// import SignUpForm from './components/auth/SignUpForm';
+
 import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/UsersList';
@@ -16,6 +15,8 @@ import UserReviews from './components/Reviews/UserReviews';
 import MyAccount from './components/Account/MyAccount'
 import UserOrders from './components/Orders/UserOrders';
 import ReviewOrder from './components/ShoppingBag/ReviewOrder';
+import LoginPage from './components/auth/LoginPage';
+import SignUpPage from './components/auth/SignUpPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,13 +37,13 @@ function App() {
     <BrowserRouter>
       <NavBar setLoaded={setLoaded}/>
       <Switch>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route> */}
+        <Route path='/login' exact={true}>
+          <LoginPage />
+        </Route>
 
-        {/* <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
+        <Route path='/sign-up' exact={true}>
+          <SignUpPage />
+        </Route>
 
         {/* <ProtectedRoute path='/my-account/my-orders'>
           <UserOrders />
