@@ -1,0 +1,7 @@
+.empty-user-outer h3 span {
+    text-transform: capitalize;
+}
+
+.empty-user-outer .link-to-other-page {
+    font-size: small;
+}
