@@ -9,6 +9,7 @@ import Reviews from '../Reviews/Reviews';
 import './ProductDetails.css'
 import DetailsAndCare from './DetailsAndCare';
 import GiftOptions from './GiftOptions';
+import CartModal from '../ShoppingBag/CartModal';
 
 export default function ProductDetails() {
 
@@ -103,6 +104,7 @@ export default function ProductDetails() {
                                 ))}
                             </select>
                         </div>
+                        {/* <CartModal/> */}
                         <button id="btn-add-to-cart" onClick={handleAddToCart}>
                             <div>
                                 <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon'></i>
