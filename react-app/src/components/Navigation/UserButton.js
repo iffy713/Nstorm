@@ -23,7 +23,9 @@ export default function UserButton({sessionUser}) {
         <>
             <div id='nav-user-ctn'>
                 <button id="nav-user-button" onClick={openMenu}>
-                    Hi, {sessionUser.first_name}
+                    <h4 style={{'color':'rgb(57, 57, 57'}}>
+                        Hi<span style={{'textTransform': "capitalize"}}>, {sessionUser.first_name}</span>
+                    </h4>
                 </button>
             {showMenu && (<LoginInDropDown />)}
             </div>
