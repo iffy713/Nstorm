@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkUpdateItemQuantity } from "../../store/cart";
+import { Link } from "react-router-dom";
+
 import './CartItemDetails.css'
 
 export default function CartItemDetails({item}){
@@ -28,7 +30,9 @@ export default function CartItemDetails({item}){
         loaded && (
             <div id="cart-item-detail-ctn">
                 <div id="cart-item-img-detail">
-                    <img src={item.Product.preview_img} alt={item.Product.name} id='cart-item-preview-img' ></img>
+                    <Link to={`/products/${item.Product.id}`}>
+                        <img src={item.Product.preview_img} alt={item.Product.name} id='cart-item-preview-img' ></img>
+                    </Link>
                     <div id="cart-item-title-quantity">
                         <div>
                             {item.Product.brand}
@@ -36,7 +40,7 @@ export default function CartItemDetails({item}){
                         <div>
                             {item.Product.name}
                         </div>
-                        <div>
+                        <div style={{"cursor":"pointer", "color":"rgb(20,98,169)"}}>
                             Qty
                             <select value={quantity} onChange={(e)=>setQuantity(e.target.value)} id='cart-item-quantity-select'>
                                 {options.map(option => (
