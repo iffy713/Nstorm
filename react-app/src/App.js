@@ -17,6 +17,7 @@ import UserOrders from './components/Orders/UserOrders';
 import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 import LoginPage from './components/auth/LoginPage';
 import SignUpPage from './components/auth/SignUpPage';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,18 +46,6 @@ function App() {
           <SignUpPage />
         </Route>
 
-        {/* <ProtectedRoute path='/my-account/my-orders'>
-          <UserOrders />
-        </ProtectedRoute>
-
-        <ProtectedRoute path='/my-account/my-reviews'>
-          <UserReviews />
-        </ProtectedRoute>
-
-        <ProtectedRoute path='/my-account/address-book' exact={true}>
-          <Addresses />
-        </ProtectedRoute> */}
-
         <ProtectedRoute path='/my-account' exact={true}>
           <MyAccount />
         </ProtectedRoute>
@@ -64,13 +53,6 @@ function App() {
         <ProtectedRoute path='/checkout' exact={true}>
           <ReviewOrder />
         </ProtectedRoute>
-
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
 
         <ProtectedRoute path='/shopping-bag'>
           <ShoppingBag />
@@ -86,6 +68,8 @@ function App() {
         </Route>
 
       </Switch>
+
+      <Footer />
 
     </BrowserRouter>
   );
