@@ -105,7 +105,7 @@ export default function ProductDetails() {
                         </div>
                         <button id="btn-add-to-cart" onClick={handleAddToCart}>
                             <div>
-                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon'></i>
+                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
                             </div>
                             <div>Add to Bag</div>
                         </button>
