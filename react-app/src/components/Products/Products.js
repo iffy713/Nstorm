@@ -32,7 +32,10 @@ export default function Products() {
                 { allProductsArr.map(product => (
                     <article key={product.id} className="single-product-card-ctn">
                         <Link to={`/products/${product.id}`} className="product-card">
-                            <img src={product.preview_image} alt={product.name}/>
+                            <div id='single-product-card-img-ctn'>
+                                <img src={product.preview_image} alt={product.name}/>
+                            </div>
+                            <div><h6>{product.brand}</h6></div>
                             <div id="single-card-product-name">
                                 {product.name}
                             </div>

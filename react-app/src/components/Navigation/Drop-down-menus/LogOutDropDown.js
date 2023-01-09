@@ -9,7 +9,7 @@ export default function LogOutDropDown() {
                     Sign In
                 </NavLink>
             </div>
-            <div className='child-drop-down'>{"  |  "}</div>
+            {/* <div className='child-drop-down'>{"  |  "}</div> */}
             <div className='child-drop-down'>
                 <NavLink to='/sign-up' exact={true} activeClassName='active' className='drop-down-headers'>
                     Create Account
