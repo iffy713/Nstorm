@@ -116,11 +116,11 @@ export default function UpdateAddressForm({ addressId, street, city, state, zipC
                 <div>
                     <input value={editzipCode} type='text' onChange={updateZipCode} placeholder="Zip Code" />
                 </div>
-                <div id="edit-primary-ctn">
+                {/* <div id="edit-primary-ctn">
                     <small>Set as primary</small>
                     <input value={editprimary} type="checkbox" onChange={updatePrimary} id='edit-primary-address-checkbox'></input>
-                </div>
-                <div>
+                </div> */}
+                <div className="form-label-ctn">
                     <button type="submit">Update Address</button>
                 </div>
             </form>
