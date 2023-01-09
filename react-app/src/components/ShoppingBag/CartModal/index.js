@@ -35,8 +35,16 @@ export default function CartModal({singleProduct, previewImg, quantity, setQuant
             </div>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
-                    <div>
-                        <AddToCart singleProduct={singleProduct} previewImg={previewImg} onClick={handleAddToCart}/>
+                    <div className="modal-inner-ctn">
+                        <div className="close-modal-btn-outer">
+                            <div className='close-modal-btn-ctn'>
+                                <button onClick={()=>setShowModal(false)}>
+                                    <i className="fa-solid fa-x"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {/* <div className="form-ctn"></div> */}
+                            <AddToCart singleProduct={singleProduct} previewImg={previewImg} onClick={handleAddToCart}/>
                     </div>
                 </Modal>
             ) }

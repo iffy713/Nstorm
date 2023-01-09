@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './AddToCart.css'
 
 
 
@@ -17,22 +18,26 @@ export default function AddToCart({singleProduct, previewImg}){
 
 
     return (
-        <div>
+        <div id='cart-modal-ctn'>
             <div>
-                <img src={previewImg}/>
+                <img src={previewImg} alt={previewImg} id='img-cart-modal'/>
             </div>
-            <div>
+            <div className='cart-modal-child'>
                 <h3>
                     Added to your bag
                 </h3>
-                <div>
-                    ${singleProduct.price}
+                <div id='cart-modal-price'>
+                    <h5>
+                        ${singleProduct.price}
+                    </h5>
                 </div>
-                <div>
-                    <button>
-                        Checkout
-                    </button>
-                    <Link>
+                <div id='cart-modal-btn-ctn'>
+                    <Link to='/checkout' style={{'textDecoration':'none'}}>
+                        <button id='btn-cart-modal'>
+                            Checkout
+                        </button>
+                    </Link>
+                    <Link to='/shopping-bag' style={{'color':'black'}}>
                         View Shopping Bag ({itemsTotal})
                     </Link>
                 </div>
