@@ -103,11 +103,11 @@ export default function CreateAddressForm({setShowModal}){
                 <div>
                     <input value={zipCode} type='text' onChange={updateZipCode} />
                 </div>
-                <div id="set-primary-ctn">
+                {/* <div id="set-primary-ctn">
                     <small>Set as primary</small>
                     <input value={primary} type="checkbox" onChange={updatePrimary} id='primary-address-checkbox'></input>
-                </div>
-                <div>
+                </div> */}
+                <div className="form-label-ctn">
                     <button type="submit">Create Address</button>
                 </div>
             </form>
