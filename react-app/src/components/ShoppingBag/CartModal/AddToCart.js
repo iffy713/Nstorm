@@ -37,7 +37,7 @@ export default function AddToCart({singleProduct, previewImg}){
                             Checkout
                         </button>
                     </Link>
-                    <Link to='/shopping-bag' style={{'color':'black'}}>
+                    <Link to='/shopping-bag' style={{'color':'black', 'marginTop':'20px'}}>
                         View Shopping Bag ({itemsTotal})
                     </Link>
                 </div>
