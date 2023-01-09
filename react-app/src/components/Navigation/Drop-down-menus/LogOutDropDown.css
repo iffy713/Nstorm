@@ -1,6 +1,6 @@
 .drop-down-log-out {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: absolute;
     background-color: white;
     width: max-content;
