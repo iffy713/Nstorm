@@ -9,6 +9,7 @@ import Reviews from '../Reviews/Reviews';
 import './ProductDetails.css'
 import DetailsAndCare from './DetailsAndCare';
 import GiftOptions from './GiftOptions';
+import CartModal from '../ShoppingBag/CartModal';
 
 export default function ProductDetails() {
 
@@ -22,6 +23,7 @@ export default function ProductDetails() {
     const [ quantity, setQuantity ] = useState(1)
     const [ loaded, setLoaded ] = useState(false)
 
+
     // set quantity selections
     let options = []
     for(let i = 1; i<=50; i++){
@@ -34,12 +36,11 @@ export default function ProductDetails() {
             .then(()=> setLoaded(true))
     }, [dispatch, productId])
 
-    const handleAddToCart = async () => {
-        await dispatch(thunkAddToCart(productId,quantity))
-            .then(setQuantity(1))
-    }
-
-    // if(!singleProduct || !singleProduct.ProductImages) return null
+    // const handleAddToCart = async () => {
+    //     // setShowCartModal(true)
+    //     await dispatch(thunkAddToCart(productId,quantity))
+    //         .then(setQuantity(1))
+    // }
 
     if (!singleProduct || !singleProduct.ProductImages) return null
     const productImages = Object.values(singleProduct.ProductImages)
@@ -103,12 +104,26 @@ export default function ProductDetails() {
                                 ))}
                             </select>
                         </div>
-                        <button id="btn-add-to-cart" onClick={handleAddToCart}>
+                        <CartModal
+                            singleProduct={singleProduct}
+                            quantity={quantity}
+                            setQuantity={setQuantity}
+                            previewImg={singleProduct.ProductImages[0].url}
+                        />
+
+                        {/* <button id="btn-add-to-cart" onClick={handleAddToCart}>
+                            <div>
+                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
+                                </div>
+                            <div>Add to Bag</div>
+                        </button> */}
+
+                        {/* <button id="btn-add-to-cart" onClick={handleAddToCart}>
                             <div>
                                 <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
                             </div>
                             <div>Add to Bag</div>
-                        </button>
+                        </button> */}
                     </div>
                 </div>
 
