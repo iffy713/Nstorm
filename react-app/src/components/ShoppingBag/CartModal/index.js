@@ -3,14 +3,17 @@ import AddToCart from "./AddToCart";
 import { Modal } from "../../../context/Modal";
 import { thunkAddToCart, thunkGetCartItems } from "../../../store/cart";
 import { thunkGetSingleProduct } from "../../../store/product";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 
 export default function CartModal({singleProduct, previewImg, quantity, setQuantity}) {
 
     const dispatch = useDispatch()
+    const history = useHistory()
     const [ showModal, setShowModal ] = useState(false)
     const productId = singleProduct.id
+    const user = useSelector(state=> state.session.user)
 
     useEffect(()=> {
         dispatch(thunkGetSingleProduct(productId))
@@ -18,6 +21,9 @@ export default function CartModal({singleProduct, previewImg, quantity, setQuant
     }, [dispatch, productId])
 
     const handleAddToCart = async () => {
+        if(!user){
+            history.push('/login')
+        }
         // setShowCartModal(true)
         await dispatch(thunkAddToCart(productId,quantity))
             .then(setQuantity(1))
@@ -33,7 +39,8 @@ export default function CartModal({singleProduct, previewImg, quantity, setQuant
                 </div>
                 <div>Add to Bag</div>
             </div>
-            { showModal && (
+
+            { showModal &&  (
                 <Modal onClose={()=>setShowModal(false)}>
                     <div className="modal-inner-ctn">
                         <div className="close-modal-btn-outer">
