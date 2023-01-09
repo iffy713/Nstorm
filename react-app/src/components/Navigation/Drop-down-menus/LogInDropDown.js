@@ -13,7 +13,7 @@ export default function LoginInDropDown({user}) {
                        Account
                     </NavLink>
                 </div>
-                <div className='child-drop-down'>{"  |  "}</div>
+                {/* <div className='child-drop-down'>{"  |  "}</div> */}
                 <div className='child-drop-down'>
                     <LogoutButton />
                 </div>
