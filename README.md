@@ -1,29 +1,29 @@
 
 ![956a9a60a9212f2a7a937d0a670a4fa](https://user-images.githubusercontent.com/97992495/211347691-a2d2415d-1493-4175-8545-c01b97526241.jpg)
-# [NSTORM](https://nstorm.onrender.com)
+# <div align="center"> [NSTORM](https://nstorm.onrender.com)</div>
 
 Welcome to Nstorm! 
 Nstorm is a e-commerce website clone inspired by Nordstorm. Nstorm provides a convenient shopping expreience and order management features to all the users. 
 
-### Wiki Link
+## 🔗Wiki Link
 * [Database Schema](https://github.com/iffy713/Nstorm/wiki/Database-Schema)
 * [Feature List](https://github.com/iffy713/Nstorm/wiki/Feature-Lists)
 * [User Stories](https://github.com/iffy713/Nstorm/wiki/User-Stories)
 
-### Tech Stack
-#### Languages
+## 💻Tech Stack
+### Languages
 [![My Skills](https://skillicons.dev/icons?i=html,css,js,py)](https://skillicons.dev)
 
-#### Frameworks and Libraries
+### 📚Frameworks and Libraries
 [![My Skills](https://skillicons.dev/icons?i=react,redux,flask)](https://skillicons.dev)
 
-#### Database:
+### 🕮Database:
 [![My Skills](https://skillicons.dev/icons?i=postgres)](https://skillicons.dev)
 Sqlalchemy
 
 
 
-## Getting started
+## 🚀Getting started
 1. Clone this repository (only this branch)
 
 2. Install dependencies
@@ -168,7 +168,7 @@ your site just below the name of the Web Service at the top of the page.
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
 
-## Feaatures
+## 💫Feaatures
 ### Homepage
 ![55674145d7203b88349567d2fb71b62](https://user-images.githubusercontent.com/97992495/211351761-64c9ef18-b0da-4f77-9acf-c81e46d9e802.png)
 
