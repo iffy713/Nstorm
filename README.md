@@ -10,14 +10,17 @@ Nstorm is a e-commerce website clone inspired by Nordstorm. Nstorm provides a co
 * [Feature List](https://github.com/iffy713/Nstorm/wiki/Feature-Lists)
 * [User Stories](https://github.com/iffy713/Nstorm/wiki/User-Stories)
 
-### This project is built with:
-* Python
-* Javascript
-* PostgreSQL
-* Sqlalchemy
-* React
-* Redux
-* Flask
+### Tech Stack
+#### Languages
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,py)](https://skillicons.dev)
+
+#### Frameworks and Libraries
+[![My Skills](https://skillicons.dev/icons?i=react,redux,flask)](https://skillicons.dev)
+
+#### Database:
+[![My Skills](https://skillicons.dev/icons?i=postgres)](https://skillicons.dev)
+Sqlalchemy
+
 
 
 ## Getting started
