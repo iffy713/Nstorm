@@ -1,8 +1,29 @@
-# Nstorm
 
-This is the starter for the Flask React project.
+![956a9a60a9212f2a7a937d0a670a4fa](https://user-images.githubusercontent.com/97992495/211347691-a2d2415d-1493-4175-8545-c01b97526241.jpg)
+# <div align="center"> [NSTORM](https://nstorm.onrender.com)</div>
 
-## Getting started
+Welcome to Nstorm! 
+Nstorm is a e-commerce website clone inspired by Nordstorm. Nstorm provides a convenient shopping expreience and order management features to all the users. 
+
+## 🔗Wiki Link
+* [Database Schema](https://github.com/iffy713/Nstorm/wiki/Database-Schema)
+* [Feature List](https://github.com/iffy713/Nstorm/wiki/Feature-Lists)
+* [User Stories](https://github.com/iffy713/Nstorm/wiki/User-Stories)
+
+## 💻Tech Stack
+### Languages
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,py)](https://skillicons.dev)
+
+### 📚Frameworks and Libraries
+[![My Skills](https://skillicons.dev/icons?i=react,redux,flask)](https://skillicons.dev)
+
+### 🕮Database:
+[![My Skills](https://skillicons.dev/icons?i=postgres)](https://skillicons.dev)
+Sqlalchemy
+
+
+
+## 🚀Getting started
 1. Clone this repository (only this branch)
 
 2. Install dependencies
@@ -146,3 +167,28 @@ your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+## 💫Feaatures
+### Homepage
+![55674145d7203b88349567d2fb71b62](https://user-images.githubusercontent.com/97992495/211351761-64c9ef18-b0da-4f77-9acf-c81e46d9e802.png)
+
+### Sign in
+![ad8227348e0a6abe9bef965eaa3fac3](https://user-images.githubusercontent.com/97992495/211351862-136441bf-230f-47fb-a64d-3be59be83a28.png)
+
+### Sign up
+![aa17925cbfb8b94d7bc1e61472a2178](https://user-images.githubusercontent.com/97992495/211351900-12f05c3b-9827-466b-b004-a12fdad75442.png)
+
+### Shopping Cart
+![3339a282dba960fd892a5060a6a72e9](https://user-images.githubusercontent.com/97992495/211351987-5639a248-153c-4656-8067-aee9c6c03c59.png)
+
+### Checkout 
+![91df80177669623e3be57ab2ed5b68d](https://user-images.githubusercontent.com/97992495/211352052-dc185d1c-b62b-44a5-a609-8e3b2b71d776.png)
+
+### Orders
+![0a623158cd19c8b092e20d96b562d9a](https://user-images.githubusercontent.com/97992495/211352124-2305f61d-b5f4-4fec-bf63-64970e0bac47.png)
+
+### Address
+![f9ae523b2fd91b6f14248ecb6b4a6fd](https://user-images.githubusercontent.com/97992495/211352182-80502d44-3e96-4e19-bcd1-1720092ca0d6.png)
+
+
+

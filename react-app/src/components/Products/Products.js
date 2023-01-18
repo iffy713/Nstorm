@@ -6,17 +6,20 @@ import StarRating from 'react-star-ratings'
 import './Products.css'
 import EmptyUserBar from '../auth/EmptyUserBar';
 import WelcomeBack from '../auth/WelcomeBack';
+import Spinner from '../Spinner/Spinner';
 
 export default function Products() {
 
     const dispatch = useDispatch()
     const allProductsObj = useSelector(state => state.product.allProducts)
     const allProductsArr = Object.values(allProductsObj)
+    const [ loaded, setLoaded ] = useState(false)
 
     const user = useSelector(state => state.session.user)
 
     useEffect(()=> {
         dispatch(thunkGetAllProducts(allProductsArr))
+        setLoaded(true)
     },[dispatch])
 
     return (
@@ -29,7 +32,9 @@ export default function Products() {
                 <WelcomeBack user={user}/>
             </div>)}
             <div id='all-products-outer'>
-
+                {/* <Spinner /> */}
+                {/* if (!loaded) return <Spinner /> */}
+                {!loaded?(<Spinner />):(
                 <div id='all-products-container'>
                     { allProductsArr.map(product => (
                         <article key={product.id} className="single-product-card-ctn">
@@ -62,6 +67,7 @@ export default function Products() {
                         </article>
                     )) }
                 </div>
+                )}
             </div>
         </div>
     )
