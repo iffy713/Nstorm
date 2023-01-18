@@ -10,6 +10,7 @@ import './ProductDetails.css'
 import DetailsAndCare from './DetailsAndCare';
 import GiftOptions from './GiftOptions';
 import CartModal from '../ShoppingBag/CartModal';
+import Spinner from '../Spinner/Spinner';
 
 export default function ProductDetails() {
 
@@ -42,12 +43,17 @@ export default function ProductDetails() {
     //         .then(setQuantity(1))
     // }
 
-    if (!singleProduct || !singleProduct.ProductImages) return null
+    if (!singleProduct || !singleProduct.ProductImages) return (
+        <div className='product-detail-outer-ctn'>
+            <Spinner />
+        </div>
+    )
     const productImages = Object.values(singleProduct.ProductImages)
+    // if (! loaded) return <Spinner />
 
     return (
         loaded && (
-            <div id='product-detail-outer-ctn'>
+            <div className='product-detail-outer-ctn'>
                 <div id='product-detatil-top-ctn'>
                     <div id='product-detail-top-child-left'>
                         <div id='product-detail-image-ctn'>
