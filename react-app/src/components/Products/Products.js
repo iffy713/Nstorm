@@ -22,8 +22,8 @@ export default function Products() {
             .then(setLoaded(true))
     },[dispatch])
 
-    if(!loaded ) return (
-        <div className='product-page-spinner-container'>
+    if(!loaded || !allProductsArr) return (
+        <div className='all-products-outer'>
             <Spinner />
         </div>
     )
