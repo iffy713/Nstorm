@@ -34,16 +34,16 @@ export default function ProductDetails() {
     useEffect(()=> {
         dispatch(thunkGetSingleProduct(productId))
         // dispatch(thunkGetProductReviews(productId))
-            .then(()=> setLoaded(true))
+            .then(setLoaded(true))
     }, [dispatch, productId])
 
-    // const handleAddToCart = async () => {
-    //     // setShowCartModal(true)
-    //     await dispatch(thunkAddToCart(productId,quantity))
-    //         .then(setQuantity(1))
-    // }
+    // if(!loaded ) return (
+    //     <div className='product-page-spinner-container'>
+    //         <Spinner />
+    //     </div>
+    // )
 
-    if (!singleProduct || !singleProduct.ProductImages) return (
+    if (!loaded || !singleProduct || !singleProduct.ProductImages) return (
         <div className='product-detail-outer-ctn'>
             <Spinner />
         </div>
@@ -116,27 +116,13 @@ export default function ProductDetails() {
                             setQuantity={setQuantity}
                             previewImg={singleProduct.ProductImages[0].url}
                         />
-
-                        {/* <button id="btn-add-to-cart" onClick={handleAddToCart}>
-                            <div>
-                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
-                                </div>
-                            <div>Add to Bag</div>
-                        </button> */}
-
-                        {/* <button id="btn-add-to-cart" onClick={handleAddToCart}>
-                            <div>
-                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
-                            </div>
-                            <div>Add to Bag</div>
-                        </button> */}
                     </div>
                 </div>
 
 
 
                 <div id='product-detail-bottom-ctn'>
-                    {/* <Reviews productId={productId}/> */}
+                    <Reviews productId={productId}/>
                 </div>
             </div>
 
