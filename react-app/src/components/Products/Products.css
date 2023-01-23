@@ -1,9 +1,3 @@
-.product-page-spinner-container {
-    margin: auto;
-    margin-top: 500px;
-
-}
-
 .empty-user-bar-ctn {
     width: 100%;
     margin: auto;
@@ -28,11 +22,6 @@
 .single-product-card-ctn {
     margin: 20px;
     width: 311px;
-
-    /* position: relative;
-    padding-top: 153.4%;
-    box-sizing: border-box;
-    overflow: hidden; */
 }
 
 #single-product-card-img-ctn {
