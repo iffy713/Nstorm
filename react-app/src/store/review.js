@@ -4,6 +4,8 @@ const CREATE_REVIEW = "review/CREATE_REVIEW"
 const EDIT_REVIEW = "review/EDIT_REVIEW"
 const DELETE_REVIEW = "review/DELETE_REVIEW"
 
+const ADD_REVIEW_IMG = "review/ADD_REVIEW_IMG"
+
 const actionGetProductReviews = (reviews) => ({
     type: GET_PRODUCT_REVIEWS,
     reviews
@@ -27,6 +29,12 @@ const actionUpdateReview = (review) => ({
 const actionDeleteReview = (reviewId) => ({
     type: DELETE_REVIEW,
     reviewId
+})
+
+const actionAddReviewImg = (reviewId, img) => ({
+    type: ADD_REVIEW_IMG,
+    reviewId,
+    img
 })
 
 export const thunkGetProductReviews = (productId) => async (dispatch) => {
@@ -63,6 +71,10 @@ export const thunkCreateReview = (productId, stars, headline, review) => async (
     if (response.ok){
         console.log("create review in thunk", response)
         const newReview = await response.json()
+
+        // console.log("!!!!!!!", newReview.id)
+        // // ^^ get id of new review
+
         dispatch(actionCreateReview(newReview))
         return null
     } else if (response.status < 500) {
@@ -76,6 +88,8 @@ export const thunkCreateReview = (productId, stars, headline, review) => async (
         return ['An error occurred. Please try again.']
     }
 }
+
+
 
 export const thunkUpdateReview = (reviewId, review) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${reviewId}`, {
