@@ -16,7 +16,7 @@ export default function Reviews({productId}) {
     // const userReview = productReviewsArr.filter(review => review.User.id === currUserId)
     // console.log("user review", userReview)
     const userReview = productReviewsArr.find(review => review.user_id === currUserId)
-    console.log(userReview)
+    // console.log(userReview)
 
     useEffect(()=>{
         dispatch(thunkGetProductReviews(productId))

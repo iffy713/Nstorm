@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { thunkCreateReview, thunkGetProductReviews } from "../../store/review"
+import { thunkAddReviewImage, thunkCreateReview, thunkGetProductReviews } from "../../store/review"
+// import AddImage from "./AddImage"
+import "./CreateReview.css"
 
 
 export default function CreateReviewForm({setShowModal, productId}){
@@ -10,29 +12,73 @@ export default function CreateReviewForm({setShowModal, productId}){
     const [ stars, setStars ] = useState(5)
     const [ review, setReview ] = useState("")
     const [ errors, setErrors ] = useState([])
-    // console.log(productId)
+
+    const [ image, setImage ] = useState(null)
+    const [ preview, setPreview ] = useState([])
+
 
     const rating = [1,2,3,4,5]
     const handleSubmit = async (e) => {
         e.preventDefault()
         // ----------solution 1----------
-        await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async(error)=>{
-            await dispatch(thunkGetProductReviews(productId))
-            if (error) {
-                setErrors(error)
-            } else {
-                setShowModal(false)
-            }
-        })
+        const newReview = await dispatch(thunkCreateReview(productId, stars, headline, review))
+        // console.log("got reviewId",newReview)
+        console.log("what is this??", image)
 
-        // const data = await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async()=>dispatch(thunkGetProductReviews(productId)))
-        // console.log("data in the component", data)
-        // if (data){
-        //     setErrors(data)
-        // } else {
-        //     setShowModal(false)
-        // }
+        if(newReview){
+            console.log("any image here? before sending to thunk", image)
+            await dispatch(thunkAddReviewImage(newReview.id, image)).then(async(error) => {
+                await dispatch(thunkGetProductReviews(productId))
+                if(error) {
+                    setErrors(error)
+                    console.log(errors)
+                } else {
+                    setShowModal(false)
+                }
+            })
+        }
+
+        // await dispatch(thunkAddReviewImage(newReview.id, image)).then(async(error) =>{
+        //     await dispatch(thunkGetProductReviews(productId))
+        //     if (error){
+        //         setErrors(error)
+        //     } else {
+        //         setShowModal(false)
+        //     }
+        // })
+
+        // await dispatch(thunkCreateReview(productId, stars, headline, review)).then(async(error)=>{
+
+        //     await dispatch(thunkGetProductReviews(productId))
+
+        //     if (error) {
+        //         setErrors(error)
+        //     } else {
+        //         setShowModal(false)
+        //     }
+        // })
     }
+
+    // =====================================
+    const handleChange = e => {
+        console.log("target here",e.target.files[0])
+        const files = e.target.files;
+        setImage(files[0])
+
+        const previewImages = []
+
+        for (let i = 0; i < files.length; i++){
+            const file = files[i]
+            const reader = new FileReader()
+            reader.onload = e => {
+                previewImages.push(e.target.result)
+                // console.log(previewImages)
+                setPreview(previewImages)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
+
 
     return (
         <div>
@@ -51,6 +97,21 @@ export default function CreateReviewForm({setShowModal, productId}){
                             >{rate}</option>
                         ))}
                     </select>
+                </div>
+                <div>
+                    <input
+                        name="images"
+                        type="file"
+                        id="fileInput"
+                        accept="image/*"
+                        onChange={handleChange}
+                        multiple
+                    />
+                    <div id="upload-image-ctn">
+                        {preview.map((item, index)=> (
+                            <img key={index} src={item} alt="preview" id="preview-review-image"/>
+                        ))}
+                    </div>
                 </div>
                 <div>
                     <label htmlFor="headline">Headline*</label>

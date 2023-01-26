@@ -100,5 +100,5 @@ def create_new_review(id):
         db.session.add(review)
         db.session.commit()
 
-        return review.to_dict()
+        return review.to_dict_user_page()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
