@@ -19,6 +19,11 @@ export default function SingleReview({review}) {
                 rate {review.stars}
             </div>
             {review.review}
+            {review.Review_images.length >0 ?(
+                <div>
+                    <img src={review.Review_images[0].url} />
+                </div>
+            ):<div></div>}
         </div>
     )
 }

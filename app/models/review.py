@@ -50,6 +50,7 @@ class Review(db.Model):
         }
 
     def to_dict_product_page(self):
+        # print("!!!!!!!!!!!!!!!!!",self.review_images[0].to_dict_review_page())
         return {
             "id": self.id,
             "user_id": self.user_id,
