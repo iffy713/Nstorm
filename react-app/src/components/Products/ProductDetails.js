@@ -79,7 +79,7 @@ export default function ProductDetails() {
                                     starEmptyColor="rgb(227, 227, 227)"
                                     starDimension='18px'
                                     starSpacing='2px'
-                                />
+                                /> <span>({singleProduct.Reviews.length})</span>
                             </div>
                         ):(<div></div>) }
                         <div id='product-detail-name-ctn'>
@@ -122,7 +122,7 @@ export default function ProductDetails() {
 
 
                 <div id='product-detail-bottom-ctn'>
-                    <Reviews productId={productId}/>
+                    <Reviews productId={productId} avgRating={singleProduct.Avg_rating} numOfReviews={singleProduct.Reviews.length}/>
                 </div>
             </div>
 
