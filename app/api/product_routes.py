@@ -69,6 +69,7 @@ def get_reviews_of_product(id):
             "status_code": 404
         }, 404
     reviews = product.reviews
+    print("reviews________", product, reviews ,"========================")
     output = []
     for review in reviews:
         output.append(review.to_dict_product_page())
