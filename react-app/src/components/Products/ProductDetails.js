@@ -10,6 +10,7 @@ import './ProductDetails.css'
 import DetailsAndCare from './DetailsAndCare';
 import GiftOptions from './GiftOptions';
 import CartModal from '../ShoppingBag/CartModal';
+import Spinner from '../Spinner/Spinner';
 
 export default function ProductDetails() {
 
@@ -33,21 +34,26 @@ export default function ProductDetails() {
     useEffect(()=> {
         dispatch(thunkGetSingleProduct(productId))
         // dispatch(thunkGetProductReviews(productId))
-            .then(()=> setLoaded(true))
+            .then(setLoaded(true))
     }, [dispatch, productId])
 
-    // const handleAddToCart = async () => {
-    //     // setShowCartModal(true)
-    //     await dispatch(thunkAddToCart(productId,quantity))
-    //         .then(setQuantity(1))
-    // }
+    // if(!loaded ) return (
+    //     <div className='product-page-spinner-container'>
+    //         <Spinner />
+    //     </div>
+    // )
 
-    if (!singleProduct || !singleProduct.ProductImages) return null
+    if (!loaded || !singleProduct || !singleProduct.ProductImages) return (
+        <div className='product-detail-outer-ctn'>
+            <Spinner />
+        </div>
+    )
     const productImages = Object.values(singleProduct.ProductImages)
+    // if (! loaded) return <Spinner />
 
     return (
         loaded && (
-            <div id='product-detail-outer-ctn'>
+            <div className='product-detail-outer-ctn'>
                 <div id='product-detatil-top-ctn'>
                     <div id='product-detail-top-child-left'>
                         <div id='product-detail-image-ctn'>
@@ -110,27 +116,13 @@ export default function ProductDetails() {
                             setQuantity={setQuantity}
                             previewImg={singleProduct.ProductImages[0].url}
                         />
-
-                        {/* <button id="btn-add-to-cart" onClick={handleAddToCart}>
-                            <div>
-                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
-                                </div>
-                            <div>Add to Bag</div>
-                        </button> */}
-
-                        {/* <button id="btn-add-to-cart" onClick={handleAddToCart}>
-                            <div>
-                                <i className="fa-solid fa-bag-shopping" id='btn-add-to-bag-bag-icon' style={{'color':'white'}}></i>
-                            </div>
-                            <div>Add to Bag</div>
-                        </button> */}
                     </div>
                 </div>
 
 
 
                 <div id='product-detail-bottom-ctn'>
-                    {/* <Reviews productId={productId}/> */}
+                    <Reviews productId={productId}/>
                 </div>
             </div>
 

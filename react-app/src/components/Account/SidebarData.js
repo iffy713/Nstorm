@@ -14,11 +14,11 @@ export const sidebarData = [
         about: "Manage addresses",
         selected: "address"
     },
-    // {
-    //     title: "Reviews",
-    //     icon:  <i className="fa-solid fa-file-pen"></i>,
-    //     link: "/my-account/my-reviews",
-    //     about: "Manage reviews",
-    //     selected: "review"
-    // }
+    {
+        title: "Reviews",
+        icon:  <i className="fa-solid fa-file-pen"></i>,
+        link: "/my-account/my-reviews",
+        about: "Manage reviews",
+        selected: "review"
+    }
 ]

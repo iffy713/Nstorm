@@ -4,14 +4,14 @@
     background-color: #F8F4EA
 }
 
-#all-products-outer {
+.all-products-outer {
     display: flex;
     flex-direction: row;
     justify-content: center;
     /* border: black solid 1px; */
 }
 
-#all-products-container {
+.all-products-container {
     display: flex;
     flex-direction: row;
     width: 95%;
@@ -22,11 +22,6 @@
 .single-product-card-ctn {
     margin: 20px;
     width: 311px;
-
-    /* position: relative;
-    padding-top: 153.4%;
-    box-sizing: border-box;
-    overflow: hidden; */
 }
 
 #single-product-card-img-ctn {

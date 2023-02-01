@@ -4,6 +4,8 @@ const CREATE_REVIEW = "review/CREATE_REVIEW"
 const EDIT_REVIEW = "review/EDIT_REVIEW"
 const DELETE_REVIEW = "review/DELETE_REVIEW"
 
+const ADD_REVIEW_IMG = "review/ADD_REVIEW_IMG"
+
 const actionGetProductReviews = (reviews) => ({
     type: GET_PRODUCT_REVIEWS,
     reviews
@@ -27,6 +29,12 @@ const actionUpdateReview = (review) => ({
 const actionDeleteReview = (reviewId) => ({
     type: DELETE_REVIEW,
     reviewId
+})
+
+const actionAddReviewImg = (reviewId, img) => ({
+    type: ADD_REVIEW_IMG,
+    reviewId,
+    img
 })
 
 export const thunkGetProductReviews = (productId) => async (dispatch) => {
@@ -61,15 +69,49 @@ export const thunkCreateReview = (productId, stars, headline, review) => async (
         })
     })
     if (response.ok){
-        console.log("create review in thunk", response)
+        // console.log("create review in thunk", response)
         const newReview = await response.json()
+
+        // console.log("!!!!!!!", newReview.id)
+        // // ^^ get id of new review
+
         dispatch(actionCreateReview(newReview))
-        return null
+        // console.log("~~~~~~~~~", newReview)
+        return newReview
     } else if (response.status < 500) {
         // console.log("bad data from review thunk", response)
         const error = await response.json()
         if (error.errors) {
             console.log(error.errors)
+            return error.errors
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+}
+
+export const thunkAddReviewImage = (reviewId, image) => async (dispatch) => {
+
+    const formData = new FormData()
+    formData.append("image", image)
+    console.log("formData in thunk", formData)
+
+    const response = await fetch(`/api/reviews/${reviewId}/images`, {
+        method: "POST",
+        body: formData
+    })
+
+    console.log("response of uploading image!!!!!!", response)
+
+    if (response.ok){
+        console.log("response of adding review image in thunk", response)
+        const reviewImageUrl = await response.json()
+        dispatch(actionAddReviewImg(reviewId, reviewImageUrl))
+        return null
+    } else if(response.status < 500){
+        const error = await response.json()
+        if(error.errors){
+            console.log("error of adding image in review thunk",error.errors)
             return error.errors
         }
     } else {
@@ -100,8 +142,6 @@ export const thunkUpdateReview = (reviewId, review) => async (dispatch) => {
     }
 }
 
-
-
 export const thunkDeleteReview = (review_id) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${review_id}`, {
         method: "DELETE"
@@ -111,6 +151,7 @@ export const thunkDeleteReview = (review_id) => async (dispatch) => {
         return response
     }
 }
+
 const reviewReducer = (state={}, action) => {
     let newState = {}
     switch (action.type) {
@@ -141,6 +182,11 @@ const reviewReducer = (state={}, action) => {
             newState = { ...state }
             delete newState[action.reviewId]
             return newState
+
+        case ADD_REVIEW_IMG:
+            newState = { ...state }
+            console.log("state in reducer",newState)
+            newState[action.reviewId].Review_images.push(action.reviewImageUrl)
 
         default:
             return state
