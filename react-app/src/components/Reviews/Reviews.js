@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetProductReviews } from '../../store/review';
 import CreateReviewFormModal from '../CreateReviewFormModal';
-// import RatingStars from './RatingStars';
+import StarRating from 'react-star-ratings'
 import SingleReview from './SingleReview';
+import "./Reviews.css"
 
 
 
-export default function Reviews({productId}) {
+export default function Reviews({productId, avgRating, numOfReviews}) {
 
     const dispatch = useDispatch()
     const productReviewsObj = useSelector(state => state.review)
@@ -31,16 +32,38 @@ export default function Reviews({productId}) {
 
     return (
         <div>
-            Review Component
-            {/* <RatingStars />  */}
-            {!userReview && (
-                <CreateReviewFormModal productId={productId} />
-            )}
+            <div id='review-header-outer'>
+                <div id='review-title-ctn'>
+                    <h3>
+                        REVIEWS
+                    </h3>
+                </div>
+                <div id='review-header-ctn'>
+                    <div>
+                        <div>
+                            <StarRating
+                                numberOfStars={5}
+                                rating={avgRating}
+                                starRatedColor="rgb(57, 57, 57)"
+                                starEmptyColor="rgb(227, 227, 227)"
+                                starDimension='18px'
+                                starSpacing='2px'
+                            /> <span>({numOfReviews})</span>
+                            <div>{avgRating} out of 5</div>
+                        </div>
+                    </div>
+                    <div id='create-review-btn-ctn'>
+                        {!userReview && (
+                            <CreateReviewFormModal productId={productId} />
+                        )}
+                    </div>
+                </div>
+            </div>
 
 
             {productReviewsArr.map(review => (
                 <div key={review.id}>
-                    <SingleReview review={review}/>
+                    <SingleReview review={review} numOfReviews={numOfReviews}/>
                 </div>
             ))}
         </div>

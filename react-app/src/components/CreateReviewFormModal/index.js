@@ -20,7 +20,7 @@ export default function CreateReviewFormModal({productId}) {
 
     return (
         <>
-            <button onClick={handleClick}>Write a Review</button>
+            <button onClick={handleClick} id="create-review-btn">Write a Review</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
                     <CreateReviewForm setShowModal={setShowModal} productId={productId}/>
