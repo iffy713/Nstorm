@@ -69,6 +69,7 @@ def get_reviews_of_product(id):
             "status_code": 404
         }, 404
     reviews = product.reviews
+    print("reviews________", product, reviews ,"========================")
     output = []
     for review in reviews:
         output.append(review.to_dict_product_page())
@@ -100,5 +101,5 @@ def create_new_review(id):
         db.session.add(review)
         db.session.commit()
 
-        return review.to_dict()
+        return review.to_dict_user_page()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

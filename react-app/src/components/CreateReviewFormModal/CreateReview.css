@@ -1,0 +1,24 @@
+#upload-image-ctn {
+    width: 150px;
+    height: 150px;
+}
+
+#preview-review-image {
+    width: 150px;
+    height: 150px;
+}
+
+#create-review-btn {
+    border: 1px black solid;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    min-width: 220px;
+    min-height: 40px;
+    transition: background-color 0.5s;
+}
+
+#create-review-btn:hover {
+    border: none;
+    background-color: rgb(230, 230, 230);
+}
