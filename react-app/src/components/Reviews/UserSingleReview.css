@@ -5,10 +5,10 @@
     margin: 10px 0;
 }
 
-
 #user-review-details-outer {
-
+    margin-left: 50px;
 }
+
 
 #user-review-details-ctn {
     margin-left: 30px;
@@ -18,4 +18,26 @@
 #user-review-product-name-ctn {
     width: 150px;
     font-size: smaller;
+}
+
+#headline-and-review-ctn {
+    margin-top: 30px;
+}
+
+#delete-review-btn {
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: border-bottom-width 0.5s;
+    margin-top: 30px;
+}
+
+#delete-review-btn:hover {
+    border-bottom-width: 2px;
+
 }

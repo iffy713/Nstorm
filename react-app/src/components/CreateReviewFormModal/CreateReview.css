@@ -1,3 +1,7 @@
+#modal-review-form-ctn {
+    margin-left: 30px;
+}
+
 #upload-image-ctn {
     width: 150px;
     height: 150px;
@@ -71,6 +75,11 @@
 
 input[type="file"] {
     display: none;
+}
+
+#preview-review-image {
+    object-fit: cover;
+    object-position: center
 }
 
 #upload-image-ctn {
