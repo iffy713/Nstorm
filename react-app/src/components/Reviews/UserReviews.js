@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetUserReviews } from "../../store/review";
 import EmptyReview from "./EmptyReview";
 import UserSingleReview from "./UserSingleReview";
+import "./UserReviews.css"
 
 
 export default function UserReviews() {
