@@ -76,13 +76,6 @@ export default function CreateReviewForm({setShowModal, productId, product}){
                     <label htmlFor="rating">Rating<span className='red-star-span'>*</span></label>
                 </div>
                 <div>
-                    {/* <select value={stars} onChange={e => setStars(e.target.value)}>
-                        {rating.map(rate=>(
-                            <option key={rate}
-                                name={"rating"}
-                            >{rate}</option>
-                        ))}
-                    </select> */}
                     <StarRating
                         isSelectable={true}
                         rating={stars}
