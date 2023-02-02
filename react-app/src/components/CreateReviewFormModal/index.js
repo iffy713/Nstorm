@@ -33,8 +33,8 @@ export default function CreateReviewFormModal({product, productId}) {
                             </div>
                         </div>
                         <div id="create-review-modal-content-ctn">
-                            <img src={product.ProductImages[0].url} style={{"weight":"200px", "height":"300px"}}/>
-                            <div className="form-ctn">
+                            <img src={product.ProductImages[0].url} style={{"weight":"300px", "height":"450px"}}/>
+                            <div className="form-ctn" id="modal-review-form-ctn">
                                 <CreateReviewForm setShowModal={setShowModal} productId={productId} product={product}/>
                             </div>
                         </div>

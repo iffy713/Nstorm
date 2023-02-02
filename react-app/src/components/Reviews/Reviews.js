@@ -19,13 +19,13 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
     if(currUser){
         userId = currUser.id
     }
-    // const userReview = productReviewsArr.filter(review => review.User.id === currUserId)
-    // console.log("user review", userReview)
+
     const userReview = productReviewsArr.find(review => review.user_id === userId)
-    // console.log(userReview)
+
 
     useEffect(()=>{
         dispatch(thunkGetProductReviews(productId))
+
     }, [dispatch, productId])
 
 
@@ -49,7 +49,16 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
                                 starDimension='18px'
                                 starSpacing='2px'
                             /> <span>({numOfReviews})</span>
-                            <div>{avgRating} out of 5</div>
+                            {avgRating === 0?(
+                                <div>
+                                    <div>0</div>
+                                    <div>
+                                        <h5>No reviews yet-be the first!</h5>
+                                    </div>
+                                </div>
+                            ):(
+                                <div>{avgRating} out of 5</div>
+                            )}
                         </div>
                     </div>
                     <div id='create-review-btn-ctn'>
@@ -60,7 +69,7 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
                 </div>
             </div>
 
-
+            
             {productReviewsArr.map(review => (
                 <div key={review.id}>
                     <SingleReview review={review} numOfReviews={numOfReviews}/>

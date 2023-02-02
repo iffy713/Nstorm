@@ -4,6 +4,7 @@ import { thunkGetUserReviews } from "../../store/review";
 import EmptyReview from "./EmptyReview";
 import UserSingleReview from "./UserSingleReview";
 import "./UserReviews.css"
+import Spinner from "../Spinner/Spinner";
 
 
 export default function UserReviews() {
@@ -27,7 +28,7 @@ export default function UserReviews() {
             ):(
                 <div>
                {userReviewsArr.map(review => {
-                    if (!review) return
+                    if (!review || !review.Review_images) return <Spinner />
                     return (
                     <div key={review.id}>
                         <UserSingleReview review={review}/>
