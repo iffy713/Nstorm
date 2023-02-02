@@ -8,7 +8,7 @@ import "./Reviews.css"
 
 
 
-export default function Reviews({productId, avgRating, numOfReviews}) {
+export default function Reviews({product, productId, avgRating, numOfReviews}) {
 
     const dispatch = useDispatch()
     const productReviewsObj = useSelector(state => state.review)
@@ -54,7 +54,7 @@ export default function Reviews({productId, avgRating, numOfReviews}) {
                     </div>
                     <div id='create-review-btn-ctn'>
                         {!userReview && (
-                            <CreateReviewFormModal productId={productId} />
+                            <CreateReviewFormModal product={product} productId={productId} />
                         )}
                     </div>
                 </div>
