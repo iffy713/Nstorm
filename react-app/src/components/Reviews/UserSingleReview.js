@@ -59,9 +59,10 @@ export default function UserSingleReview({review}) {
                         </button>
                     </div>
                 </div>
-                <div style={{"marginLeft": "30px"}}>
-                    <img src={review.Review_images[0].url} style={{"objectFit":"cover", "objectPosition":"center","width":"200px", "height":"200px"}}/>
-                </div>
+                {review.Review_images.length?(
+                    <div style={{"marginLeft": "30px", "marginTop":"50px"}}>
+                        <img src={review.Review_images[0].url} style={{"objectFit":"cover", "objectPosition":"center","width":"100px", "height":"100px"}}/>
+                    </div>):(<div></div>)}
             </div>
                 {/* <UpdateReviewFormModal review={review}/> */}
         </div>

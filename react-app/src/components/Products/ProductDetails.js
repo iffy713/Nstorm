@@ -16,6 +16,8 @@ export default function ProductDetails() {
 
     const dispatch = useDispatch()
     const singleProduct = useSelector(state => state.product.singleProduct)
+    const reviewsObj = useSelector(state => state.review)
+
 
     const { productId } = useParams()
     const [ quantity, setQuantity ] = useState(1)
@@ -30,9 +32,9 @@ export default function ProductDetails() {
 
     useEffect(()=> {
         dispatch(thunkGetSingleProduct(productId))
-        // dispatch(thunkGetProductReviews(productId))
+        dispatch(thunkGetProductReviews(productId))
             .then(setLoaded(true))
-    }, [dispatch, productId])
+    }, [dispatch, productId, reviewsObj])
 
     // if(!loaded ) return (
     //     <div className='product-page-spinner-container'>
