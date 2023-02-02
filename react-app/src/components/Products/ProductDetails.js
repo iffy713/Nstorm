@@ -17,9 +17,6 @@ export default function ProductDetails() {
     const dispatch = useDispatch()
     const singleProduct = useSelector(state => state.product.singleProduct)
 
-    // const cartItemsObj = useSelector(state => state.cartItems)
-    // const cartItemsArr = Object.values(cartItemsObj)
-
     const { productId } = useParams()
     const [ quantity, setQuantity ] = useState(1)
     const [ loaded, setLoaded ] = useState(false)

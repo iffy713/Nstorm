@@ -3,6 +3,7 @@ import { thunkDeleteReview } from "../../store/review"
 import UpdateReviewFormModal from "../UpdateReviewFormModal"
 import StarRating from 'react-star-ratings'
 import "./UserSingleReview.css"
+import Spinner from "../Spinner/Spinner"
 
 export default function UserSingleReview({review}) {
 
@@ -11,14 +12,11 @@ export default function UserSingleReview({review}) {
     const date = new Date(timeString)
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
-    // const year = date.getFullYear()
-    // const month = date.getMonth() +1
-    // const day = date.getDate()
-    // const newTimeString = `${year}-${month}-${day}`
+
 
     console.log("review is here", review)
 
-    if (!review || !review.Product) return null
+    if (!review || !review.Product || !review.Review_images) return <Spinner />
     return (
         <div>
             <div id="user-single-review-ctn">
@@ -33,10 +31,10 @@ export default function UserSingleReview({review}) {
                 <div id='user-review-details-outer'>
                     <div id='user-review-details-ctn'>
                         <div>
-                            Created Date: {formattedDate}
+                            Created on {formattedDate}
                         </div>
                         <div>
-                            Stars: <span>
+                            <span>
                                 <StarRating
                                     numberOfStars={5}
                                     rating={review.stars}
@@ -46,17 +44,26 @@ export default function UserSingleReview({review}) {
                                     starSpacing='2px'
                                 /></span>
                         </div>
-                        <div>
-                            Headline: <span>{review.headline}</span>
+                        <div id="headline-and-review-ctn">
+                            <div>
+                                {review.headline}
+                            </div>
+                            <div style={{"marginTop":"5px"}}>
+                                "{review.review}"
+                            </div>
                         </div>
-                        <div>
-                            Review: "{review.review}"
-                        </div>
+                        <button onClick={()=> dispatch(thunkDeleteReview(review.id))}
+                            id='delete-review-btn'
+                        >
+                            Delete this review
+                        </button>
                     </div>
                 </div>
+                <div style={{"marginLeft": "30px"}}>
+                    <img src={review.Review_images[0].url} style={{"objectFit":"cover", "objectPosition":"center","width":"200px", "height":"200px"}}/>
+                </div>
             </div>
-                <UpdateReviewFormModal review={review}/>
-                <button onClick={()=> dispatch(thunkDeleteReview(review.id))}>Delete</button>
+                {/* <UpdateReviewFormModal review={review}/> */}
         </div>
 
     )
