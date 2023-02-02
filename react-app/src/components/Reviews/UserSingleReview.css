@@ -1,0 +1,21 @@
+#user-single-review-ctn {
+    border-top: 1px rgb(227, 227, 227) solid;
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+}
+
+
+#user-review-details-outer {
+
+}
+
+#user-review-details-ctn {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+#user-review-product-name-ctn {
+    width: 150px;
+    font-size: smaller;
+}
