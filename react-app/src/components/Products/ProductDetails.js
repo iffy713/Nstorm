@@ -122,7 +122,7 @@ export default function ProductDetails() {
 
 
                 <div id='product-detail-bottom-ctn'>
-                    <Reviews productId={productId} avgRating={singleProduct.Avg_rating} numOfReviews={singleProduct.Reviews.length}/>
+                    <Reviews product={singleProduct} productId={productId} avgRating={singleProduct.Avg_rating} numOfReviews={singleProduct.Reviews.length}/>
                 </div>
             </div>
 
