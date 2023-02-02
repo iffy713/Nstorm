@@ -19,8 +19,7 @@ export default function SingleReview({review}) {
                 <div id='single-review-ctn'>
                     <div id='single-review-left'>
                         <div>
-                            {review.User.first_name}
-                            {review.User.last_name}
+                            {review.User.first_name} {review.User.last_name}
                         </div>
                     </div>
                     <div id='single-review-right-outer'>
