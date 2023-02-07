@@ -25,8 +25,7 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
 
     useEffect(()=>{
         dispatch(thunkGetProductReviews(productId))
-
-    }, [dispatch, productId])
+    }, [dispatch])
 
 
 
@@ -69,7 +68,7 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
                 </div>
             </div>
 
-            
+
             {productReviewsArr.map(review => (
                 <div key={review.id}>
                     <SingleReview review={review} numOfReviews={numOfReviews}/>

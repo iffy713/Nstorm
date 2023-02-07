@@ -16,27 +16,37 @@ export default function CreateReviewForm({setShowModal, productId, product}){
     const [ image, setImage ] = useState(null)
     const [ preview, setPreview ] = useState([])
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     // ----------solution 1----------
+    //     const newReview = await dispatch(thunkCreateReview(productId, stars, headline, review))
+    //     // console.log("got reviewId",newReview)
+    //     console.log("what is this??", newReview)
 
-    const rating = [1,2,3,4,5]
-    const handleSubmit = async (e) => {
+    //     if(newReview){
+    //         console.log("any image here? before sending to thunk", image)
+    //         await dispatch(thunkAddReviewImage(newReview.id, image)).then(async(error) => {
+    //             await dispatch(thunkGetProductReviews(productId))
+    //             if(error) {
+    //                 setErrors(error)
+    //                 console.log(errors)
+    //             } else {
+    //                 setShowModal(false)
+    //             }
+    //         })
+    //     }
+    // }
+    const handleSubmit = async(e) => {
         e.preventDefault()
-        // ----------solution 1----------
-        const newReview = await dispatch(thunkCreateReview(productId, stars, headline, review))
-        // console.log("got reviewId",newReview)
-        console.log("what is this??", image)
-
-        if(newReview){
-            console.log("any image here? before sending to thunk", image)
-            await dispatch(thunkAddReviewImage(newReview.id, image)).then(async(error) => {
-                await dispatch(thunkGetProductReviews(productId))
-                if(error) {
-                    setErrors(error)
-                    console.log(errors)
-                } else {
-                    setShowModal(false)
-                }
-            })
+        const data = await dispatch(thunkCreateReview(productId, stars, headline, review))
+        // console.log("return data in the component",data)
+        if(typeof data === 'number'){
+            await dispatch(thunkAddReviewImage(data, image))
+            setShowModal(false)
+        } else {
+            setErrors(data)
         }
+        await dispatch(thunkGetProductReviews(productId))
     }
 
     // =====================================
@@ -67,7 +77,7 @@ export default function CreateReviewForm({setShowModal, productId, product}){
             </h2>
             <div>{product.name}</div>
             <form onSubmit={handleSubmit} className="review-form">
-                <div>
+                <div className='error-list-ctn'>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
