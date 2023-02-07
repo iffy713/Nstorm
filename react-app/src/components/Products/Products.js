@@ -23,7 +23,7 @@ export default function Products() {
     },[dispatch])
 
     if(!loaded || !allProductsArr) return (
-        <div className='all-products-outer'>
+        <div className='all-products-container'>
             <Spinner />
         </div>
     )

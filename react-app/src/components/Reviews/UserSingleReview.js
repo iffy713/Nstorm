@@ -48,7 +48,7 @@ export default function UserSingleReview({review}) {
                             <div>
                                 {review.headline}
                             </div>
-                            <div style={{"marginTop":"5px"}}>
+                            <div style={{"marginTop":"5px", "overflow":"hidden", "maxWidth":"400px"}}>
                                 "{review.review}"
                             </div>
                         </div>
