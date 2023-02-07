@@ -34,7 +34,7 @@ export default function ProductDetails() {
         dispatch(thunkGetSingleProduct(productId))
         dispatch(thunkGetProductReviews(productId))
             .then(setLoaded(true))
-    }, [dispatch, reviewsObj])
+    }, [dispatch])
 
     // if(!loaded ) return (
     //     <div className='product-page-spinner-container'>

@@ -99,6 +99,10 @@ input[type="file"] {
     margin-top: 20px;
 }
 
+textarea::placeholder {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 #submit-review-btn:hover {
     border: none;
     background-color: rgb(102, 102, 102);
