@@ -147,7 +147,7 @@ export default function CreateReviewForm({setShowModal, productId, product}){
                         name="review"
                         value={review}
                         onChange={e => setReview(e.target.value)}
-                        placeholder="Write about what you did or didn't like about this product. Imclude details that would be helpful to other shoppers." />
+                        placeholder="Write about what you did or didn't like about this product. Include details that would be helpful to other shoppers." />
                 </div>
                 <div>
                     <button type="submit" id="submit-review-btn">Submit</button>
