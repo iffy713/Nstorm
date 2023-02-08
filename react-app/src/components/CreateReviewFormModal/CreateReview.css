@@ -87,7 +87,7 @@ input[type="file"] {
     margin: 20px 0;
 }
 
-#submit-review-btn {
+.submit-review-btn {
     border: 1px black solid;
     padding: 0;
     color: white;
@@ -103,7 +103,11 @@ textarea::placeholder {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#submit-review-btn:hover {
+textarea {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.submit-review-btn:hover {
     border: none;
     background-color: rgb(102, 102, 102);
 }
