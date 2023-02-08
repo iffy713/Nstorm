@@ -13,7 +13,7 @@ export default function ConfirmDeleteReview({setShowModal, review}){
         <div className="confirm-modal-outer">
             <div>
                 <h2>
-                    Your review will be deleted permanently!
+                    this review will be deleted permanently!
                 </h2>
                 <p>Are you sure to proceed?</p>
             </div>
