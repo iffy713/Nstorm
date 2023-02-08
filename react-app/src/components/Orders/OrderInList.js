@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { thunkCancelOrder, thunkGetOrders, thunkDeleteOrder } from '../../store/order'
+import CancelOrderModal from './CancelOrderModal';
 import './OrderInList.css'
 
 export default function OrderInList({order}){
@@ -68,7 +69,10 @@ export default function OrderInList({order}){
                 </div>
                 <div>
                     {!order.is_canceled &&
-                        <button onClick={()=>dispatch(thunkCancelOrder(order.id))} id="cancel-order-btn">Cancel this order</button>}
+                    <CancelOrderModal order={order}/>}
+                        {/* <button onClick={()=>dispatch(thunkCancelOrder(order.id))} id="cancel-order-btn">
+                            Cancel this order
+                        </button> */}
                 </div>
 
             </div>
