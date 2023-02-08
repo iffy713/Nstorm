@@ -4,6 +4,7 @@ import UpdateReviewFormModal from "../UpdateReviewFormModal"
 import StarRating from 'react-star-ratings'
 import "./UserSingleReview.css"
 import Spinner from "../Spinner/Spinner"
+import DeleteReviewModal from "./DeleteReviewModal"
 
 export default function UserSingleReview({review}) {
 
@@ -54,10 +55,11 @@ export default function UserSingleReview({review}) {
                         </div>
                         <div className="user-review-edit-delete-btn-ctn">
                             <UpdateReviewFormModal review={review} product={review.Product}/>
-                            <button onClick={()=> dispatch(thunkDeleteReview(review.id))}
+                            <DeleteReviewModal review={review}/>
+                            {/* <button onClick={()=> dispatch(thunkDeleteReview(review.id))}
                                 className='delete-review-btn'>
                                 Delete this review
-                            </button>
+                            </button> */}
                         </div>
 
                     </div>
