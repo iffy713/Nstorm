@@ -150,7 +150,7 @@ export default function CreateReviewForm({setShowModal, productId, product}){
                         placeholder="Write about what you did or didn't like about this product. Include details that would be helpful to other shoppers." />
                 </div>
                 <div>
-                    <button type="submit" id="submit-review-btn">Submit</button>
+                    <button type="submit" className="submit-review-btn">Submit</button>
                     <button onClick={()=>setShowModal(false)} id='cancel-review-btn'>Cancel</button>
                 </div>
             </form>
