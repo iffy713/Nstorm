@@ -52,11 +52,14 @@ export default function UserSingleReview({review}) {
                                 "{review.review}"
                             </div>
                         </div>
-                        <button onClick={()=> dispatch(thunkDeleteReview(review.id))}
-                            id='delete-review-btn'
-                        >
-                            Delete this review
-                        </button>
+                        <div className="user-review-edit-delete-btn-ctn">
+                            <UpdateReviewFormModal review={review} product={review.Product}/>
+                            <button onClick={()=> dispatch(thunkDeleteReview(review.id))}
+                                className='delete-review-btn'>
+                                Delete this review
+                            </button>
+                        </div>
+
                     </div>
                 </div>
                 {review.Review_images.length?(
@@ -64,7 +67,6 @@ export default function UserSingleReview({review}) {
                         <img src={review.Review_images[0].url} style={{"objectFit":"cover", "objectPosition":"center","width":"100px", "height":"100px"}}/>
                     </div>):(<div></div>)}
             </div>
-                {/* <UpdateReviewFormModal review={review}/> */}
         </div>
 
     )

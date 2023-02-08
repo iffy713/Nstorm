@@ -24,7 +24,12 @@
     margin-top: 30px;
 }
 
-#delete-review-btn {
+.user-review-edit-delete-btn-ctn {
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-review-btn {
     border-style: solid;
     border-bottom-width: 1px;
     border-top: none;
@@ -35,9 +40,9 @@
     cursor: pointer;
     transition: border-bottom-width 0.5s;
     margin-top: 30px;
+    width: fit-content;
 }
 
-#delete-review-btn:hover {
+.delete-review-btn:hover {
     border-bottom-width: 2px;
-
 }
