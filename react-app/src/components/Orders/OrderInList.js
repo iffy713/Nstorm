@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { thunkCancelOrder, thunkGetOrders, thunkDeleteOrder } from '../../store/order'
 import CancelOrderModal from './CancelOrderModal';
+import DeleteOrderModal from './DeleteOrderModal';
 import './OrderInList.css'
 
 export default function OrderInList({order}){
@@ -31,9 +32,10 @@ export default function OrderInList({order}){
                     {order.is_canceled?<div><h5>Canceled</h5></div>:<div><h5>Purchased Online</h5></div>}
                     {order.is_canceled?(
                         <div>
-                            <button onClick={()=>dispatch(thunkDeleteOrder(order.id))} id="order-delete-btn">
+                            <DeleteOrderModal order={order}/>
+                            {/* <button onClick={()=>dispatch(thunkDeleteOrder(order.id))} id="order-delete-btn">
                                 <i className="fa-solid fa-x"></i>
-                            </button>
+                            </button> */}
                         </div>
                     ):(<div></div>)}
                 </div>
