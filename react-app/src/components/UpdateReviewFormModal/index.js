@@ -4,24 +4,29 @@ import UpdateReviewForm from "./UpdateReviewForm";
 import "./UpdateReview.css"
 
 
-export default function UpdateReviewFormModal({review}) {
+export default function UpdateReviewFormModal({review,product}) {
     const [ showModal, setShowModal ] = useState(false)
 
     return (
         <>
-            <button onClick={()=> setShowModal(true)}>Edit</button>
+            <button onClick={()=> setShowModal(true)} className='delete-review-btn'>Edit this review</button>
             { showModal && (
                 <Modal onClose={()=>setShowModal(false)}>
-                    <UpdateReviewForm review={review} setShowModal={setShowModal}/>
-                    {/* <UpdateAddressForm
-                        addressId={addressId}
-                        street={street}
-                        city={city}
-                        state={state}
-                        zipCode={zipCode}
-                        primary={primary}
-                        setShowModal={setShowModal}
-                    /> */}
+                    <div className="modal-inner-ctn">
+                        <div className="close-modal-btn-outer">
+                            <div className='close-modal-btn-ctn'>
+                                <button onClick={()=>setShowModal(false)}>
+                                    <i className="fa-solid fa-x"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="create-review-modal-content-ctn">
+                            <img src={product.preview_image} style={{"weight":"300px", "height":"450px"}}/>
+                            <div className="form-ctn" id="modal-review-form-ctn">
+                                <UpdateReviewForm review={review} setShowModal={setShowModal}/>
+                            </div>
+                        </div>
+                    </div>
                 </Modal>
             )}
         </>
