@@ -54,7 +54,7 @@ export default function Addresses() {
                                             />
                                         </div>
                                         <div>
-                                            <button className='address-edit-delete-btn' onClick={()=> dispatch(thunkDeleteAddress(address.id))}>Remove</button>
+                                            {/* <button className='address-edit-delete-btn' onClick={()=> dispatch(thunkDeleteAddress(address.id))}>Remove</button> */}
                                         </div>
                                 </div>
                                 )
