@@ -4,10 +4,15 @@
     border: 1px solid #838d91;
     align-items: center;
     position: relative;
+    width: clamp(268px, 45vw, 760px)
 }
 
 #search-bar-ctn input {
     border: none;
+    height: 40px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
 #search-bar-ctn input:focus {
