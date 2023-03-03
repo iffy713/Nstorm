@@ -105,11 +105,11 @@ def create_new_review(id):
         return review.to_dict_user_page()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# search feature
+# search feature: by product name or product brand
 @product_routes.route('/search/<keyword>', methods=['GET','POST'])
 def search_by_keyword(keyword):
     lower_word = keyword.lower()
-    filted_products = Product.query.filter(func.lower(Product.name).like(f"%{lower_word}%")).all()
+    filted_products = Product.query.filter((func.lower(Product.name).like(f"%{lower_word}%")) | (func.lower(Product.brand).like(f"%{lower_word}%"))).all()
     print(filted_products)
     output = {'filted_products': [product.to_dict() for product in filted_products]}
 
