@@ -1,0 +1,20 @@
+#search-bar-ctn {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #838d91;
+    align-items: center;
+    position: relative;
+}
+
+#search-bar-ctn input {
+    border: none;
+}
+
+#search-bar-ctn input:focus {
+    outline: none;
+}
+
+#search-icon-ctn {
+    margin-right: 5px;
+    padding: 0 0 0 10px;
+}
