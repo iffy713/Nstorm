@@ -1,0 +1,29 @@
+#search-bar-ctn {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #838d91;
+    align-items: center;
+    position: relative;
+    width: clamp(268px, 45vw, 760px)
+}
+
+#search-bar-hidden-input {
+    display: none;
+}
+
+#search-bar-ctn input {
+    border: none;
+    height: 40px;
+    width: 100%;
+    font-size: medium;
+    font-weight: 400;
+}
+
+#search-bar-ctn input:focus {
+    outline: none;
+}
+
+#search-icon-ctn {
+    margin-right: 8px;
+    padding: 0 0 0 10px;
+}
