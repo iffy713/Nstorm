@@ -7,11 +7,15 @@
     width: clamp(268px, 45vw, 760px)
 }
 
+#search-bar-hidden-input {
+    display: none;
+}
+
 #search-bar-ctn input {
     border: none;
     height: 40px;
     width: 100%;
-    font-size: 1.2rem;
+    font-size: medium;
     font-weight: 400;
 }
 
@@ -20,6 +24,6 @@
 }
 
 #search-icon-ctn {
-    margin-right: 5px;
+    margin-right: 8px;
     padding: 0 0 0 10px;
 }
