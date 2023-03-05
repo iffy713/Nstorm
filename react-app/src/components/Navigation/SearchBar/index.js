@@ -5,17 +5,17 @@ export default function SearchBar() {
 
     const [ keyword, setKeyword ] = useState("")
 
-    // const handleKeyPress = (e) => {
-    //     if(e.key === 'Enter'){
-    //         handleSearch()
-    //     }
-    // }
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter'){
+            handleSearch()
+        }
+    }
 
-    // const handleSearch = (e) => {
-    //     e.preventDefault()
+    const handleSearch = (e) => {
+        e.preventDefault()
 
-    //     console.log(keyword)
-    // }
+        console.log(keyword)
+    }
 
     return (
         <div>
