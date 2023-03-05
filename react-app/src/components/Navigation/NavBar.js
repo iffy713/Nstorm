@@ -7,6 +7,7 @@ import AccoutButton from './AccountButton';
 import LoginInDropDown from './Drop-down-menus/LogInDropDown';
 import LogOutDropDown from './Drop-down-menus/LogOutDropDown';
 import './NavBar.css'
+import SearchBar from './SearchBar';
 import UserButton from './UserButton';
 
 const NavBar = ({setLoaded}) => {
@@ -36,6 +37,11 @@ const NavBar = ({setLoaded}) => {
               <img id="logo-img" src='https://drive.google.com/uc?export=view&id=1q8uKj7aY-vdBGj_cPd0lty-fyXCGCMwF' />
           </NavLink>
         </div>
+        <div>
+          <SearchBar />
+        </div>
+
+
         <div id="nav-bar-child-right">
           <div>
             {setLoaded && sessionLink}
