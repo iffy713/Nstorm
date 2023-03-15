@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkSearchProducts } from '../../../store/product'
+import { NavLink } from 'react-router-dom'
 import './index.css'
+import SingleSearchResult from './SingleSearchResult'
 
 export default function SearchBar() {
 
@@ -42,12 +44,15 @@ export default function SearchBar() {
                     <button id='search-bar-hidden-btn'/>
                 </div>
             </form>
-            { searchResultsArr.length >0  && (
-                <div>
+            { searchResultsArr.length >0  && keyword && (
+                <div id='all-search-results-outer'>
                     {searchResultsArr.map(product => (
-                        <div key={product.id}>
-                            { product.name }
-                        </div>
+                        <NavLink to={`/products/${product.id}`}>
+                            <SingleSearchResult
+                                key={product.id}
+                                product={product}
+                            />
+                        </NavLink>
                     ))}
                 </div>
             ) }

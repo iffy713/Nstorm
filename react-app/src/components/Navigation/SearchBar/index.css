@@ -50,3 +50,9 @@
     padding: 8px;
     top: 2px;
 }
+
+#all-search-results-outer {
+    width: clamp(268px, 45vw, 760px);
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 0 5px rgba(0,0,0,0.11);
+}

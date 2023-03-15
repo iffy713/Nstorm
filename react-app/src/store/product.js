@@ -63,7 +63,7 @@ const productReducer = (state=initialState, action) => {
         case SEARCH_PRODUCT:
             newState = {
                 allProducts: {...state.allProducts},
-                singleProduct:{},
+                singleProduct:{...state.singleProduct},
                 filtedProducts:{}
             }
             newState.filtedProducts = action.products
