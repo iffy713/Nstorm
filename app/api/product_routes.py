@@ -108,9 +108,10 @@ def create_new_review(id):
 # search feature: by product name or product brand
 @product_routes.route('/search/<keyword>', methods=['GET','POST'])
 def search_by_keyword(keyword):
+    print("key word from react",keyword)
     lower_word = keyword.lower()
     filted_products = Product.query.filter((func.lower(Product.name).like(f"%{lower_word}%")) | (func.lower(Product.brand).like(f"%{lower_word}%"))).all()
-    print(filted_products)
+    print("hiiii I am here",filted_products)
     output = {'filted_products': [product.to_dict() for product in filted_products]}
 
     return jsonify(output)
