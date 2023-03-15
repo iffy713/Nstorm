@@ -13,7 +13,6 @@ export default function SearchBar() {
 
     console.log("search results array here", searchResultsArr)
 
-
     // const handleSearch = (e) => {
     //     e.preventDefault()
     //     dispatch(thunkSearchProducts(keyword))
