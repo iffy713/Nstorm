@@ -1,3 +1,11 @@
+#search-bar-outer {
+    position: relative;
+}
+
+#keyword-search-form {
+    width: 100%;
+}
+
 #search-bar-ctn {
     display: flex;
     flex-direction: row;
@@ -11,10 +19,13 @@
     display: none;
 }
 
-#search-bar-ctn input {
-    border: none;
-    height: 40px;
+#keyword-input {
     width: 100%;
+    border: none;
+    position: relative;
+    height: 40px;
+    text-indent: 5px;
+    line-height: 2.4rem;
     font-size: medium;
     font-weight: 400;
 }
@@ -26,4 +37,16 @@
 #search-icon-ctn {
     margin-right: 8px;
     padding: 0 0 0 10px;
+}
+
+#search-bar-hidden-btn {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    overflow: visible;
+    text-decoration: none;
+    z-index: 2;
+    padding: 8px;
+    top: 2px;
 }
