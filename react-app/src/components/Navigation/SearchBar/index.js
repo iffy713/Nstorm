@@ -11,7 +11,7 @@ export default function SearchBar() {
     // console.log("search results here",searchResults)
     const searchResultsArr = searchResults ? Object.values(searchResults) : []
 
-    // console.log("search results array here", searchResultsArr)
+    console.log("search results array here", searchResultsArr)
 
 
     // const handleSearch = (e) => {
