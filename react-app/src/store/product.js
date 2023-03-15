@@ -34,14 +34,17 @@ export const thunkGetSingleProduct = (id) => async (dispatch) => {
 }
 
 export const thunkSearchProducts = (keyword) => async (dispatch) => {
-    const response = await fetch(`/api/products/${keyword}`)
+    console.log("testing search now")
+    const response = await fetch(`/api/products/search/${keyword}`)
+    console.log(response)
     const data = await response.json()
+    console.log(data)
     if (response.ok) {
-        dispatch(actionSearchProduct(data))
+        dispatch(actionSearchProduct(data.filted_products))
     }
 }
 
-const initialState = { allProducts: {}, singleProduct: {} }
+const initialState = { allProducts: {}, singleProduct: {}, filtedProducts: {} }
 const productReducer = (state=initialState, action) => {
     let newState
     switch (action.type) {
@@ -58,8 +61,8 @@ const productReducer = (state=initialState, action) => {
             return newState
 
         case SEARCH_PRODUCT:
-            newState = { allProducts:{}, singleProduct:{} }
-            newState.allProducts = action.products
+            newState = { allProducts:{}, singleProduct:{}, filtedProducts:{} }
+            newState.filtedProducts = action.products
             return newState
 
         default:
