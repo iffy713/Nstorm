@@ -12,7 +12,7 @@ export default function Products() {
 
     const dispatch = useDispatch()
     const allProductsObj = useSelector(state => state.product.allProducts)
-    const allProductsArr = Object.values(allProductsObj)
+    const allProductsArr = allProductsObj ? Object.values(allProductsObj) : []
     const [ loaded, setLoaded ] = useState(false)
 
     const user = useSelector(state => state.session.user)
