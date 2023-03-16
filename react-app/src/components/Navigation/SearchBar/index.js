@@ -47,12 +47,18 @@ export default function SearchBar() {
             { searchResultsArr.length >0  && keyword && (
                 <div id='all-search-results-outer'>
                     {searchResultsArr.map(product => (
-                        <NavLink to={`/products/${product.id}`}>
-                            <SingleSearchResult
-                                key={product.id}
-                                product={product}
-                            />
-                        </NavLink>
+                        <div key={product.id}
+                            id='single-search-result-outer'
+                        >
+                            <NavLink to={`/products/${product.id}`}
+                                id='search-result-navlink'
+                            >
+                                <SingleSearchResult
+                                    key={product.id}
+                                    product={product}
+                                />
+                            </NavLink>
+                        </div>
                     ))}
                 </div>
             ) }

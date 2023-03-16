@@ -8,7 +8,7 @@ export default function SingleSearchResult({product}) {
             <div>
                 <img id='search-result-preview-img' src={product.preview_image}/>
             </div>
-            <div>
+            <div id='search-result-name'>
                 {product.name}
             </div>
         </div>
