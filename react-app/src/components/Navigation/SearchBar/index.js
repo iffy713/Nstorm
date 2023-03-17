@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkSearchProducts } from '../../../store/product'
+import { thunkDefaultSearch, thunkSearchProducts } from '../../../store/product'
 import { NavLink, useLocation } from 'react-router-dom'
 import './index.css'
 import SingleSearchResult from './SingleSearchResult'
@@ -20,7 +20,9 @@ export default function SearchBar() {
     }, [dispatch, keyword])
 
     useEffect(()=> {
+        // console.log("before")
         setKeyword('')
+        // console.log("after")
     }, [location])
 
     return (
