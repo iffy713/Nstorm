@@ -40,6 +40,7 @@ app.register_blueprint(address_routes, url_prefix='/api/addresses')
 app.register_blueprint(order_routes, url_prefix='/api/orders')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 db.init_app(app)
+
 Migrate(app, db)
 
 # Application Security
