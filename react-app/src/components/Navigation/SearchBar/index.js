@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkSearchProducts } from '../../../store/product'
-import { NavLink } from 'react-router-dom'
+import { thunkDefaultSearch, thunkSearchProducts } from '../../../store/product'
+import { NavLink, useLocation } from 'react-router-dom'
 import './index.css'
 import SingleSearchResult from './SingleSearchResult'
 
@@ -13,17 +13,17 @@ export default function SearchBar() {
     // console.log("search results here",searchResults)
     const searchResultsArr = searchResults ? Object.values(searchResults) : []
 
-    console.log("search results array here", searchResultsArr)
-
-
-    // const handleSearch = (e) => {
-    //     e.preventDefault()
-    //     dispatch(thunkSearchProducts(keyword))
-    // }
+    const location = useLocation()
 
     useEffect(()=>{
         dispatch(thunkSearchProducts(keyword))
     }, [dispatch, keyword])
+
+    useEffect(()=> {
+        // console.log("before")
+        setKeyword('')
+        // console.log("after")
+    }, [location])
 
     return (
         <div id='search-bar-outer'>
