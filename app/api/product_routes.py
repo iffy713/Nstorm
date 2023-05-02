@@ -122,3 +122,16 @@ def search_by_keyword(keyword=None):
         output = {'filted_products': [product.to_dict() for product in filted_products]}
 
     return jsonify(output)
+
+
+# category feature: filter the products by their category
+@product_routes.route('/category/<keyword>')
+def filter_by_category():
+    if request.args.get('keyword') is None:
+        output = { 'message':'Please provide a keyword to search.' }
+    else:
+        lower_word = request.args.get('keyword').lower()
+        filted_products = Product.query.filter(Product.category.like(f"%{lower_word}%")).all()
+        output = {'filted_products': [product.to_dict() for product in filted_products]}
+
+    return jsonify(output)

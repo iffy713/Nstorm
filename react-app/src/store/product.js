@@ -34,12 +34,10 @@ export const thunkGetSingleProduct = (id) => async (dispatch) => {
 }
 
 
-export const thunkSearchProducts = (keyword= null) => async (dispatch) => {
+export const thunkSearchProducts = (keyword) => async (dispatch) => {
     // console.log("testing search now")
     const response = await fetch(`/api/products/search/${keyword}`)
-    console.log(response)
     const data = await response.json()
-    console.log(data)
     if (response.ok) {
         dispatch(actionSearchProduct(data.filted_products))
     }
