@@ -10,3 +10,4 @@ from .order import Order
 from .order_product import OrderProduct
 from .review import Review
 from .review_img import ReviewImage
+from .category import Category
