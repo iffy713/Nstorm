@@ -8,9 +8,9 @@ class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(1000), nullable=False)
-    parent_category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
-    subcategories = db.relationship('Category')
+    parent_category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=True)
 
+    subcategories = db.relationship('Category')
     products = db.relationship("Product", back_populates="category")
 
     def to_dict(self):
