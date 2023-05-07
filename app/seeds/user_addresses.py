@@ -1,23 +1,31 @@
-from app.models import db, user_addresses, environment, SCHEMA
+from app.models import db, UserAddress, environment, SCHEMA
 
 def seed_user_addresses():
-    address1 = user_addresses.insert().values(
-        user_id=1, address_id=1
+    address1 = UserAddress(
+        user_id=1,
+        address_id=1,
+        is_primary = False
     )
-    address2 = user_addresses.insert().values(
-        user_id=1, address_id=2
+    address2 = UserAddress(
+        user_id=1,
+        address_id=2,
+        is_primary = False
     )
-    address3 = user_addresses.insert().values(
-        user_id=2, address_id=1
+    address3 = UserAddress(
+        user_id=2,
+        address_id=1,
+        is_primary = False
     )
-    address4 = user_addresses.insert().values(
-        user_id=3, address_id=2
+    address4 = UserAddress(
+        user_id=3,
+        address_id=2,
+        is_primary = False
     )
 
-    db.session.execute(address1)
-    db.session.execute(address2)
-    db.session.execute(address3)
-    db.session.execute(address4)
+    db.session.add(address1)
+    db.session.add(address2)
+    db.session.add(address3)
+    db.session.add(address4)
     db.session.commit()
 
 
