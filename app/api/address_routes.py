@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Address
+from app.models import db, Address, UserAddress
 from app.forms import AddressForm
 
 address_routes = Blueprint('addresses', __name__)
@@ -53,17 +53,39 @@ def create_new_address():
     form = AddressForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        # 1. create instance in Address table
         new_address = Address(
             street = form.data['street'],
             city = form.data['city'],
             state = form.data['state'],
-            zip_code = form.data['zip_code'],
-            is_primary = form.data['is_primary']
+            zip_code = form.data['zip_code']
         )
-        current_user.addresses.append(new_address)
+        db.session.add(new_address)
         db.session.commit()
-        return new_address.to_dict()
+
+    # 2. once address was created, get the address id to create instance in user_addresses table
+        address_id = new_address.id
+        new_user_address = UserAddress(
+            user_id = current_user.id,
+            address_id = address_id
+        )
+        db.session.add(new_user_address)
+        db.session.commit()
+        return new_user_address.to_dict_with_user_and_address()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+    #     new_address = Address(
+    #         street = form.data['street'],
+    #         city = form.data['city'],
+    #         state = form.data['state'],
+    #         zip_code = form.data['zip_code'],
+    #         is_primary = form.data['is_primary']
+    #     )
+    #     current_user.addresses.append(new_address)
+    #     db.session.commit()
+    #     return new_address.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # ============ Update an address ================
 @address_routes.route('/<int:address_id>', methods=['PUT'])

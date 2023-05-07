@@ -15,7 +15,6 @@ class AddressForm(FlaskForm):
     # state = StringField("state", validators=[DataRequired()])
     state = SelectField("state", choices=states, validators=[DataRequired()])
     zip_code = StringField('zip', validators=[DataRequired(), Regexp("^[0-9]{5}(?:-[0-9]{4})?$", message="Please enter a valid zip code.")])
-    is_primary = BooleanField('is_primary')
 
     def validate_state(form, field):
         states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",

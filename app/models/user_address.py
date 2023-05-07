@@ -44,11 +44,9 @@ class UserAddress(db.Model):
             },
             "Address": {
                 "id": self.address.id,
-                "address_line_1": self.address.address_line_1,
-                "address_line_2": self.address.address_line_2,
+                "street": self.address.street,
                 "city": self.address.city,
                 "state": self.address.state,
-                "postal_code": self.address.postal_code,
-                "country": self.address.country
+                "zip_code": self.address.zip_code
             }
         }
