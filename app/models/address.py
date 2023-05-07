@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .user_address import user_addresses
+from .user_address import UserAddress
 
 
 class Address(db.Model):
@@ -13,10 +13,10 @@ class Address(db.Model):
     city = db.Column(db.String(30), nullable=False)
     state = db.Column(db.String(30), nullable=False)
     zip_code = db.Column(db.String(5), nullable=False)
-    is_primary = db.Column(db.Boolean, nullable=False)
+    # is_primary = db.Column(db.Boolean, nullable=False)
 
     # users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
-    user_addresses = db.relationship("UserAddress", back_populate="address")
+    user_addresses = db.relationship("UserAddress", back_populates="address")
     orders = db.relationship("Order", back_populates="address")
 
     def to_dict(self):
@@ -26,7 +26,7 @@ class Address(db.Model):
             "city": self.city,
             "state": self.state,
             "zip_code": self.zip_code,
-            "is_primary": self.is_primary
+            # "is_primary": self.is_primary
         }
 
     def to_dict_with_users(self):
@@ -36,8 +36,8 @@ class Address(db.Model):
             "city": self.city,
             "state": self.state,
             "zip_code": self.zip_code,
-            "is_primary": self.is_primary,
-            
+            # "is_primary": self.is_primary,
+
             # need to test the api
             # "Users": [user.to_dict() for user in self.users]
         }

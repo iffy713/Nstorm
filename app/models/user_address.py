@@ -36,6 +36,19 @@ class UserAddress(db.Model):
         return {
             "id": self.id,
             "User": {
-
+                "id": self.user.id,
+                "username": self.user.username,
+                'first_name' : self.user.first_name,
+                'last_name': self.user.last_name,
+                'email': self.user.email
+            },
+            "Address": {
+                "id": self.address.id,
+                "address_line_1": self.address.address_line_1,
+                "address_line_2": self.address.address_line_2,
+                "city": self.address.city,
+                "state": self.address.state,
+                "postal_code": self.address.postal_code,
+                "country": self.address.country
             }
         }
