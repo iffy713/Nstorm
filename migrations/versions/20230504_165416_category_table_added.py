@@ -1,3 +1,4 @@
+
 """category table added
 
 Revision ID: 576137bb9143
@@ -7,6 +8,10 @@ Create Date: 2023-05-04 16:54:16.401718
 """
 from alembic import op
 import sqlalchemy as sa
+
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
@@ -25,10 +30,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['parent_category_id'], ['categories.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.add_column('products', sa.Column('category_id', sa.Integer(), nullable=True))
+
+    op.add_column('products', sa.Column('category_id', sa.Integer(), nullable=True)) # add category_id to the products table
     op.create_foreign_key(None, 'products', 'categories', ['category_id'], ['id'])
     op.drop_column('products', 'category')
+
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
@@ -38,3 +47,4 @@ def downgrade():
     op.drop_column('products', 'category_id')
     op.drop_table('categories')
     # ### end Alembic commands ###
+    # op.drop_table('categories')

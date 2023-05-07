@@ -15,9 +15,9 @@ class Address(db.Model):
     zip_code = db.Column(db.String(5), nullable=False)
     is_primary = db.Column(db.Boolean, nullable=False)
 
-    users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
+    # users = db.relationship("User", secondary=user_addresses, back_populates="addresses")
+    user_addresses = db.relationship("UserAddress", back_populate="address")
     orders = db.relationship("Order", back_populates="address")
-    
 
     def to_dict(self):
         return {
@@ -37,5 +37,7 @@ class Address(db.Model):
             "state": self.state,
             "zip_code": self.zip_code,
             "is_primary": self.is_primary,
-            "Users": [user.to_dict() for user in self.users]
+            
+            # need to test the api
+            # "Users": [user.to_dict() for user in self.users]
         }
