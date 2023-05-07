@@ -6,7 +6,6 @@ def seed_addresses():
         city="South Mollyborough",
         state="LA",
         zip_code=55321,
-        is_primary=True
     )
 
     marnie = Address(
@@ -14,7 +13,6 @@ def seed_addresses():
         city="Lowechester",
         state="MA",
         zip_code=97279,
-        is_primary=True
     )
 
     bobbie = Address(
@@ -22,7 +20,6 @@ def seed_addresses():
         city="Lowechester",
         state="MA",
         zip_code=97279,
-        is_primary=True
     )
 
 
