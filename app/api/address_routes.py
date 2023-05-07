@@ -53,7 +53,17 @@ def create_new_address():
     form = AddressForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # 1. create instance in Address table
+
+        # 1. check if the new address set as primary
+        is_primary = form.data.get('is_primary', False)
+        if is_primary:
+            # 1.1. check if user already has a primary address
+            user_primary_address = UserAddress.query.filter_by(user_id=current_user.id, is_primary=True).first()
+            if user_primary_address:
+                user_primary_address.is_primary = False
+                db.session.commit()
+
+        # 2. create instance in Address table
         new_address = Address(
             street = form.data['street'],
             city = form.data['city'],
@@ -63,29 +73,17 @@ def create_new_address():
         db.session.add(new_address)
         db.session.commit()
 
+
     # 2. once address was created, get the address id to create instance in user_addresses table
-        address_id = new_address.id
         new_user_address = UserAddress(
             user_id = current_user.id,
-            address_id = address_id
+            address_id = new_address.id,
+            is_primary = form.data['is_primary']
         )
         db.session.add(new_user_address)
         db.session.commit()
         return new_user_address.to_dict_with_user_and_address()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-
-    #     new_address = Address(
-    #         street = form.data['street'],
-    #         city = form.data['city'],
-    #         state = form.data['state'],
-    #         zip_code = form.data['zip_code'],
-    #         is_primary = form.data['is_primary']
-    #     )
-    #     current_user.addresses.append(new_address)
-    #     db.session.commit()
-    #     return new_address.to_dict()
-    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # ============ Update an address ================
 @address_routes.route('/<int:address_id>', methods=['PUT'])
@@ -105,10 +103,10 @@ def user_update_address(address_id):
             address.city = form.data['city']
             address.state = form.data['state']
             address.zip_code = form.data['zip_code']
-            address.is_primary = form.data['is_primary']
             db.session.commit()
             return jsonify(address.to_dict())
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 # =========== Delete an address ==============
 @address_routes.route('/<int:address_id>', methods=['DELETE'])
 @login_required
@@ -126,3 +124,6 @@ def delete_address(address_id):
             "message": "Address was deleted successfully",
             "statusCode": 200
         }, 200
+
+
+# ========== Set Primary Address ==============
