@@ -127,10 +127,21 @@ def delete_address(address_id):
 
 
 # ========== Set Primary Address ==============
-@address_routes.route('/<int:address_id>/set_primary', methods=['PUT'])
+@address_routes.route('/<int:addressid>/set_primary', methods=['PUT'])
 @login_required
-def set_primary_address(address_id):
-    address = Address.query.get(address_id)
+def set_primary_address(addressid):
+    find_address = UserAddress.query.filter_by(user_id=current_user.id, address_id=addressid).first()
+    current_primary_address = UserAddress.query.filter_by(user_id=current_user.id, is_primary=True).first()
+    if not find_address:
+        return {
+            "message": "Address couldn't be found.",
+            "statusCode": 404
+        }, 404
+    if current_primary_address:
+        current_primary_address.is_primary = False
+        db.session.commit()
 
+    find_address.is_primary = True
+    db.session.commit()
 
-    current_primary_address = UserAddress.query.filter_by(user_id=current_user.id, is_primary=True)
+    return jsonify(find_address.to_dict_with_user_and_address())
