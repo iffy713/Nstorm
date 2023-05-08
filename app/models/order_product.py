@@ -30,7 +30,10 @@ class OrderProduct(db.Model):
             "Product": {
                 "id": self.product.id,
                 "name": self.product.name,
-                "category": self.product.category,
+                "Category": {
+                    "category_id": self.product.category_id,
+                    "category_name": self.product.category.name,
+                },
                 "price": self.product.price,
                 "brand": self.product.brand,
                 "brand_story": self.product.brand_story,

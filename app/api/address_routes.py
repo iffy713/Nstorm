@@ -40,10 +40,10 @@ def get_address_by_id(address_id):
 @address_routes.route('/current')
 @login_required
 def get_current_user_addresses():
-    addresses = current_user.addresses
+    addresses = current_user.user_addresses
     output = []
     for address in addresses:
-        output.append(address.to_dict())
+        output.append(address.to_dict_user_page())
     return jsonify({"Addresses":output})
 
 # =========== Create a new address ===========
@@ -74,7 +74,7 @@ def create_new_address():
         db.session.commit()
 
 
-    # 2. once address was created, get the address id to create instance in user_addresses table
+        # 3. once address was created, get the address id to create instance in user_addresses table
         new_user_address = UserAddress(
             user_id = current_user.id,
             address_id = new_address.id,
@@ -127,3 +127,10 @@ def delete_address(address_id):
 
 
 # ========== Set Primary Address ==============
+@address_routes.route('/<int:address_id>/set_primary', methods=['PUT'])
+@login_required
+def set_primary_address(address_id):
+    address = Address.query.get(address_id)
+
+
+    current_primary_address = UserAddress.query.filter_by(user_id=current_user.id, is_primary=True)
