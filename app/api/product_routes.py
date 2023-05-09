@@ -106,10 +106,6 @@ def create_new_review(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-
-
-
-
 # search feature: by product name or product brand
 @product_routes.route('/search')
 @product_routes.route('/search/<keyword>')
@@ -125,11 +121,15 @@ def search_by_keyword(keyword=None):
 
 
 # category feature: filter the products by their category
-# @product_routes.route('/category/<keyword>')
-# def filter_by_category(keyword=None):
-#     # print(keyword)
-#     if keyword is None:
-#         output = { 'message':'Please provide a category name' }
-
-#     return "testing"
-#     # return output
+@product_routes.route('/category/<int:categoryid>')
+def filter_by_category(categoryid):
+    products = []
+    data = Product.query.filter_by(category_id=categoryid).all()
+    if not data:
+        return {
+            "message": "Please provide a valid category id."
+        }
+    for product in data:
+        products.append(product.to_dict())
+    output = { "Products":products }
+    return jsonify(output)

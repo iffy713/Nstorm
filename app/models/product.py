@@ -10,7 +10,8 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(2000), nullable=False)
-    category = db.Column(db.String(40), nullable=False)
+    # category = db.Column(db.String(40), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("categories.id")))
     price = db.Column(db.Float, nullable=False)
     brand = db.Column(db.String(40), nullable=False)
     brand_story = db.Column(db.String(2000), nullable=False)
@@ -20,7 +21,7 @@ class Product(db.Model):
     order_products = db.relationship("OrderProduct", back_populates="product")
     images = db.relationship("ProductImage", back_populates="product")
     reviews =db.relationship("Review", back_populates="product")
-
+    category = db.relationship("Category", back_populates="products")
 
     def get_avg_rating(self):
         if len(self.reviews) == 0:
@@ -33,7 +34,10 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "category": self.category,
+            "Category": {
+                "category_id": self.category_id,
+                "category_name": self.category.name,
+            },
             "price": self.price,
             "brand": self.brand,
             "brand_story": self.brand_story,
@@ -47,7 +51,10 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "category": self.category,
+            "Category": {
+                "category_id": self.category_id,
+                "category_name": self.category.name,
+            },
             "price": self.price,
             "brand": self.brand,
             "brand_story": self.brand_story,

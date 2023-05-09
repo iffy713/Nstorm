@@ -1,19 +1,17 @@
-"""empty message
-Revision ID: bc434b1035f7
-Revises:
-Create Date: 2022-12-19 19:30:07.706009
+"""refactor the user_address joining table
+
+Revision ID: a1de040d25ca
+Revises: 576137bb9143
+Create Date: 2023-05-06 23:06:47.507572
+
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'bc434b1035f7'
-down_revision = None
+revision = 'a1de040d25ca'
+down_revision = '576137bb9143'
 branch_labels = None
 depends_on = None
 
@@ -26,25 +24,15 @@ def upgrade():
     sa.Column('city', sa.String(length=30), nullable=False),
     sa.Column('state', sa.String(length=30), nullable=False),
     sa.Column('zip_code', sa.String(length=5), nullable=False),
-    sa.Column('is_primary', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE addresses SET SCHEMA {SCHEMA};")
-
-    op.create_table('products',
+    op.create_table('categories',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=2000), nullable=False),
-    sa.Column('category', sa.String(length=40), nullable=False),
-    sa.Column('price', sa.Float(), nullable=False),
-    sa.Column('brand', sa.String(length=40), nullable=False),
-    sa.Column('brand_story', sa.String(length=2000), nullable=False),
-    sa.Column('about', sa.String(length=2000), nullable=False),
+    sa.Column('name', sa.String(length=1000), nullable=False),
+    sa.Column('parent_category_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['parent_category_id'], ['categories.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
-
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -56,21 +44,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-    op.create_table('cart_items',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('product_id', sa.Integer(), nullable=True),
-    sa.Column('quantity', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
-
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -81,9 +54,45 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
-
+    op.create_table('products',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=2000), nullable=False),
+    sa.Column('category_id', sa.Integer(), nullable=True),
+    sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('brand', sa.String(length=40), nullable=False),
+    sa.Column('brand_story', sa.String(length=2000), nullable=False),
+    sa.Column('about', sa.String(length=2000), nullable=False),
+    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('user_addresses',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('address_id', sa.Integer(), nullable=True),
+    sa.Column('is_primary', sa.Boolean(), nullable=True),
+    sa.ForeignKeyConstraint(['address_id'], ['addresses.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('cart_items',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('order_products',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('order_id', sa.Integer(), nullable=True),
+    sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('is_canceled', sa.Boolean(), nullable=False),
+    sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
+    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=True),
@@ -92,9 +101,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
-
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -107,32 +113,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
-
-    op.create_table('user_addresses',
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('address_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['address_id'], ['addresses.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('user_id', 'address_id')
-    )
-    if environment == "production":
-        op.execute(f"ALTER TABLE user_addresses SET SCHEMA {SCHEMA};")
-
-    op.create_table('order_products',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('order_id', sa.Integer(), nullable=True),
-    sa.Column('product_id', sa.Integer(), nullable=True),
-    sa.Column('quantity', sa.Integer(), nullable=False),
-    sa.Column('is_canceled', sa.Boolean(), nullable=False),
-    sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
-    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    if environment == "production":
-        op.execute(f"ALTER TABLE order_products SET SCHEMA {SCHEMA};")
-
     op.create_table('review_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -140,22 +120,20 @@ def upgrade():
     sa.ForeignKeyConstraint(['review_id'], ['reviews.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE review_images SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
 
 
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
     op.drop_table('review_images')
-    op.drop_table('order_products')
-    op.drop_table('user_addresses')
     op.drop_table('reviews')
     op.drop_table('product_images')
-    op.drop_table('orders')
+    op.drop_table('order_products')
     op.drop_table('cart_items')
-    op.drop_table('users')
+    op.drop_table('user_addresses')
     op.drop_table('products')
+    op.drop_table('orders')
+    op.drop_table('users')
+    op.drop_table('categories')
     op.drop_table('addresses')
     # ### end Alembic commands ###

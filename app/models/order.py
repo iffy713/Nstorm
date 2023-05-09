@@ -36,7 +36,6 @@ class Order(db.Model):
                 "city": self.address.city,
                 "state": self.address.state,
                 "zip_code": self.address.zip_code,
-                "is_primary": self.address.is_primary
             },
             "Products": [product.to_dict_with_product() for product in self.order_products]
         }
@@ -57,6 +56,5 @@ class Order(db.Model):
                 "city": self.address.city,
                 "state": self.address.state,
                 "zip_code": self.address.zip_code,
-                "is_primary": self.address.is_primary
             }
         }
