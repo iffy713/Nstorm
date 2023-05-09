@@ -32,6 +32,19 @@ class UserAddress(db.Model):
             "is_primary": self.is_primary
         }
 
+    # could not get instance of self.address
+    def to_dict_user_page(self):
+        print("11111111111111111111", self.address.id)
+        return {
+            "id": self.id,
+            "is_primary": self.is_primary,
+            "street": self.address.street,
+            "city": self.address.city,
+            "state": self.address.state,
+            "zip_code": self.address.zip_code,
+        }
+
+
     def to_dict_with_user_and_address(self):
         return {
             "id": self.id,
@@ -44,11 +57,9 @@ class UserAddress(db.Model):
             },
             "Address": {
                 "id": self.address.id,
-                "address_line_1": self.address.address_line_1,
-                "address_line_2": self.address.address_line_2,
+                "street": self.address.street,
                 "city": self.address.city,
                 "state": self.address.state,
-                "postal_code": self.address.postal_code,
-                "country": self.address.country
+                "zip_code": self.address.zip_code
             }
         }
