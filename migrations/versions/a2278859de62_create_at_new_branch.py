@@ -1,8 +1,8 @@
-"""refactor the user_address joining table
+"""create at new branch
 
-Revision ID: a1de040d25ca
-Revises: 576137bb9143
-Create Date: 2023-05-06 23:06:47.507572
+Revision ID: a2278859de62
+Revises:
+Create Date: 2023-05-08 23:35:31.405356
 
 """
 from alembic import op
@@ -14,8 +14,8 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'a1de040d25ca'
-down_revision = '576137bb9143'
+revision = 'a2278859de62'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -167,6 +167,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 
