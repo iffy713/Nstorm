@@ -134,6 +134,7 @@ def seed_categories():
         parent_category_id = 10
     )
 
+
     # 23
     men_clothing = Category(
         name = "Clothing",
@@ -167,7 +168,7 @@ def seed_categories():
 
     # 28
     men_jackets = Category(
-        name = "Jackets & Cotas",
+        name = "Jackets & Coats",
         parent_category_id = 23
     )
 
@@ -403,13 +404,13 @@ def seed_categories():
 
     # 67
     vases_planters = Category(
-        name = "Vasess & Planters",
+        name = "Vases & Planters",
         parent_category_id = 55
     )
 
     # 68
     storage = Category(
-        name = "Storage & Ogranization",
+        name = "Storage & Organization",
         parent_category_id = 55
     )
 
@@ -523,13 +524,13 @@ def seed_categories():
 
     # 87
     womens_designer = Category(
-        name = "Womens Designer",
+        name = "Women's Designer",
         parent_category_id = 6
     )
 
     # 88
     mens_designer = Category(
-        name = "Mens Designer",
+        name = "Men's Designer",
         parent_category_id = 6
     )
 
@@ -577,13 +578,13 @@ def seed_categories():
 
     # 96
     disigner_handbags = Category(
-        name = "Disigner Handbags",
+        name = "Designer Handbags",
         parent_category_id = 89
     )
 
     # 97
     disigner_watches = Category(
-        name = "Disigner Watches",
+        name = "Designer Watches",
         parent_category_id = 89
     )
 
@@ -722,7 +723,7 @@ def seed_categories():
     category_list = [ women, men, kids, home, beauty, designer, sale, women_clothing,women_shoes, women_handbags_accs,women_tops, women_dresses,women_pants, women_sandal, women_sneakers, women_boots, women_heels, women_handbags, women_jewellery, women_watches, women_sunglasses, women_hats, men_clothing, men_shoes, men_accessories, men_grooming, men_shirts, men_jackets, men_pants, men_sneakers, men_boots, men_watches, men_belts, men_ties, men_socks, men_skincare, men_shaving, men_haircare, men_fragrance, kids_clothing, kids_shoes, kids_toys, boys_clothing, girls_clothing, baby_clothing, boy_shoes, girl_shoes, baby_shoes, plush_toys, kids_books,kids_games, bedding, bath, kitchen_dining, home_decor, comforters, sheets, pillows, bath_towels, bath_mats, bath_curtains, cookware, dinnerware, glassware, rugs, wall_arts, vases_planters, storage, clocks, skincare, makeup, haircare, fragrance, cleansers, moisturizers, serums, masks, foundation, lipstick, eyeshadow, mascara, shampoo, conditioner, perfume, cologne, body_sprays, womens_designer, mens_designer, designer_accessories, gucci, prada, givenchy, burberry, tf, versace, disigner_handbags, disigner_watches, women_sale, men_sale, kids_sale, home_sale, beauty_sale, sale_women_clothing, sale_women_shoes, sale_women_handbags, sale_men_clothing, sale_men_shoes, sale_men_accessories, sale_kids_shoes, sale_kids_toys, sale_bedding, sale_bath, sale_home_decor, sale_kitchen_dining, sale_skincare, sale_makeup, sale_hair_care, sale_fragrance ]
 
     for category in category_list:
-        
+
         db.session.add(category)
         db.session.commit()
 
@@ -730,6 +731,6 @@ def undo_categories():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.categories RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute("DELETE FROM products")
+        db.session.execute("DELETE FROM categories")
 
     db.session.commit()

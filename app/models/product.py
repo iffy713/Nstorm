@@ -34,7 +34,10 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "category_id": self.category_id,
+            "Category": {
+                "category_id": self.category_id,
+                "category_name": self.category.name,
+            },
             "price": self.price,
             "brand": self.brand,
             "brand_story": self.brand_story,
@@ -48,8 +51,10 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            # "category": self.category,
-            "category_id": self.category_id,
+            "Category": {
+                "category_id": self.category_id,
+                "category_name": self.category.name,
+            },
             "price": self.price,
             "brand": self.brand,
             "brand_story": self.brand_story,

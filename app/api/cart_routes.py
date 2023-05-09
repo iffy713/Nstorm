@@ -42,7 +42,7 @@ def remove_product_from_cart(item_id):
     if not item_is_exist:
         return {
             "message": "No such item in cart.",
-            "statusCode": 404
+            "status_code": 404
         }, 404
     else:
         db.session.delete(item_is_exist)
