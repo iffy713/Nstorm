@@ -111,20 +111,19 @@ def user_update_address(address_id):
 @address_routes.route('/<int:address_id>', methods=['DELETE'])
 @login_required
 def delete_address(address_id):
-    address = Address.query.get(address_id)
-    if not address:
+    address_exist = UserAddress.query.filter_by(address_id=address_id, user_id=current_user.id).first()
+    if not address_exist:
         return {
-            "message": "Address couldn't be found.",
-            "statusCode": 404
+            "message": "No such address.",
+            "status_code": 404
         }, 404
     else:
-        db.session.delete(address)
+        db.session.delete(address_exist)
         db.session.commit()
         return {
-            "message": "Address was deleted successfully",
-            "statusCode": 200
+            "message": "Address was deleted.",
+            "status_code": 200
         }, 200
-
 
 # ========== Set Primary Address ==============
 @address_routes.route('/<int:addressid>/set_primary', methods=['PUT'])
