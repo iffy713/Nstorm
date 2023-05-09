@@ -32,7 +32,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE addresses SET SCHEMA {SCHEMA};")
 
     op.create_table('categories',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -43,7 +43,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -58,7 +58,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -72,7 +72,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
 
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -87,7 +87,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
 
     op.create_table('user_addresses',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -100,7 +100,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_addresses SET SCHEMA {SCHEMA};")
 
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -127,7 +127,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE order_products SET SCHEMA {SCHEMA};")
 
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -139,7 +139,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -155,7 +155,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
 
     op.create_table('review_images',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -166,7 +166,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE review_images SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
