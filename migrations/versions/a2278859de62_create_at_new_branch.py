@@ -49,6 +49,17 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE addresses SET SCHEMA {SCHEMA};")
 
+    op.create_table('categories',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=1000), nullable=False),
+    sa.Column('parent_category_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['parent_category_id'], ['categories.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
+
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=2000), nullable=False),
@@ -77,18 +88,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
-
-    op.create_table('categories',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=1000), nullable=False),
-    sa.Column('parent_category_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['parent_category_id'], ['categories.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
-
 
     op.create_table('user_addresses',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -180,9 +179,9 @@ def downgrade():
     op.drop_table('order_products')
     op.drop_table('cart_items')
     op.drop_table('user_addresses')
-    op.drop_table('categories')
     op.drop_table('orders')
     op.drop_table('products')
+    op.drop_table('categories')
     op.drop_table('addresses')
     op.drop_table('users')
     # ### end Alembic commands ###
