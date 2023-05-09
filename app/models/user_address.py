@@ -34,9 +34,14 @@ class UserAddress(db.Model):
 
     # could not get instance of self.address
     def to_dict_user_page(self):
+        print("11111111111111111111", self.address.id)
         return {
             "id": self.id,
             "is_primary": self.is_primary,
+            "street": self.address.street,
+            "city": self.address.city,
+            "state": self.address.state,
+            "zip_code": self.address.zip_code,
         }
 
 

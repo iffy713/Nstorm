@@ -26,7 +26,6 @@ class Address(db.Model):
             "city": self.city,
             "state": self.state,
             "zip_code": self.zip_code,
-            # "is_primary": self.is_primary
         }
 
     def to_dict_with_users(self):
