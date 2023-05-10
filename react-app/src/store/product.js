@@ -1,7 +1,7 @@
 const GET_ALL_PRODUCTS = "product/GET_ALL_PRODUCT"
 const GET_SINGLE_PRODUCT = "product/GET_SINGLE_PRODUCT"
 const SEARCH_PRODUCT = "product/SEARCH_PRODUCT"
-const GET_CATEGORY = "product/GET_CATEGORY"
+const GET_CATEGORY = "product/GET_CATEGORIES"
 
 const actionGetAllProducts = (products) => ({
     type: GET_ALL_PRODUCTS,
@@ -18,10 +18,11 @@ const actionSearchProduct = (products) => ({
     products
 })
 
-const actionGetCategory = (products) => ({
+const actionGetCategories = (products) => ({
     type: GET_CATEGORY,
     products
 })
+
 
 export const thunkGetAllProducts = () => async (dispatch) => {
     const response = await fetch('/api/products')
@@ -49,8 +50,10 @@ export const thunkSearchProducts = (keyword) => async (dispatch) => {
     }
 }
 
+
+
 export const thunkCategoryProducts = (categoryId) => async (dispatch) => {
-    const response = await fetch('/api/products/categories/categoryId')
+    const response = await fetch(`/api/products/categories/${categoryId}`)
     if ( response.ok ) {
         const data = await response.json()
         dispatch(actionGetCategory(data.Products))
