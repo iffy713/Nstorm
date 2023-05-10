@@ -1,22 +1,28 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { thunkCategoryProducts } from "../../../store/product"
+import { thunkGetCategories } from "../../../store/product"
 
-export default function categories() {
+
+export default function Categories() {
 
     const dispatch = useDispatch()
-    const categoriesObj = useSelector(state => state.product.allProducts)
-    const categoriesArr = categoriesObj ? Object.values(categoriesObj) : []
+    const categoriesObj = useSelector(state => state.product.categories)
+    const categoriesArr = categoriesObj? Object.values(categoriesObj) : []
+    console.log(categoriesArr)
 
-    useEffect(() => {
-        dispatch(thunkCategoryProducts())
-    },[dispatch])
+    useEffect(() =>{
+        dispatch(thunkGetCategories())
+    }, [ dispatch ])
 
     return (
         <>
-            <h1>
-                categories
-            </h1>
+            <ul>
+                {categoriesArr.map(category => (
+                    <li>
+                        {category.name}
+                    </li>
+                ))}
+            </ul>
         </>
     )
 }
