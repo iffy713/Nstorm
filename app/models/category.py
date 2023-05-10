@@ -8,7 +8,7 @@ class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(1000), nullable=False)
-    parent_category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=True)
+    parent_category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=True)
 
     subcategories = db.relationship('Category')
     products = db.relationship("Product", back_populates="category")
