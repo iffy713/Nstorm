@@ -6,6 +6,7 @@ import LogoutButton from '../auth/LogoutButton';
 import AccoutButton from './AccountButton';
 import LoginInDropDown from './Drop-down-menus/LogInDropDown';
 import LogOutDropDown from './Drop-down-menus/LogOutDropDown';
+import Categories from './Categories/Categories'
 import './NavBar.css'
 import SearchBar from './SearchBar';
 import UserButton from './UserButton';
@@ -31,28 +32,31 @@ const NavBar = ({setLoaded}) => {
 
   return (
     <div className='nav-bar-outer'>
-      <nav className='nav-bar'>
-        <div id="nav-bar-child-left">
-          <NavLink to='/' exact={true} activeClassName='active'>
-              <img id="logo-img" src='https://drive.google.com/uc?export=view&id=1q8uKj7aY-vdBGj_cPd0lty-fyXCGCMwF' />
-          </NavLink>
-        </div>
-        <div>
-          <SearchBar />
-        </div>
-
-
-        <div id="nav-bar-child-right">
-          <div>
-            {setLoaded && sessionLink}
-          </div>
-          <div>
-            <NavLink to='/shopping-bag' exact={true} activeClassName='active' className='nav-bar-headers'>
-              <i className="fa-solid fa-bag-shopping"></i>
+      <div className='nav-bar'>
+        <div id='nav-upper'>
+          <div id="nav-bar-child-left">
+            <NavLink to='/' exact={true} activeClassName='active'>
+                <img id="logo-img" src='https://drive.google.com/uc?export=view&id=1q8uKj7aY-vdBGj_cPd0lty-fyXCGCMwF' />
             </NavLink>
           </div>
+          <div>
+            <SearchBar />
+          </div>
+          <div id="nav-bar-child-right">
+            <div>
+              {setLoaded && sessionLink}
+            </div>
+            <div>
+              <NavLink to='/shopping-bag' exact={true} activeClassName='active' className='nav-bar-headers'>
+                <i className="fa-solid fa-bag-shopping"></i>
+              </NavLink>
+            </div>
+          </div>
         </div>
-      </nav>
+        <div>
+          <Categories />
+        </div>
+      </div>
     </div>
   );
 }

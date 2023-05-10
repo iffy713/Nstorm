@@ -1,6 +1,7 @@
 const GET_ALL_PRODUCTS = "product/GET_ALL_PRODUCT"
 const GET_SINGLE_PRODUCT = "product/GET_SINGLE_PRODUCT"
 const SEARCH_PRODUCT = "product/SEARCH_PRODUCT"
+const GET_CATEGORY = "product/GET_CATEGORY"
 
 const actionGetAllProducts = (products) => ({
     type: GET_ALL_PRODUCTS,
@@ -14,6 +15,11 @@ const actionGetSingleProduct = (product) => ({
 
 const actionSearchProduct = (products) => ({
     type: SEARCH_PRODUCT,
+    products
+})
+
+const actionGetCategory = (products) => ({
+    type: GET_CATEGORY,
     products
 })
 
@@ -43,6 +49,14 @@ export const thunkSearchProducts = (keyword) => async (dispatch) => {
     }
 }
 
+export const thunkCategoryProducts = (categoryId) => async (dispatch) => {
+    const response = await fetch('/api/products/categories/categoryId')
+    if ( response.ok ) {
+        const data = await response.json()
+        dispatch(actionGetCategory(data.Products))
+    }
+}
+
 const initialState = { allProducts: {}, singleProduct: {}, filtedProducts: {} }
 const productReducer = (state=initialState, action) => {
     let newState
@@ -66,6 +80,11 @@ const productReducer = (state=initialState, action) => {
                 filtedProducts:{}
             }
             newState.filtedProducts = action.products
+            return newState
+
+        case GET_CATEGORY:
+            newState = { allProducts:{}, singleProduct:{} }
+            newState.allProducts = action.products
             return newState
 
         default:
