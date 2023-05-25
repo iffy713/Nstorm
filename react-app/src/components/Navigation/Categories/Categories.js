@@ -1,9 +1,6 @@
-// import { useEffect } from "react"
-// import { useDispatch, useSelector } from "react-redux"
-// import { thunkGetCategories } from "../../../store/product"
 
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-
+import "./Categories.css"
 
 export default function Categories({categoriesArr}) {
 
@@ -17,8 +14,8 @@ export default function Categories({categoriesArr}) {
     // }, [ dispatch ])
 
     return (
-        <div>
-            <ul>
+        <div className="category-outer">
+            <ul className="category-list-ctn">
                 {categoriesArr.map(category => (
                     <li key={category.id} className="nav-item">
                         {/* <NavLink > */}

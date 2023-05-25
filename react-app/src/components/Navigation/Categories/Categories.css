@@ -1,0 +1,15 @@
+.category-outer {
+    width: 100%;
+    border-top: 1px rgb(227, 227, 227) solid;
+
+}
+
+.category-list-ctn {
+    list-style: none;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 15px;
+}

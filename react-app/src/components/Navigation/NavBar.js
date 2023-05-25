@@ -56,7 +56,7 @@ const NavBar = ({setLoaded}) => {
             </div>
           </div>
         </div>
-        <div>
+        {/* <div> */}
           <Categories categoriesArr={categoriesArr}/>
           {/* <ul>
                 {categoriesArr.map(category => (
@@ -65,7 +65,7 @@ const NavBar = ({setLoaded}) => {
                     </li>
                 ))}
             </ul> */}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );
