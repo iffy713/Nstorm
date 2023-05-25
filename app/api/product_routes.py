@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy import func
-from app.models import db, Product, CartItem, Review
+from app.models import db, Product, CartItem, Review, Category
 from app.forms import ReviewForm
 
 product_routes = Blueprint('products', __name__)
@@ -117,6 +117,16 @@ def search_by_keyword(keyword=None):
         filted_products = Product.query.filter((func.lower(Product.name).like(f"%{lower_word}%")) | (func.lower(Product.brand).like(f"%{lower_word}%"))).all()
         output = {'filted_products': [product.to_dict() for product in filted_products]}
 
+    return jsonify(output)
+
+# category feature: get all categories
+@product_routes.route('/categories')
+def get_all_categories():
+    categories = []
+    data = Category.query.filter(Category.id<=7).all()
+    for category in data:
+        categories.append(category.to_dict())
+    output = { "Categories": categories }
     return jsonify(output)
 
 

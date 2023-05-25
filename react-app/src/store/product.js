@@ -1,8 +1,8 @@
 const GET_ALL_PRODUCTS = "product/GET_ALL_PRODUCT"
 const GET_SINGLE_PRODUCT = "product/GET_SINGLE_PRODUCT"
 const SEARCH_PRODUCT = "product/SEARCH_PRODUCT"
-const GET_CATEGORIES = "product/GET_CATEGORIES"
-const GET_CATEGORIZED_PRODUCTS = "product/GET_CATEGOIZED_PRODUCTS"
+// const GET_CATEGORIES = "product/GET_CATEGORIES"
+// const GET_CATEGORIZED_PRODUCTS = "product/GET_CATEGOIZED_PRODUCTS"
 
 const actionGetAllProducts = (products) => ({
     type: GET_ALL_PRODUCTS,
@@ -19,15 +19,15 @@ const actionSearchProduct = (products) => ({
     products
 })
 
-const actionGetCategories = (categories) => ({
-    type: GET_CATEGORIES,
-    categories
-})
+// const actionGetCategories = (categories) => ({
+//     type: GET_CATEGORIES,
+//     categories
+// })
 
-const actionGetCategorizedProducts = (products) => ({
-    type: GET_CATEGORIZED_PRODUCTS,
-    products
-})
+// const actionGetCategorizedProducts = (products) => ({
+//     type: GET_CATEGORIZED_PRODUCTS,
+//     products
+// })
 
 
 export const thunkGetAllProducts = () => async (dispatch) => {
@@ -56,23 +56,22 @@ export const thunkSearchProducts = (keyword) => async (dispatch) => {
     }
 }
 
-export const thunkGetCategories = () => async(dispatch) => {
-    const response = await fetch('/api/products/categories')
-    if(response.ok){
-        const data = await response.json()
-        console.log(data)
-        dispatch(actionGetCategories(data.Categories))
-    }
-}
+// export const thunkGetCategories = () => async(dispatch) => {
+//     const response = await fetch('/api/products/categories')
+//     if(response.ok){
+//         const data = await response.json()
+//         dispatch(actionGetCategories(data.Categories))
+//     }
+// }
 
 
-export const thunkCategoryProducts = (categoryId) => async (dispatch) => {
-    const response = await fetch(`/api/products/categories/${categoryId}`)
-    if ( response.ok ) {
-        const data = await response.json()
-        dispatch(actionGetCategorizedProducts(data.Products))
-    }
-}
+// export const thunkCategoryProducts = (categoryId) => async (dispatch) => {
+//     const response = await fetch(`/api/products/categories/${categoryId}`)
+//     if ( response.ok ) {
+//         const data = await response.json()
+//         dispatch(actionGetCategorizedProducts(data.Products))
+//     }
+// }
 
 const initialState = { allProducts: {}, singleProduct: {}, filtedProducts: {} }
 const productReducer = (state=initialState, action) => {
@@ -99,17 +98,17 @@ const productReducer = (state=initialState, action) => {
             newState.filtedProducts = action.products
             return newState
 
-        case GET_CATEGORIES:
-            newState = { allProducts:{}, singleProduct:{}, categories:{} }
-            action.categories.forEach(category => (
-                newState.categories[category.id] = { ...category }
-            ))
-            return newState
+        // case GET_CATEGORIES:
+        //     newState = { allProducts:{}, singleProduct:{}, categories:{} }
+        //     action.categories.forEach(category => (
+        //         newState.categories[category.id] = { ...category }
+        //     ))
+        //     return newState
 
-        case GET_CATEGORIZED_PRODUCTS:
-            newState = { allProducts:{}, singleProduct:{} }
-            newState.allProducts = action.products
-            return newState
+        // case GET_CATEGORIZED_PRODUCTS:
+        //     newState = { allProducts:{}, singleProduct:{} }
+        //     newState.allProducts = action.products
+        //     return newState
 
         default:
             return state

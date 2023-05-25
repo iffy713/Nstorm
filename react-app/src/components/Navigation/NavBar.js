@@ -1,31 +1,34 @@
 
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import AccoutButton from './AccountButton';
-import LoginInDropDown from './Drop-down-menus/LogInDropDown';
-import LogOutDropDown from './Drop-down-menus/LogOutDropDown';
 import Categories from './Categories/Categories'
-import './NavBar.css'
 import SearchBar from './SearchBar';
 import UserButton from './UserButton';
+import { thunkGetCategories } from '../../store/category'
+import './NavBar.css'
 
 const NavBar = ({setLoaded}) => {
 
 
   const sessionUser = useSelector(state=> state.session.user)
+  const dispatch = useDispatch()
+  const categoriesObj = useSelector(state => state.category.allCategories)
+  const categoriesArr = categoriesObj? Object.values(categoriesObj) : []
+  // console.log(categoriesArr)
+
+  useEffect(() =>{
+    dispatch(thunkGetCategories())
+  }, [dispatch])
 
   let sessionLink
   if(sessionUser){
     sessionLink = (
-      // <LoginInDropDown user={sessionUser}/>
-      // <div>Hi, {sessionUser.first_name}</div>
       <UserButton sessionUser={sessionUser}/>
     )
   } else {
     sessionLink = (
-      // <LogOutDropDown />
       <AccoutButton />
     )
   }
@@ -54,7 +57,14 @@ const NavBar = ({setLoaded}) => {
           </div>
         </div>
         <div>
-          <Categories />
+          <Categories categoriesArr={categoriesArr}/>
+          {/* <ul>
+                {categoriesArr.map(category => (
+                    <li key={category.id}>
+                       {category.name}
+                    </li>
+                ))}
+            </ul> */}
         </div>
       </div>
     </div>
