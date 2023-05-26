@@ -133,18 +133,24 @@ def get_all_categories():
 # category feature: filter the products by their category
 @product_routes.route('/category/<int:categoryid>')
 def filter_by_category(categoryid):
+    # Step1: find the category
+    category = Category.query.get(categoryid)
+    if not category:
+        return {
+            "message": "Category not found."
+        }, 404
+    # Step2: use stack to store the category
     products = []
-    print(categoryid)
-    # data = Product.query.filter_by(category_id=categoryid).all()
-    data = Category.query.get(categoryid)
-    print("!!!!!!!!!!!",data.to_dict())
+    stack = [ category ]
 
-    return "testing"
-    # if not data:
-    #     return {
-    #         "message": "Please provide a valid category id."
-    #     }
-    # for product in data:
-    #     products.append(product.to_dict())
-    # output = { "Products":products }
-    # return jsonify(output)
+    while stack:
+        # Step3: pop the category from stack
+        current_category = stack.pop()
+        # Step4: add the category's products to the list
+        products.extend(current_category.products)
+        # Step5: add the category's subcategories to the stack
+        stack.extend(current_category.subcategories)
+
+    # Step6: organize the products data
+    output = [ product.to_dict() for product in products ]
+    return { "Products": output }

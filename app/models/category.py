@@ -18,7 +18,8 @@ class Category(db.Model):
             "id": self.id,
             "name": self.name,
             "parent_category_id": self.parent_category_id,
-            "Products" : [ product.to_dict_detail() for product in self.products ]
+            "Products" : [ product.to_dict() for product in self.products ],
+            "Subcategories":[category.to_dict_with_name() for category in self.subcategories]
         }
 
     def to_dict_with_name(self):
