@@ -17,7 +17,8 @@ class Category(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "parent_category_id": self.parent_category_id
+            "parent_category_id": self.parent_category_id,
+            "Products" : [ product.to_dict_detail() for product in self.products ]
         }
 
     def to_dict_with_name(self):

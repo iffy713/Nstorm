@@ -134,12 +134,17 @@ def get_all_categories():
 @product_routes.route('/category/<int:categoryid>')
 def filter_by_category(categoryid):
     products = []
-    data = Product.query.filter_by(category_id=categoryid).all()
-    if not data:
-        return {
-            "message": "Please provide a valid category id."
-        }
-    for product in data:
-        products.append(product.to_dict())
-    output = { "Products":products }
-    return jsonify(output)
+    print(categoryid)
+    # data = Product.query.filter_by(category_id=categoryid).all()
+    data = Category.query.get(categoryid)
+    print("!!!!!!!!!!!",data.to_dict())
+
+    return "testing"
+    # if not data:
+    #     return {
+    #         "message": "Please provide a valid category id."
+    #     }
+    # for product in data:
+    #     products.append(product.to_dict())
+    # output = { "Products":products }
+    # return jsonify(output)
