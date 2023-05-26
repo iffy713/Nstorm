@@ -25,7 +25,7 @@ export default function CategoryDetails() {
 
     return (
         <div className="row justify-content-start">
-            <h1>CategoryDetails</h1>
+            <h1>{productsArr.length} items found</h1>
             { productsArr.map( product => (
                 <div key={product.id} className="col-lg-3 col-md-4 col-sm-6">
                     <SingleProductCard product={product}/>
