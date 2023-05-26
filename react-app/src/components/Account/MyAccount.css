@@ -1,8 +1,10 @@
 #my-account-container {
-    width: 80%;
-    margin: 30px auto 0 auto;
+    width: 95%;
+    margin: auto;
     display: flex;
     flex-direction: row;
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+    border-top: 1px rgb(227, 227, 227) solid;
 }
 
 #sidebar-ctn {
@@ -12,6 +14,10 @@
     padding-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
+}
+
+#side-bar-ul {
+    padding-left: 0;
 }
 
 #sidebar-header {
