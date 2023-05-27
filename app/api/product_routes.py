@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy import func
-from app.models import db, Product, CartItem, Review
+from app.models import db, Product, CartItem, Review, Category
 from app.forms import ReviewForm
 
 product_routes = Blueprint('products', __name__)
@@ -119,17 +119,38 @@ def search_by_keyword(keyword=None):
 
     return jsonify(output)
 
+# category feature: get all categories
+@product_routes.route('/categories')
+def get_all_categories():
+    categories = []
+    data = Category.query.filter(Category.id<=7).all()
+    for category in data:
+        categories.append(category.to_dict())
+    output = { "Categories": categories }
+    return jsonify(output)
+
 
 # category feature: filter the products by their category
 @product_routes.route('/category/<int:categoryid>')
 def filter_by_category(categoryid):
-    products = []
-    data = Product.query.filter_by(category_id=categoryid).all()
-    if not data:
+    # Step1: find the category
+    category = Category.query.get(categoryid)
+    if not category:
         return {
-            "message": "Please provide a valid category id."
-        }
-    for product in data:
-        products.append(product.to_dict())
-    output = { "Products":products }
-    return jsonify(output)
+            "message": "Category not found."
+        }, 404
+    # Step2: use stack to store the category
+    products = []
+    stack = [ category ]
+
+    while stack:
+        # Step3: pop the category from stack
+        current_category = stack.pop()
+        # Step4: add the category's products to the list
+        products.extend(current_category.products)
+        # Step5: add the category's subcategories to the stack
+        stack.extend(current_category.subcategories)
+
+    # Step6: organize the products data
+    output = [ product.to_dict() for product in products ]
+    return { "Products": output }

@@ -15,7 +15,7 @@ export default function MyAccount() {
         <div id='my-account-container'>
             <div id="sidebar-ctn">
                 {/* <div id='sidebar-header' className='sidebar-row-child'>{user.first_name}'s Account</div> */}
-                <ul>
+                <ul id='side-bar-ul'>
                     {sidebarData.map((ele, key)=> (
                         <li key={key} id="sidebar-li">
                             <div onClick={()=>setSelected(ele.selected)}

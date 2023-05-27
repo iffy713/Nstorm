@@ -1,0 +1,30 @@
+.category-outer {
+    width: 100%;
+    border-top: 1px rgb(227, 227, 227) solid;
+    border-bottom: 1px rgb(227, 227, 227) solid;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.category-list-ctn {
+    list-style: none;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 15px;
+}
+
+.category-name-border {
+    box-sizing: border-box;
+}
+
+.category-name-border:hover {
+    border-bottom: 2px rgb(227, 227, 227) solid;
+}
+
+.category-name {
+    color: inherit;
+    text-decoration: none;
+}
