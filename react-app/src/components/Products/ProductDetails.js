@@ -36,12 +36,6 @@ export default function ProductDetails() {
             .then(setLoaded(true))
     }, [dispatch])
 
-    // if(!loaded ) return (
-    //     <div className='product-page-spinner-container'>
-    //         <Spinner />
-    //     </div>
-    // )
-
     if (!loaded || !singleProduct || !singleProduct.ProductImages) return (
         <div className='product-detail-outer-ctn'>
             <Spinner />

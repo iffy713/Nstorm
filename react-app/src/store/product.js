@@ -17,6 +17,7 @@ const actionSearchProduct = (products) => ({
     products
 })
 
+
 export const thunkGetAllProducts = () => async (dispatch) => {
     const response = await fetch('/api/products')
     const data = await response.json()

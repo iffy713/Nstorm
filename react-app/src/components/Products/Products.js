@@ -7,6 +7,7 @@ import './Products.css'
 import EmptyUserBar from '../auth/EmptyUserBar';
 import WelcomeBack from '../auth/WelcomeBack';
 import Spinner from '../Spinner/Spinner';
+import SingleProductCard from './SingleProductCard';
 
 export default function Products() {
 
@@ -37,37 +38,12 @@ export default function Products() {
             ):(<div className='empty-user-bar-ctn'>
                 <WelcomeBack user={user}/>
             </div>)}
-            <div className='all-products-outer'>
-                <div className='all-products-container'>
+            <div className='all-products-outer container-fluid'>
+                <div className='all-products-container row'>
                     { allProductsArr.map(product => (
-                            <article key={product.id} className="single-product-card-ctn">
-                                <Link to={`/products/${product.id}`} className="product-card">
-                                    <div id='single-product-card-img-ctn'>
-                                        <img src={product.preview_image} alt={product.name}/>
-                                    </div>
-                                    <div><h6>{product.brand}</h6></div>
-                                    <div id="single-card-product-name">
-                                        {product.name}
-                                    </div>
-                                </Link>
-                                <div id="single-card-product-price">${product.price}</div>
-                                { product.num_of_review?(
-                                    <div id="single-card-product-rating">
-                                        <StarRating
-                                            numberOfStars={5}
-                                            rating={product.average_rating}
-                                            starRatedColor="rgb(57, 57, 57)"
-                                            starEmptyColor="rgb(227, 227, 227)"
-                                            starDimension='12px'
-                                            starSpacing='2px'
-                                        />
-                                        <span>({product.num_of_review})</span>
-                                    </div>
-                                ):<div></div> }
-                                <div id="single-card-product-delivery">
-                                    <span>Free Delivery</span>
-                                </div>
-                            </article>
+                        <div key={product.id} className='col-lg-3 col-md-4 col-sm-6'>
+                            <SingleProductCard product={product} />
+                        </div>
                     )) }
                 </div>
                 {/* )} */}
