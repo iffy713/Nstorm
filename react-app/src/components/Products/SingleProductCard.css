@@ -1,11 +1,6 @@
 .single-product-card-ctn {
-    margin: 20px;
-    width: 311px;
-}
-
-#single-product-card-img-ctn {
-    width: 311px;
-    height: 478px;
+    margin: auto;
+    width: 100%;
 }
 
 #single-product-card-img-ctn img {

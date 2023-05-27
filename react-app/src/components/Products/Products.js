@@ -38,10 +38,12 @@ export default function Products() {
             ):(<div className='empty-user-bar-ctn'>
                 <WelcomeBack user={user}/>
             </div>)}
-            <div className='all-products-outer'>
-                <div className='all-products-container'>
+            <div className='all-products-outer container-fluid'>
+                <div className='all-products-container row'>
                     { allProductsArr.map(product => (
-                        <SingleProductCard product={product} />
+                        <div key={product.id} className='col-lg-3 col-md-4 col-sm-6'>
+                            <SingleProductCard product={product} />
+                        </div>
                     )) }
                 </div>
                 {/* )} */}

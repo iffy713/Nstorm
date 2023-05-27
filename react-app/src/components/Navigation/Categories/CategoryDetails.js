@@ -25,12 +25,12 @@ export default function CategoryDetails() {
     )
 
     return (
-        <div className="container-fluid">
-            { productsArr.length? (<div>
-                <h1>{productsArr.length} items found</h1>
-                <div className="row justify-content-start">
+        <div>
+            { productsArr.length? (<div className="all-products-outer">
+                {/* <h1>{productsArr.length} items found</h1> */}
+                <div className="all-products-container">
                     { productsArr.map( product => (
-                        <div key={product.id} className="col-lg-3 col-md-4 col-sm-6">
+                        <div key={product.id}>
                             <SingleProductCard product={product}/>
                         </div>
                     ) ) }
