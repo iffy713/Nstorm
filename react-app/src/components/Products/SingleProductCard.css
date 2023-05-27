@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+#single-product-card-img-ctn {
+    margin-bottom: 10px;
+}
+
 #single-product-card-img-ctn img {
     max-width: 100%;
     max-height: 100%;
