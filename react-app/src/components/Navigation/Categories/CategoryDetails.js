@@ -4,6 +4,7 @@ import { thunkCategoryProducts } from "../../../store/category"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import Spinner from "../../Spinner/Spinner"
 import SingleProductCard from "../../Products/SingleProductCard"
+import NoResultFound from "./NoResultFound"
 
 export default function CategoryDetails() {
 
@@ -24,13 +25,19 @@ export default function CategoryDetails() {
     )
 
     return (
-        <div className="row justify-content-start">
-            <h1>{productsArr.length} items found</h1>
-            { productsArr.map( product => (
-                <div key={product.id} className="col-lg-3 col-md-4 col-sm-6">
-                    <SingleProductCard product={product}/>
+        <div className="container-fluid">
+            { productsArr.length? (<div>
+                <h1>{productsArr.length} items found</h1>
+                <div className="row justify-content-start">
+                    { productsArr.map( product => (
+                        <div key={product.id} className="col-lg-3 col-md-4 col-sm-6">
+                            <SingleProductCard product={product}/>
+                        </div>
+                    ) ) }
                 </div>
-            ) ) }
+            </div>) : (<div>
+                <NoResultFound />
+            </div>)}
         </div>
     )
 }

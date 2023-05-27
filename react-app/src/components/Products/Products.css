@@ -17,5 +17,5 @@
     width: 95%;
     margin: auto;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
-

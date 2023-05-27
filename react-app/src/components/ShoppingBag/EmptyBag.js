@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './EmptyBag.css'
-import ContinueShopping from '../Buttons/ContinueShoppint';
+import ContinueShopping from '../Buttons/ContinueShopping';
 
 export default function EmptyBag() {
 
