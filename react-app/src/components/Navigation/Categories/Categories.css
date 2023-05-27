@@ -1,7 +1,8 @@
 .category-outer {
     width: 100%;
     border-top: 1px rgb(227, 227, 227) solid;
-
+    border-bottom: 1px rgb(227, 227, 227) solid;
+    margin-bottom: 30px;
 }
 
 .category-list-ctn {
