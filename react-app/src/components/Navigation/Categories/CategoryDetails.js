@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import Spinner from "../../Spinner/Spinner"
 import SingleProductCard from "../../Products/SingleProductCard"
 import NoResultFound from "./NoResultFound"
+import "./CategoryDetails.css"
 
 export default function CategoryDetails() {
 
@@ -29,9 +30,11 @@ export default function CategoryDetails() {
     }
 
     return (
-        <div>
+        <div >
+            <div className="results-found">
+                <h6>{productsArr.length} items found.</h6>
+            </div>
             <div className="all-products-outer container-fluid">
-                {/* <h1>{productsArr.length} items found</h1> */}
                 <div className="all-products-container row">
                     { productsArr.map( product => (
                         <div key={product.id} className='col-lg-3 col-md-4 col-sm-6'>
