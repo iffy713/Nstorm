@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import AccoutButton from './AccountButton';
@@ -8,19 +8,20 @@ import SearchBar from './SearchBar';
 import UserButton from './UserButton';
 import { thunkGetCategories } from '../../store/category'
 import './NavBar.css'
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 const NavBar = ({setLoaded}) => {
-
 
   const sessionUser = useSelector(state=> state.session.user)
   const dispatch = useDispatch()
   const categoriesObj = useSelector(state => state.category.allCategories)
   const categoriesArr = categoriesObj? Object.values(categoriesObj) : []
   // console.log(categoriesArr)
+  const location = useLocation()
 
   useEffect(() =>{
     dispatch(thunkGetCategories())
-  }, [dispatch])
+  }, [dispatch, location])
 
   let sessionLink
   if(sessionUser){
@@ -32,6 +33,8 @@ const NavBar = ({setLoaded}) => {
       <AccoutButton />
     )
   }
+
+  // if(!setCategoryLoaded) return null
 
   return (
     <div className='nav-bar-outer'>
@@ -56,16 +59,7 @@ const NavBar = ({setLoaded}) => {
             </div>
           </div>
         </div>
-        {/* <div> */}
           <Categories categoriesArr={categoriesArr}/>
-          {/* <ul>
-                {categoriesArr.map(category => (
-                    <li key={category.id}>
-                       {category.name}
-                    </li>
-                ))}
-            </ul> */}
-        {/* </div> */}
       </div>
     </div>
   );

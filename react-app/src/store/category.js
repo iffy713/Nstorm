@@ -43,8 +43,7 @@ const categoryReducer = (state=initialState, action) => {
             return newState
 
         case GET_CATEGORIZED_PRODUCTS:
-            // newState = { allCategories: {}, singleCategory: {} }
-            newState = { allProducts: {} }
+            newState = { allProducts: {  }, allCategories : {...state.allCategories} }
             action.products.forEach( product => (
                 newState.allProducts[product.id] = { ...product }
             ) )

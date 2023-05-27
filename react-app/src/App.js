@@ -17,6 +17,7 @@ import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 import LoginPage from './components/auth/LoginPage';
 import SignUpPage from './components/auth/SignUpPage';
 import Footer from './components/Footer/Footer';
+import Categories from './components/Navigation/Categories/Categories';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,7 +25,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      await dispatch(authenticate())
       setLoaded(true);
     })();
   }, [dispatch]);

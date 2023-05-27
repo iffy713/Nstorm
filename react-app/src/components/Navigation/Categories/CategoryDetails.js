@@ -12,6 +12,7 @@ export default function CategoryDetails() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.category.allProducts)
     const productsArr = products? Object.values(products) : []
+    console.log("!!!!!!!!!!!",productsArr)
     const [ loaded, setLoaded ] = useState( false )
 
     useEffect(()=>{
