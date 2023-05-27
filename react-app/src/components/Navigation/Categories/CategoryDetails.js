@@ -12,32 +12,34 @@ export default function CategoryDetails() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.category.allProducts)
     const productsArr = products? Object.values(products) : []
-    // console.log("!!!!",products)
     const [ loaded, setLoaded ] = useState( false )
 
-    useEffect(async()=>{
+    useEffect(()=>{
         dispatch(thunkCategoryProducts(categoryId))
         .then(setLoaded(true))
-    },[dispatch])
+    },[dispatch, categoryId])
 
-    if( !loaded || !productsArr ) return (
+    if( !loaded ) return (
         <Spinner />
     )
 
+    if ( productsArr.length === 0 && loaded ) {
+        return <NoResultFound />
+    }
+
     return (
         <div>
-            { productsArr.length? (<div className="all-products-outer">
+            <div className="all-products-outer container-fluid">
                 {/* <h1>{productsArr.length} items found</h1> */}
-                <div className="all-products-container">
+                <div className="all-products-container row">
                     { productsArr.map( product => (
-                        <div key={product.id}>
+                        <div key={product.id} className='col-lg-3 col-md-4 col-sm-6'>
                             <SingleProductCard product={product}/>
                         </div>
                     ) ) }
                 </div>
-            </div>) : (<div>
-                <NoResultFound />
-            </div>)}
+            </div>
+            {/* { productsArr.length == 0 && <NoResultFound /> } */}
         </div>
     )
 }
