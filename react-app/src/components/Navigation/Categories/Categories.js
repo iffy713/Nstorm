@@ -9,8 +9,8 @@ export default function Categories({categoriesArr}) {
         <div className="category-outer">
             <ul className="category-list-ctn">
                 {categoriesArr.map(category => (
-                    <li key={category.id} className="nav-item">
-                        <NavLink to={`/category/${category.id}`}>
+                    <li key={category.id} className="nav-item category-name-border">
+                        <NavLink to={`/category/${category.id}`} className="category-name">
                             {category.name}
                         </NavLink>
                     </li>
