@@ -4,8 +4,6 @@ import './CartItemsTotal.css'
 
 export default function CartItemsTotal({cartItems}){
 
-    console.log(cartItems)
-
     let orderTotal = 0
     cartItems.forEach(item => {
         if (!item.Product || !item.Product.price) return

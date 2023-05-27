@@ -52,13 +52,11 @@ export const thunkCreateAddress = (street, city, state, zipCode, primary) => asy
     if (response.ok) {
         const newAddress = await response.json()
         dispatch(actionCreateAddress(newAddress))
-        console.log("response.ok in thunk")
         return null
     // }
     } else if (response.status < 500) {
         // console.log("error response in thunk", response.json())
         const data = await response.json()
-        console.log("error data in thunk",data)
         if (data.errors) {
             return data.errors
         }
@@ -81,7 +79,6 @@ export const thunkUpdateAddress = (address_id, address) => async (dispatch) => {
         return null
     } else if (response.status < 500) {
         const data = await response.json()
-        console.log("update address in thunk",data)
         if (data.errors) {
             return data.errors
         }
