@@ -37,7 +37,7 @@ export default function CategoryDetails() {
                 <div className="all-products-container row">
                     { productsArr.map( product => (
                         <div key={product.id} className='col-lg-3 col-md-4 col-sm-6'>
-                            <SingleProductCard product={product}/>
+                            <SingleProductCard product={product} productId={product.id}/>
                         </div>
                     ) ) }
                 </div>

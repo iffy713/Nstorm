@@ -31,10 +31,11 @@ export default function ProductDetails() {
     }
 
     useEffect(()=> {
+        console.log(productId)
         dispatch(thunkGetSingleProduct(productId))
         dispatch(thunkGetProductReviews(productId))
             .then(setLoaded(true))
-    }, [dispatch])
+    }, [dispatch, productId])
 
     if (!loaded || !singleProduct || !singleProduct.ProductImages) return (
         <div className='product-detail-outer-ctn'>

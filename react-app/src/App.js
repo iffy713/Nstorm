@@ -4,9 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-// import UsersList from './components/UsersList';
-// import User from './components/User';
-import Addresses from './components/Addresses/Address';
 import { authenticate } from './store/session';
 import Products from './components/Products/Products';
 import ProductDetails from './components/Products/ProductDetails';
@@ -17,7 +14,6 @@ import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 import LoginPage from './components/auth/LoginPage';
 import SignUpPage from './components/auth/SignUpPage';
 import Footer from './components/Footer/Footer';
-import Categories from './components/Navigation/Categories/Categories';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
