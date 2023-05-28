@@ -102,10 +102,10 @@ export default function CreateReviewForm({setShowModal, productId, product}){
                 <div className='form-label-ctn'>
                     <label htmlFor="fileInput" >
                         <button
-                            class="file-button"
+                            className="file-button"
                             onClick={() => document.getElementById("fileInput").click()}
                         >
-                        <i class="fa-solid fa-camera"></i> <span>
+                        <i className="fa-solid fa-camera"></i> <span>
                             Add a photo
                         </span>
                         </button>

@@ -4,9 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-// import UsersList from './components/UsersList';
-// import User from './components/User';
-import Addresses from './components/Addresses/Address';
 import { authenticate } from './store/session';
 import Products from './components/Products/Products';
 import ProductDetails from './components/Products/ProductDetails';
@@ -17,7 +14,7 @@ import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 import LoginPage from './components/auth/LoginPage';
 import SignUpPage from './components/auth/SignUpPage';
 import Footer from './components/Footer/Footer';
-import Categories from './components/Navigation/Categories/Categories';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <NavBar setLoaded={setLoaded}/>
       <Switch>
         <Route path='/login' exact={true}>
