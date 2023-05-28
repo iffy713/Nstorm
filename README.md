@@ -23,7 +23,9 @@ Sqlalchemy
 
 ## 💫Features
 ### Homepage
-![55674145d7203b88349567d2fb71b62](https://user-images.githubusercontent.com/97992495/211351761-64c9ef18-b0da-4f77-9acf-c81e46d9e802.png)
+<!-- ![55674145d7203b88349567d2fb71b62](https://user-images.githubusercontent.com/97992495/211351761-64c9ef18-b0da-4f77-9acf-c81e46d9e802.png) -->
+<img width="1128" alt="f978b3ef6c3c1af3b70de278814c823" src="https://github.com/iffy713/Nstorm/assets/97992495/1d9d61f6-065f-486c-9383-8d4dbc1f2f51">
+
 
 ### Sign in
 ![ad8227348e0a6abe9bef965eaa3fac3](https://user-images.githubusercontent.com/97992495/211351862-136441bf-230f-47fb-a64d-3be59be83a28.png)
