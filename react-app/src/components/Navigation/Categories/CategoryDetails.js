@@ -13,18 +13,18 @@ export default function CategoryDetails() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.category.allProducts)
     const productsArr = products? Object.values(products) : []
-    const [ loaded, setLoaded ] = useState( false )
+    const [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
         dispatch(thunkCategoryProducts(categoryId))
-        .then(setLoaded(true))
+        .then(()=>setLoading(false))
     },[dispatch, categoryId])
 
-    if( !loaded ) return (
-        <Spinner />
-    )
+    if ( loading ) {
+        return <Spinner />
+    }
 
-    if ( productsArr.length === 0 && loaded ) {
+    if ( productsArr.length === 0 && !loading ) {
         return <NoResultFound />
     }
 
@@ -42,7 +42,6 @@ export default function CategoryDetails() {
                     ) ) }
                 </div>
             </div>
-            {/* { productsArr.length == 0 && <NoResultFound /> } */}
         </div>
     )
 }
