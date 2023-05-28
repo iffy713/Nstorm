@@ -52,7 +52,7 @@ export default function ReviewOrder(){
                     <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
                     <div id='checkout-items-img-preview-ctn'>
                         { cartItemsArr.map(item => (
-                            <img src={item.Product.preview_img}></img>
+                            <img src={item.Product.preview_img} key={item.id}></img>
                         )) }
                     </div>
                 </div>
