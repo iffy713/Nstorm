@@ -26,7 +26,6 @@ export const thunkCategoryProducts = (categoryid) => async (dispatch) => {
     const response = await fetch(`/api/products/category/${categoryid}`)
     if ( response.ok ) {
         const data = await response.json()
-        console.log(data)
         dispatch(actionGetCategorizedProducts(data.Products))
     }
 }

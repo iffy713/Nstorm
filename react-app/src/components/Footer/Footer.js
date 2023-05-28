@@ -17,10 +17,10 @@ export default function Footer() {
                 </div>
                 <div id='contact-icon-ctn'>
                     <a href={'https://github.com/iffy713/Nstorm'} target="_blank">
-                        <i class="fa-brands fa-square-github"></i>
+                        <i className="fa-brands fa-square-github"></i>
                     </a>
                     <a href='https://www.linkedin.com/in/yifan-xin/' target='_blank'>
-                        <i class="fa-brands fa-linkedin"></i>
+                        <i className="fa-brands fa-linkedin"></i>
                     </a>
                 </div>
             </div>

@@ -20,8 +20,10 @@ export default function ProductDetails() {
 
 
     const { productId } = useParams()
+    console.log("yoooooooooooo", productId)
     const [ quantity, setQuantity ] = useState(1)
     const [ loaded, setLoaded ] = useState(false)
+    const [ loading, setLoading ] = useState(true)
 
 
     // set quantity selections
@@ -30,13 +32,18 @@ export default function ProductDetails() {
         options.push(i)
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(thunkGetSingleProduct(productId))
-        dispatch(thunkGetProductReviews(productId))
-            .then(setLoaded(true))
-    }, [dispatch])
+            .then(()=>{
+                dispatch(thunkGetProductReviews(productId))
+                    .then(()=>{
+                        setLoaded(true)
+                        setLoading(false)
+                    })
+            })
+    }, [ dispatch, productId ])
 
-    if (!loaded || !singleProduct || !singleProduct.ProductImages) return (
+    if (loading || !singleProduct || !singleProduct.ProductImages) return (
         <div className='product-detail-outer-ctn'>
             <Spinner />
         </div>
