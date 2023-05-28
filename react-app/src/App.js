@@ -14,6 +14,7 @@ import ReviewOrder from './components/ShoppingBag/ReviewOrder';
 import LoginPage from './components/auth/LoginPage';
 import SignUpPage from './components/auth/SignUpPage';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <NavBar setLoaded={setLoaded}/>
       <Switch>
         <Route path='/login' exact={true}>
