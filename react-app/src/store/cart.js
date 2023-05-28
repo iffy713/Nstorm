@@ -27,7 +27,6 @@ const actionRemoveCartItem = (itemId) => ({
 export const thunkGetCartItems = () => async (dispatch)=>{
     const response = await fetch('/api/cart')
     const data = await response.json()
-    console.log("data in cart thunkkkkk0",data)
     if( response.ok ){
         dispatch(actionGetCartItems(data.Cart_items))
     }

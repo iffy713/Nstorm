@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom';
 import StarRating from 'react-star-ratings'
 import "./SingleProductCard.css"
 
-export default function SingleProductCard({ product }) {
-
+export default function SingleProductCard({ product, productId }) {
 
     return (
         <article key={product.id} className="single-product-card-ctn">
-            <Link to={`/products/${product.id}`} className="product-card">
+            <Link to={`/products/${productId}`} className="product-card">
                 <div id='single-product-card-img-ctn'>
                     <img src={product.preview_image} alt={product.name}/>
                 </div>
@@ -36,4 +35,3 @@ export default function SingleProductCard({ product }) {
         </article>
     )
 }
-

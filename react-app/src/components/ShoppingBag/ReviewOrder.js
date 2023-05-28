@@ -33,8 +33,6 @@ export default function ReviewOrder(){
         const data = await dispatch(thunkCreateOrder(userId, addressId))
         if(data){
             setErrors(data)
-            console.log(data)
-            console.log(errors)
         } else {
             history.push('/my-account')
         }
