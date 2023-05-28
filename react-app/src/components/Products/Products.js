@@ -20,10 +20,10 @@ export default function Products() {
 
     useEffect(()=> {
         dispatch(thunkGetAllProducts(allProductsArr))
-            .then(setLoaded(true))
+            .then(()=>setLoaded(true))
     },[dispatch])
 
-    if(!loaded || !allProductsArr) return (
+    if(!loaded || allProductsArr===0 ) return (
         <div className='all-products-container'>
             <Spinner />
         </div>
@@ -46,7 +46,6 @@ export default function Products() {
                         </div>
                     )) }
                 </div>
-                {/* )} */}
             </div>
         </div>
     )
