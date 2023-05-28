@@ -228,7 +228,7 @@ def seed_products():
     )
     product27 = Product(
         name="V15 Detect Cordless Vacuum",
-        category_id = 72,
+        category_id = 4,
         price=749.99,
         brand="DYSON",
         brand_story="In 1978, British industrial designer James Dyson became frustrated with his vacuum cleaner's diminishing performance and set out to build a better one. The result: the world's first bagless vacuum cleaner, which used cyclonic technology to maintain suction as it picked up dirt. Dyson then launched his own research center and manufacturing company, which continues to innovate industry-leading products for household cleaning, air treatment, hair care and more.",
