@@ -39,7 +39,7 @@ class Review(db.Model):
             "Product": {
                 "id": self.product.id,
                 "name": self.product.name,
-                "category": self.product.category,
+                "category_id": self.product.category_id,
                 "price": self.product.price,
                 "brand": self.product.brand,
                 "brand_story": self.product.brand_story,
