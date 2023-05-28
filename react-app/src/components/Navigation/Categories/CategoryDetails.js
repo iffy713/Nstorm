@@ -24,7 +24,7 @@ export default function CategoryDetails() {
         return <Spinner />
     }
 
-    if ( productsArr.length === 0 ) {
+    if ( productsArr.length === 0 && !loading ) {
         return <NoResultFound />
     }
 
