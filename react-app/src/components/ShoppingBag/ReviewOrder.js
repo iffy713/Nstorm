@@ -22,6 +22,7 @@ export default function ReviewOrder(){
     })
     const userAddressObj = useSelector(state => state.addresses)
     const userAddressArr = Object.values(userAddressObj)
+
     const userId = useSelector(state => state.session.user).id
 
     const updateAddress = (e)=> {
