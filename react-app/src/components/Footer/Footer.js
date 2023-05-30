@@ -3,7 +3,7 @@ import './Footer.css'
 export default function Footer() {
 
     return (
-        <div id="footer-outer-ctn">
+        <footer id="footer-outer-ctn">
             <div id='footer-inner-ctn'>
                 <div>
                     <h4>
@@ -24,6 +24,6 @@ export default function Footer() {
                     </a>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
