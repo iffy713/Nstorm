@@ -82,7 +82,7 @@ def create_new_address():
         )
         db.session.add(new_user_address)
         db.session.commit()
-        return new_user_address.to_dict_with_user_and_address()
+        return new_user_address.to_dict_user_page()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # ============ Update an address ================
@@ -111,8 +111,8 @@ def user_update_address(address_id):
 @address_routes.route('/<int:address_id>', methods=['DELETE'])
 @login_required
 def delete_address(address_id):
-    address_exist = UserAddress.query.filter_by(address_id=address_id, user_id=current_user.id).first()
-    if not address_exist:
+    address_exist = UserAddress.query.get(address_id)
+    if not address_exist or address_exist.user_id != current_user.id:
         return {
             "message": "No such address.",
             "status_code": 404

@@ -10,24 +10,32 @@
     padding: 20px;
     width: 50%;
 }
+.checkout-left {
+    width: 100%;
+}
+
+.checkout-right {
+    height: fit-content;
+}
+
+.checkout-right-inner {
+    width: 100%;
+}
+
+#checkout-address-select-ctn {
+    width: 100%;
+    margin: 0;
+    /* padding: 0; */
+}
 
 #checkout-inner-ctn {
-    width: 60%;
+    width: 70%;
     margin: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
 }
 
-#checkout-inner-left-child {
-    display: flex;
-    flex-direction: column;
-    width: 55%;
-    padding: 20px;
-    margin: auto;
-    /* border: blue solid 2px; */
-
-}
 
 #checkout-inner-left-bottom {
     margin-top: 20px;

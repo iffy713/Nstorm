@@ -25,7 +25,7 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
 
     useEffect(()=>{
         dispatch(thunkGetProductReviews(productId))
-    }, [dispatch])
+    }, [dispatch, productReviewsObj])
 
 
 
@@ -50,7 +50,7 @@ export default function Reviews({product, productId, avgRating, numOfReviews}) {
                             /> <span>({numOfReviews})</span>
                             {avgRating === 0?(
                                 <div>
-                                    <div>0</div>
+                                    {/* <div>0</div> */}
                                     <div>
                                         <h5>No reviews yet-be the first!</h5>
                                     </div>
