@@ -27,6 +27,7 @@ class Order(db.Model):
         }
 
     def to_dict_user_page(self):
+        print("0000000000000000", self.address)
         return {
             "id": self.id,
             "created_at": self.created_at,

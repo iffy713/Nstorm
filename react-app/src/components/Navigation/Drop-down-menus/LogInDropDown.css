@@ -9,14 +9,14 @@
     flex-direction: column;
     position: absolute;
     background-color: white;
-    left: -50px;
+    left: -25px;
     top: 30px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
 .child-drop-down {
-    margin: 5px;
+    margin: 5px auto;
 }
 
 .child-drop-down:hover {

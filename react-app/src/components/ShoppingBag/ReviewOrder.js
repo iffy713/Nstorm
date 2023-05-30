@@ -22,6 +22,7 @@ export default function ReviewOrder(){
     })
     const userAddressObj = useSelector(state => state.addresses)
     const userAddressArr = Object.values(userAddressObj)
+
     const userId = useSelector(state => state.session.user).id
 
     const updateAddress = (e)=> {
@@ -46,78 +47,83 @@ export default function ReviewOrder(){
 
     return (
         <div id="checkout-outer-ctn">
-            <div id="checkout-inner-ctn">
-                <div className="checkout-page-card-ctn">
-                    <div className="order-summary-title">Checkout</div>
-                    <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
-                    <div id='checkout-items-img-preview-ctn'>
-                        { cartItemsArr.map(item => (
-                            <img src={item.Product.preview_img}></img>
-                        )) }
+            <div id="checkout-inner-ctn" className="row">
+                <div className="col-lg-6 col-md-6 col-sm-12">
+                    <div className="checkout-page-card-ctn checkout-left">
+                        <div className="order-summary-title">Checkout</div>
+                        <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
+                        <div id='checkout-items-img-preview-ctn'>
+                            { cartItemsArr.map(item => (
+                                <img src={item.Product.preview_img} key={item.id}></img>
+                            )) }
+                        </div>
                     </div>
-                </div>
-                <div>
-                    { !userAddressArr.length?(
-                        <div className="checkout-page-card-ctn">
-                            <div className="order-summary-title">Do not have a shipping address?</div>
-                            <CreateAddressFormModal />
-                        </div>
-                    ) : (
-                        <div className="checkout-page-card-ctn">
-                            <div className="order-summary-title">Shipping address</div>
-                                <div className="order-summary-subtitle">Select an existing address below:</div>
-                                <form>
-                                    {userAddressArr.map(address => (
-                                        <div key={address.id} id='checkout-address-selections-ctn'>
-                                            <input name="address-radio" type='radio' value={address.id} onChange={updateAddress} required/>                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
-                                        </div>
-                                    ))}
-                                </form>
-                                <div className="order-summary-subtitle">or <span><CreateAddressFormModal /></span></div>
-                        </div>
-                    )}
+                    <div className="checkout-page-card-ctn checkout-left" >
+                        { !userAddressArr.length?(
+                            <div className="checkout-page-card-ctn">
+                                <div className="order-summary-title">Do not have a shipping address?</div>
+                                <CreateAddressFormModal />
+                            </div>
+                        ) : (
+                            <div className="checkout-page-card-ctn" id="checkout-address-select-ctn">
+                                <div className="order-summary-title">Shipping address</div>
+                                    <div className="order-summary-subtitle">Select an existing address below:</div>
+                                    <form>
+                                        {userAddressArr.map(address => (
+                                            <div key={address.id} id='checkout-address-selections-ctn'>
+                                                <input name="address-radio" type='radio' value={address.id} onChange={updateAddress} required/>                                            <label htmlFor="address-radio">{address.street}, {address.city}, {address.state}</label>
+                                            </div>
+                                        ))}
+                                    </form>
+                                    <div className="order-summary-subtitle">or <span><CreateAddressFormModal /></span></div>
+                            </div>
+                        )}
+                    </div>
+
                 </div>
 
-                <div className="checkout-page-card-ctn">
-                    <div className="order-summary-title">Order Summary</div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Your items
+                <div className="checkout-page-card-ctn checkout-right col-lg-6 col-md-6 col-sm-12">
+                    <div className="checkout-right-inner">
+                        <div className="order-summary-title">Order Summary</div>
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Your items
+                            </div>
+                            <div>
+                                ${Number(orderTotal).toFixed(2)}
+                            </div>
                         </div>
-                        <div>
-                            ${Number(orderTotal).toFixed(2)}
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Shipping
+                            </div>
+                            <div>
+                                Free
+                            </div>
                         </div>
-                    </div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Shipping
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Estimated tax
+                            </div>
+                            <div>
+                                ${Number(orderTotal*0.07).toFixed(2)}
+                            </div>
                         </div>
-                        <div>
-                            Free
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Estimated total
+                            </div>
+                            <div>
+                                ${Number(orderTotal * 1.07).toFixed(2)}
+                            </div>
                         </div>
-                    </div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Estimated tax
+                        <div id="checkout-place-order-btn-ctn">
+                            { addressId?(
+                                <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
+                            ): (
+                                <button disabled id="checkout-place-order-btn-disabled">Place Order (Address required)</button>
+                            ) }
                         </div>
-                        <div>
-                            ${Number(orderTotal*0.07).toFixed(2)}
-                        </div>
-                    </div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Estimated total
-                        </div>
-                        <div>
-                            ${Number(orderTotal * 1.07).toFixed(2)}
-                        </div>
-                    </div>
-                    <div id="checkout-place-order-btn-ctn">
-                        { addressId?(
-                            <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
-                        ): (
-                            <button disabled id="checkout-place-order-btn-disabled">Place Order (Address required)</button>
-                        ) }
                     </div>
                 </div>
             </div>
