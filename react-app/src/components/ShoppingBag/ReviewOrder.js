@@ -47,8 +47,8 @@ export default function ReviewOrder(){
 
     return (
         <div id="checkout-outer-ctn">
-            <div id="checkout-inner-ctn">
-                <div>
+            <div id="checkout-inner-ctn" className="row">
+                <div className="col-lg-6 col-md-6 col-sm-12">
                     <div className="checkout-page-card-ctn checkout-left">
                         <div className="order-summary-title">Checkout</div>
                         <div><Link to='/shopping-bag'>Edit Shopping Bag</Link></div>
@@ -82,46 +82,48 @@ export default function ReviewOrder(){
 
                 </div>
 
-                <div className="checkout-page-card-ctn checkout-right">
-                    <div className="order-summary-title">Order Summary</div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Your items
+                <div className="checkout-page-card-ctn checkout-right col-lg-6 col-md-6 col-sm-12">
+                    <div className="checkout-right-inner">
+                        <div className="order-summary-title">Order Summary</div>
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Your items
+                            </div>
+                            <div>
+                                ${Number(orderTotal).toFixed(2)}
+                            </div>
                         </div>
-                        <div>
-                            ${Number(orderTotal).toFixed(2)}
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Shipping
+                            </div>
+                            <div>
+                                Free
+                            </div>
                         </div>
-                    </div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Shipping
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Estimated tax
+                            </div>
+                            <div>
+                                ${Number(orderTotal*0.07).toFixed(2)}
+                            </div>
                         </div>
-                        <div>
-                            Free
+                        <div className="order-summary-sub-lines">
+                            <div>
+                                Estimated total
+                            </div>
+                            <div>
+                                ${Number(orderTotal * 1.07).toFixed(2)}
+                            </div>
                         </div>
-                    </div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Estimated tax
+                        <div id="checkout-place-order-btn-ctn">
+                            { addressId?(
+                                <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
+                            ): (
+                                <button disabled id="checkout-place-order-btn-disabled">Place Order (Address required)</button>
+                            ) }
                         </div>
-                        <div>
-                            ${Number(orderTotal*0.07).toFixed(2)}
-                        </div>
-                    </div>
-                    <div className="order-summary-sub-lines">
-                        <div>
-                            Estimated total
-                        </div>
-                        <div>
-                            ${Number(orderTotal * 1.07).toFixed(2)}
-                        </div>
-                    </div>
-                    <div id="checkout-place-order-btn-ctn">
-                        { addressId?(
-                            <button onClick={handleSubmit} id="checkout-place-order-btn">Place Order</button>
-                        ): (
-                            <button disabled id="checkout-place-order-btn-disabled">Place Order (Address required)</button>
-                        ) }
                     </div>
                 </div>
             </div>

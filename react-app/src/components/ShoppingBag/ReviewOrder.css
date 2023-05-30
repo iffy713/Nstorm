@@ -18,8 +18,14 @@
     height: fit-content;
 }
 
+.checkout-right-inner {
+    width: 100%;
+}
+
 #checkout-address-select-ctn {
     width: 100%;
+    margin: 0;
+    /* padding: 0; */
 }
 
 #checkout-inner-ctn {
