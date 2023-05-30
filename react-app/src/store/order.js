@@ -42,7 +42,7 @@ export const thunkCreateOrder =(userId, addressId) => async (dispatch) => {
             "address_id": addressId,
         })
     })
-    // console.log("create order response in thunk",response)
+    console.log("create order response in thunk",response)
     if (response.ok){
         const data = await response.json()
         dispatch(actionCreateOrder(data))
