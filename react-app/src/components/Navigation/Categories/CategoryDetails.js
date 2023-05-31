@@ -16,6 +16,7 @@ export default function CategoryDetails() {
     const [ loading, setLoading ] = useState(true)
 
     useEffect(()=>{
+        setLoading(true)
         dispatch(thunkCategoryProducts(categoryId))
         .then(()=>setLoading(false))
     },[dispatch, categoryId])
@@ -24,8 +25,17 @@ export default function CategoryDetails() {
         return <Spinner />
     }
 
-    if ( productsArr.length === 0 && !loading ) {
-        return <NoResultFound />
+    if ( productsArr.length === 0 ) {
+        return (
+        <div>
+            { loading? (
+                <Spinner />
+            ):(
+                <NoResultFound />
+            ) }
+
+        </div>
+        )
     }
 
     return (
