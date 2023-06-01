@@ -30,19 +30,19 @@ export const thunkCategoryProducts = (categoryid) => async (dispatch) => {
     }
 }
 
-const initialState = { allCategories: {}, singleCategory: {} }
+const initialState = { allCategories: {}, singleCategory: {}, allProducts: {} }
 const categoryReducer = (state=initialState, action) => {
     let newState
     switch (action.type) {
         case GET_CATEGORIES:
-            newState = { allCategories: {}, singleCategory: {} }
+            newState = { allCategories: {}, singleCategory: {},allProducts: {...state.allProducts} }
             action.categories.forEach(category => (
                 newState.allCategories[category.id] = { ...category }
             ))
             return newState
 
         case GET_CATEGORIZED_PRODUCTS:
-            newState = { allProducts: {  }, allCategories : {...state.allCategories} }
+            newState = { allProducts: {  }, allCategories : {...state.allCategories}, singleCategory: {} }
             action.products.forEach( product => (
                 newState.allProducts[product.id] = { ...product }
             ) )

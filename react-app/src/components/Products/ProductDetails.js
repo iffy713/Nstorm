@@ -20,7 +20,6 @@ export default function ProductDetails() {
 
 
     const { productId } = useParams()
-    console.log("yoooooooooooo", productId)
     const [ quantity, setQuantity ] = useState(1)
     const [ loaded, setLoaded ] = useState(false)
     const [ loading, setLoading ] = useState(true)
