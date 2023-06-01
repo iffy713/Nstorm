@@ -28,7 +28,7 @@ export default function CategoryDetails() {
     if ( productsArr.length === 0 ) {
         return (
         <div>
-            { loading? (
+            { loading || productsArr === 0? (
                 <Spinner />
             ):(
                 <NoResultFound />
